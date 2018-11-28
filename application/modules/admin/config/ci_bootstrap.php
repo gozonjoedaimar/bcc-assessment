@@ -95,13 +95,13 @@ $config['ci_bootstrap'] = array(
 			'icon' => 'fa fa-gear'
 		),
 		'panel' => array(
-			'name'		=> 'Admin Panel',
+			'name'		=> 'Staff Manager',
 			'url'		=> 'panel',
 			'icon'		=> 'fa fa-cog',
 			'children'  => array(
-				'Admin Users'			=> 'panel/admin_user',
-				'Create Admin User'		=> 'panel/admin_user_create',
-				'Admin User Groups'		=> 'panel/admin_user_group',
+				'Staff'			=> 'panel/admin_user',
+				'Create User'		=> 'panel/admin_user_create',
+				'User Groups'		=> 'panel/admin_user_group',
 			)
 		),
 		'util' => array(
@@ -137,7 +137,8 @@ $config['ci_bootstrap'] = array(
 		'util/remove_db'			=> array('webmaster'),
 		'defaults'			=> array('admin'),
 		'ledger'			=> array('admin', 'staff'),
-		'ledger/create'			=> array('admin', 'staff')
+		'ledger/create'			=> array('admin', 'staff'),
+		'subjects' => array('admin', 'staff')
 	),
 
 	// AdminLTE settings
