@@ -21,10 +21,11 @@ class Panel extends Admin_Controller {
 	{
 		$crud = $this->generate_crud('admin_users');
 		$crud->columns('groups', 'username', 'first_name', 'last_name', 'active');
+		$crud->set_subject('List');
 		$this->unset_crud_fields('ip_address', 'last_login');
 
 		// cannot change Admin User groups once created
-		if ($crud->getState()=='list')
+		if ($crud->getState()=='list' || $crud->getState()=='ajax_list')
 		{
 			$crud->set_relation_n_n('groups', 'admin_users_groups', 'admin_groups', 'user_id', 'group_id', 'name');
 		}
@@ -39,7 +40,7 @@ class Panel extends Admin_Controller {
 		$crud->unset_add();
 		$crud->unset_delete();
 
-		$this->mPageTitle = 'Admin Users';
+		$this->mPageTitle = 'Staff';
 		$this->render_crud();
 	}
 

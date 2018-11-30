@@ -16,8 +16,11 @@ class Subjects extends Admin_Controller {
 		$crud->set_subject('List');
 
 		// disable direct create / delete Frontend User
-		// $crud->unset_add();
-		// $crud->unset_delete();
+		if ( $this->ion_auth->in_group(array('staff')) ) {
+			$crud->unset_add();
+			$crud->unset_edit();
+			$crud->unset_delete();
+		}
 
 		$this->mPageTitle = 'Subjects';
 		$this->render_crud();
