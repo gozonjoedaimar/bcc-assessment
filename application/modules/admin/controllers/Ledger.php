@@ -12,11 +12,11 @@ class Ledger extends Admin_Controller {
 	// Frontend User CRUD
 	public function index()
 	{
-		$crud = $this->generate_crud('ledger');
+		$crud = $this->generate_crud('students');
 		$crud->columns('firstName', 'lastName', 'email');
 		$crud->display_as('lastName', 'Last Name');
 		$crud->display_as('firstName', 'First Name');
-		$crud->set_subject('List');
+		$crud->set_subject('Students');
 
 		$crud->fields(['firstName','lastName','email']);
 
@@ -27,13 +27,20 @@ class Ledger extends Admin_Controller {
 		}
 
 		// only webmaster and admin can reset user password
-		if ($this->ion_auth->in_group(array('webmaster', 'admin')))
-		{
-			$crud->add_action('Reset Password', '', 'admin/user/reset_password', 'fa fa-repeat');
-		}
+		// if ($this->ion_auth->in_group(array('webmaster', 'admin')))
+		// {
+			// $crud->add_action('Reset Password', '', 'admin/user/reset_password', 'fa fa-repeat');
+		// }
+
+
+		$crud->add_action('View', '', 'admin/ledger/view', 'fa fa-eye');
 
 		// disable direct create / delete Frontend User
-		// $crud->unset_add();
+		$crud->unset_add();
+		$crud->unset_print();
+		$crud->unset_export();
+		$crud->unset_read();
+		$crud->unset_edit();
 		$crud->unset_delete();
 
 		$this->mPageTitle = 'Ledger';
@@ -93,6 +100,14 @@ class Ledger extends Admin_Controller {
 
 		$this->mViewData['form'] = $form;
 		$this->render('user/create');
+	}
+
+	public function view()
+	{
+		$form = $this->form_builder->create_form();
+		$this->mViewData['form'] = $form;
+		$this->mPageTitle = "Student Ledger";
+		$this->render('student/ledger');
 	}
 
 	// User Groups CRUD

@@ -79,6 +79,11 @@ $config['ci_bootstrap'] = array(
 			'url'  => 'ledger/create',
 			'icon' => 'fa fa-plus',
 		),*/
+		'assessment' => array(
+			'name' => "Assessment",
+			'url'  => 'assessment/create',
+			'icon' => 'fa fa-address-book',
+		),
 		'ledger' => array(
 			'name' => "Ledger",
 			'url'  => 'ledger',
@@ -137,6 +142,7 @@ $config['ci_bootstrap'] = array(
 		'util/remove_db'			=> array('webmaster'),
 		'defaults'			=> array('admin'),
 		'ledger'			=> array('admin', 'staff'),
+		'assessment/create'			=> array('admin', 'staff'),
 		'ledger/create'			=> array('admin', 'staff'),
 		'subjects' => array('admin', 'staff')
 	),
