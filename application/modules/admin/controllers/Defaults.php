@@ -10,89 +10,118 @@ class Defaults extends Admin_Controller {
 	}
 
 	// Frontend User CRUD
-	public function listing()
+	public function labels()
 	{
-		$crud = $this->generate_crud('ledger');
-		$crud->columns('firstName', 'lastName', 'email');
-		$crud->display_as('lastName', 'Last Name');
-		$crud->display_as('firstName', 'First Name');
-		$crud->set_subject('List');
+		$crud = $this->generate_crud('price_defaults');
+		// $crud->columns('name','label', 'value');
+		$crud->set_subject('Labels');
+		$crud->required_fields('label', 'value', 'name');
 
-		$crud->fields(['firstName','lastName']);
+		// // only webmaster and admin can change member groups
+		// if ($crud->getState()=='list' || $this->ion_auth->in_group(array('webmaster', 'admin')))
+		// {
+		// 	$crud->set_relation_n_n('groups', 'users_groups', 'groups', 'user_id', 'group_id', 'name');
+		// }
 
-		// only webmaster and admin can change member groups
-		if ($crud->getState()=='list' || $this->ion_auth->in_group(array('webmaster', 'admin')))
-		{
-			$crud->set_relation_n_n('groups', 'users_groups', 'groups', 'user_id', 'group_id', 'name');
-		}
-
-		// only webmaster and admin can reset user password
-		if ($this->ion_auth->in_group(array('webmaster', 'admin')))
-		{
-			$crud->add_action('Reset Password', '', 'admin/user/reset_password', 'fa fa-repeat');
-		}
+		// // only webmaster and admin can reset user password
+		// if ($this->ion_auth->in_group(array('webmaster', 'admin')))
+		// {
+		// 	$crud->add_action('Reset Password', '', 'admin/user/reset_password', 'fa fa-repeat');
+		// }
 
 		// disable direct create / delete Frontend User
 		// $crud->unset_add();
-		$crud->unset_delete();
+		// $crud->unset_delete();
 
-		$this->mPageTitle = 'Ledger';
+		$this->mPageTitle = 'Manage default labels';
 		$this->render_crud();
 	}
 
-	// Create Frontend User
-	public function index()
+	// 
+	public function index() 
+	{
+		return redirect('admin/defaults/set');
+	}
+
+	// Set assessment price defaults
+	public function set()
 	{
 		$form = $this->form_builder->create_form();
 
 		if ($form->validate())
 		{
+			// $this->system_message->set_success("Heeeeeeeyyyy!!");
 			// passed validation
-			$username = $this->input->post('username');
-			$email = $this->input->post('email');
-			$password = $this->input->post('password');
-			$identity = empty($username) ? $email : $username;
-			$additional_data = array(
-				'first_name'	=> $this->input->post('first_name'),
-				'last_name'		=> $this->input->post('last_name'),
-			);
-			$groups = $this->input->post('groups');
+			// $username = $this->input->post('username');
+			// $email = $this->input->post('email');
+			// $password = $this->input->post('password');
+			// $identity = empty($username) ? $email : $username;
+			// $additional_data = array(
+			// 	'first_name'	=> $this->input->post('first_name'),
+			// 	'last_name'		=> $this->input->post('last_name'),
+			// );
+			// $groups = $this->input->post('groups');
 
-			// [IMPORTANT] override database tables to update Frontend Users instead of Admin Users
-			$this->ion_auth_model->tables = array(
-				'users'				=> 'users',
-				'groups'			=> 'groups',
-				'users_groups'		=> 'users_groups',
-				'login_attempts'	=> 'login_attempts',
-			);
+			// // [IMPORTANT] override database tables to update Frontend Users instead of Admin Users
+			// $this->ion_auth_model->tables = array(
+			// 	'users'				=> 'users',
+			// 	'groups'			=> 'groups',
+			// 	'users_groups'		=> 'users_groups',
+			// 	'login_attempts'	=> 'login_attempts',
+			// );
 
-			// proceed to create user
-			$user_id = $this->ion_auth->register($identity, $password, $email, $additional_data, $groups);			
-			if ($user_id)
-			{
-				// success
-				$messages = $this->ion_auth->messages();
-				$this->system_message->set_success($messages);
+			// // proceed to create user
+			// $user_id = $this->ion_auth->register($identity, $password, $email, $additional_data, $groups);			
+			// if ($user_id)
+			// {
+			// 	// success
+			// 	$messages = $this->ion_auth->messages();
+			// 	$this->system_message->set_success($messages);
 
-				// directly activate user
-				$this->ion_auth->activate($user_id);
+			// 	// directly activate user
+			// 	$this->ion_auth->activate($user_id);
+			// }
+			// else
+			// {
+			// 	// failed
+			// 	$errors = $this->ion_auth->errors();
+			// 	$this->system_message->set_error($errors);
+			// }
+			$post = $this->input->post();
+
+			$all_saved = TRUE;
+
+			foreach ($post as $name => $value) {
+				$this->db->reset_query();
+				$this->db->set('value', $value);
+				$this->db->where('name', $name);
+				$saved = $this->db->update('price_defaults');
+				if (!$saved) $all_saved = FALSE;
 			}
-			else
+
+			if ($all_saved)
 			{
-				// failed
-				$errors = $this->ion_auth->errors();
-				$this->system_message->set_error($errors);
+				$this->system_message->set_success('All defaults saved!');
 			}
+			else 
+			{
+				$this->system_message->set_error('Some input were not saved.');
+			}
+
 			refresh();
 		}
 
+		// Get defaults labels
+		$query = $this->db->get('price_defaults');
+		$this->mViewData['default_labels'] = $query->result_array();
+
 		// get list of Frontend user groups
-		$this->load->model('group_model', 'groups');
-		$this->mViewData['groups'] = $this->groups->get_all();
+		// $this->load->model('group_model', 'groups');
+		// $this->mViewData['groups'] = $this->groups->get_all();
 		$this->mPageTitle = 'Defaults';
 
 		$this->mViewData['form'] = $form;
-		$this->render('user/create');
+		$this->render('default/prices');
 	}
 
 	// User Groups CRUD

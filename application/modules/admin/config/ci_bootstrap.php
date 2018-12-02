@@ -91,7 +91,7 @@ $config['ci_bootstrap'] = array(
 		),
 		'defaults' => array(
 			'name' => 'Defaults',
-			'url' => 'defaults',
+			'url' => 'defaults/set',
 			'icon' => 'fa fa-gear'
 		),
 		'panel' => array(

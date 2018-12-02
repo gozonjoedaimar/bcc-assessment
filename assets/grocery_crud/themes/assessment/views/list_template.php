@@ -1,32 +1,32 @@
 <?php
-    $this->set_css($this->default_theme_path.'/adminlte/css/bootstrap/bootstrap.min.css');
-    $this->set_css($this->default_theme_path.'/adminlte/css/font-awesome/css/font-awesome.min.css');    
-    $this->set_css($this->default_theme_path.'/adminlte/css/common.css');    
-    $this->set_css($this->default_theme_path.'/adminlte/css/list.css');
-    $this->set_css($this->default_theme_path.'/adminlte/css/general.css');
-    $this->set_css($this->default_theme_path.'/adminlte/css/plugins/animate.min.css');
+    $this->set_css($this->default_theme_path.'/assessment/css/bootstrap/bootstrap.min.css');
+    $this->set_css($this->default_theme_path.'/assessment/css/font-awesome/css/font-awesome.min.css');    
+    $this->set_css($this->default_theme_path.'/assessment/css/common.css');    
+    $this->set_css($this->default_theme_path.'/assessment/css/list.css');
+    $this->set_css($this->default_theme_path.'/assessment/css/general.css');
+    $this->set_css($this->default_theme_path.'/assessment/css/plugins/animate.min.css');
 
 
     if ($this->config->environment == 'production') {
         $this->set_js_lib($this->default_javascript_path.'/'.grocery_CRUD::JQUERY);
-        $this->set_js_lib($this->default_theme_path.'/adminlte/build/js/global-libs.min.js');
+        $this->set_js_lib($this->default_theme_path.'/assessment/build/js/global-libs.min.js');
     } else {
         $this->set_js_lib($this->default_javascript_path.'/'.grocery_CRUD::JQUERY);
-        $this->set_js_lib($this->default_theme_path.'/adminlte/js/jquery-plugins/jquery.form.js');
-        $this->set_js_lib($this->default_theme_path.'/adminlte/js/common/cache-library.js');
-        $this->set_js_lib($this->default_theme_path.'/adminlte/js/common/common.js');
+        $this->set_js_lib($this->default_theme_path.'/assessment/js/jquery-plugins/jquery.form.js');
+        $this->set_js_lib($this->default_theme_path.'/assessment/js/common/cache-library.js');
+        $this->set_js_lib($this->default_theme_path.'/assessment/js/common/common.js');
     }
 
     //section libs
-    // $this->set_js_lib($this->default_theme_path.'/adminlte/js/bootstrap/dropdown.min.js');
-    $this->set_js_lib($this->default_theme_path.'/adminlte/js/bootstrap/modal.min.js');
-    $this->set_js_lib($this->default_theme_path.'/adminlte/js/jquery-plugins/bootstrap-growl.min.js');
-    $this->set_js_lib($this->default_theme_path.'/adminlte/js/jquery-plugins/jquery.print-this.js');
+    // $this->set_js_lib($this->default_theme_path.'/assessment/js/bootstrap/dropdown.min.js');
+    $this->set_js_lib($this->default_theme_path.'/assessment/js/bootstrap/modal.min.js');
+    $this->set_js_lib($this->default_theme_path.'/assessment/js/jquery-plugins/bootstrap-growl.min.js');
+    $this->set_js_lib($this->default_theme_path.'/assessment/js/jquery-plugins/jquery.print-this.js');
 
 
     //page js
-    $this->set_js_lib($this->default_theme_path.'/adminlte/js/datagrid/gcrud.datagrid.js');
-    $this->set_js_lib($this->default_theme_path.'/adminlte/js/datagrid/list.js');
+    $this->set_js_lib($this->default_theme_path.'/assessment/js/datagrid/gcrud.datagrid.js');
+    $this->set_js_lib($this->default_theme_path.'/assessment/js/datagrid/list.js');
 
     $colspans = (count($columns) + 2);
 

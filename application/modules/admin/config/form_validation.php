@@ -142,4 +142,12 @@ $config = array(
 		),
 	),
 
+	'defaults/set' => array(
+		array(
+			'field'=>'units',
+			'label'=>'Units',
+			'rules'=>'required'
+		)
+	),
+
 );

@@ -1,20 +1,20 @@
 <?php
-    $this->set_css($this->default_theme_path.'/adminlte/css/bootstrap/bootstrap.min.css');
-    $this->set_css($this->default_theme_path.'/adminlte/css/font-awesome/css/font-awesome.min.css');
-    $this->set_css($this->default_theme_path.'/adminlte/css/common.css');
-    $this->set_css($this->default_theme_path.'/adminlte/css/general.css');
-    $this->set_css($this->default_theme_path.'/adminlte/css/add-edit-form.css');
+    $this->set_css($this->default_theme_path.'/assessment/css/bootstrap/bootstrap.min.css');
+    $this->set_css($this->default_theme_path.'/assessment/css/font-awesome/css/font-awesome.min.css');
+    $this->set_css($this->default_theme_path.'/assessment/css/common.css');
+    $this->set_css($this->default_theme_path.'/assessment/css/general.css');
+    $this->set_css($this->default_theme_path.'/assessment/css/add-edit-form.css');
 
 
     if ($this->config->environment == 'production') {
         $this->set_js_lib($this->default_javascript_path.'/'.grocery_CRUD::JQUERY);
-        $this->set_js_lib($this->default_theme_path.'/adminlte/build/js/global-libs.min.js');
-        $this->set_js_config($this->default_theme_path.'/adminlte/js/form/edit.min.js');
+        $this->set_js_lib($this->default_theme_path.'/assessment/build/js/global-libs.min.js');
+        $this->set_js_config($this->default_theme_path.'/assessment/js/form/edit.min.js');
     } else {
         $this->set_js_lib($this->default_javascript_path.'/'.grocery_CRUD::JQUERY);
-        $this->set_js_lib($this->default_theme_path.'/adminlte/js/jquery-plugins/jquery.form.min.js');
-        $this->set_js_lib($this->default_theme_path.'/adminlte/js/common/common.min.js');
-        $this->set_js_config($this->default_theme_path.'/adminlte/js/form/edit.js');
+        $this->set_js_lib($this->default_theme_path.'/assessment/js/jquery-plugins/jquery.form.min.js');
+        $this->set_js_lib($this->default_theme_path.'/assessment/js/common/common.min.js');
+        $this->set_js_config($this->default_theme_path.'/assessment/js/form/edit.js');
     }
 
 	$this->set_js_lib($this->default_javascript_path.'/jquery_plugins/jquery.noty.js');
