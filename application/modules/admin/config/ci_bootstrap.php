@@ -89,11 +89,11 @@ $config['ci_bootstrap'] = array(
 			'url'  => 'ledger',
 			'icon' => 'fa fa-book',
 		),
-		'subjects' => array(
+		/*'subjects' => array(
 			'name'=>'Subjects',
 			'url'=>'subjects',
 			'icon' => 'fa fa-list-ul'
-		),
+		),*/
 		'defaults' => array(
 			'name' => 'Defaults',
 			'url' => 'defaults/set',
@@ -144,15 +144,16 @@ $config['ci_bootstrap'] = array(
 		'ledger'			=> array('admin', 'staff'),
 		'assessment/create'			=> array('admin', 'staff'),
 		'ledger/create'			=> array('admin', 'staff'),
-		'subjects' => array('admin', 'staff')
+		'subjects' => array('admin', 'staff'),
+		'defaults/set' => array('admin')
 	),
 
 	// AdminLTE settings
 	'adminlte' => array(
 		'body_class' => array(
 			'webmaster'	=> 'skin-red',
-			'admin'		=> 'skin-green',
-			'manager'	=> 'skin-black',
+			'admin'		=> 'skin-purple',
+			/*'manager'	=> 'skin-black',*/
 			'staff'		=> 'skin-blue',
 		)
 	),

@@ -69,7 +69,7 @@
 							<th>Balance</th>
 						</tr>
 					</thead>
-					<tfoot>
+					<tfoot class="hide">
 						<tr>
 							<td><input type="text" class="datepicker" name=""></td>
 							<td><input type="text" name=""></td>
