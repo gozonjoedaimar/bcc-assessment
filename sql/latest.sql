@@ -56,10 +56,10 @@ CREATE TABLE `admin_users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
-INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('1', '127.0.0.1', 'webmaster', '$2y$08$/X5gzWjesYi78GqeAv5tA.dVGBVP7C1e1PzqnYCVe5s1qhlDIPPES', NULL, NULL, NULL, NULL, NULL, NULL, '1451900190', '1465489592', '1', 'Webmaster', '');
-INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('2', '127.0.0.1', 'admin', '$2y$08$7Bkco6JXtC3Hu6g9ngLZDuHsFLvT7cyAxiz1FzxlX5vwccvRT7nKW', NULL, NULL, NULL, NULL, NULL, NULL, '1451900228', '1465489580', '1', 'Admin', '');
-INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('3', '127.0.0.1', 'manager', '$2y$08$snzIJdFXvg/rSHe0SndIAuvZyjktkjUxBXkrrGdkPy1K6r5r/dMLa', NULL, NULL, NULL, NULL, NULL, NULL, '1451900430', '1465489585', '1', 'Manager', '');
-INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('4', '127.0.0.1', 'staff', '$2y$08$NigAXjN23CRKllqe3KmjYuWXD5iSRPY812SijlhGeKfkrMKde9da6', NULL, NULL, NULL, NULL, NULL, NULL, '1451900439', '1465489590', '1', 'Staff', '');
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('1', '127.0.0.1', 'webmaster', '$2y$08$/X5gzWjesYi78GqeAv5tA.dVGBVP7C1e1PzqnYCVe5s1qhlDIPPES', NULL, NULL, NULL, NULL, NULL, NULL, '1451900190', '1543937158', '1', 'Webmaster', '');
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('2', '127.0.0.1', 'admin', '$2y$08$7Bkco6JXtC3Hu6g9ngLZDuHsFLvT7cyAxiz1FzxlX5vwccvRT7nKW', NULL, NULL, NULL, NULL, NULL, 'tTXDuQ63FrUQg5x39cDFgO', '1451900228', '1543930849', '1', 'Admin', '');
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('3', '127.0.0.1', 'manager', '$2y$08$snzIJdFXvg/rSHe0SndIAuvZyjktkjUxBXkrrGdkPy1K6r5r/dMLa', NULL, NULL, NULL, NULL, NULL, NULL, '1451900430', '1543586196', '1', 'Manager', NULL);
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('4', '127.0.0.1', 'staff', '$2y$08$NigAXjN23CRKllqe3KmjYuWXD5iSRPY812SijlhGeKfkrMKde9da6', NULL, NULL, NULL, NULL, NULL, NULL, '1451900439', '1543930750', '1', 'Staff', '');
 
 
 #
@@ -169,6 +169,43 @@ INSERT INTO `groups` (`id`, `name`, `description`) VALUES ('1', 'members', 'Gene
 
 
 #
+# TABLE STRUCTURE FOR: ledger
+#
+
+DROP TABLE IF EXISTS `ledger`;
+
+CREATE TABLE `ledger` (
+  `studentNumber` int(11) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`studentNumber`)
+) ENGINE=MyISAM AUTO_INCREMENT=1704 DEFAULT CHARSET=latin1;
+
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1002');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1056');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1076');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1088');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1102');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1143');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1165');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1166');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1188');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1216');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1286');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1323');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1337');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1370');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1401');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1501');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1504');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1611');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1612');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1619');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1621');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1625');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1702');
+INSERT INTO `ledger` (`studentNumber`) VALUES ('1703');
+
+
+#
 # TABLE STRUCTURE FOR: login_attempts
 #
 
@@ -181,6 +218,93 @@ CREATE TABLE `login_attempts` (
   `time` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+#
+# TABLE STRUCTURE FOR: price_defaults
+#
+
+DROP TABLE IF EXISTS `price_defaults`;
+
+CREATE TABLE `price_defaults` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `label` varchar(255) DEFAULT NULL,
+  `value` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+
+INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('2', 'Units', '30', 'units');
+INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('3', 'Registration Fee', '100', 'registration_fee');
+INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('4', 'Library Fee', '5', 'library_fee');
+INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('5', 'Developement Fee', '25', 'development_fee');
+INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('6', 'Sports', '10', 'sports');
+INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('7', 'Cultural', '5', 'cultural');
+INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('8', 'Laboratory Fee', '15', 'laboratory_fee');
+INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('9', 'NSTP', '45', 'nstp');
+INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('10', 'City Smile ( Sch. Paper )', '20', 'city_smile');
+
+
+#
+# TABLE STRUCTURE FOR: students
+#
+
+DROP TABLE IF EXISTS `students`;
+
+CREATE TABLE `students` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `lastName` varchar(50) NOT NULL,
+  `firstName` varchar(50) NOT NULL,
+  `extension` varchar(10) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('1', 'Murphils', 'Diane', 'x5800', 'dmurphy@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('2', 'Patterson', 'Mary', 'x4611', 'mpatterso@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('3', 'Firrelli', 'Jeff', 'x9273', 'jfirrelli@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('4', 'Patterson', 'William', 'x4871', 'wpatterson@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('5', 'Bondur', 'Gerard', 'x5408', 'gbondur@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('6', 'Bow', 'Anthony', 'x5428', 'abow@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('7', 'Jennings', 'Leslie', 'x3291', 'ljennings@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('8', 'Thompson', 'Leslie', 'x4065', 'lthompson@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('9', 'Firrelli', 'Julie', 'x2173', 'jfirrelli@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('10', 'Patterson', 'Steve', 'x4334', 'spatterson@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('11', 'Tseng', 'Foon Yue', 'x2248', 'ftseng@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('12', 'Vanauf', 'George', 'x4102', 'gvanauf@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('13', 'Bondur', 'Loui', 'x6493', 'lbondur@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('14', 'Hernandez', 'Gerard', 'x2028', 'ghernande@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('15', 'Castillo', 'Pamela', 'x2759', 'pcastillo@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('16', 'Bott', 'Larry', 'x2311', 'lbott@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('17', 'Jones', 'Barry', 'x102', 'bjones@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('18', 'Fixter', 'Andy', 'x101', 'afixter@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('19', 'Marsh', 'Peter', 'x102', 'pmarsh@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('20', 'King', 'Tom', 'x103', 'tking@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('21', 'Nishi', 'Mami', 'x101', 'mnishi@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('22', 'Kato', 'Yoshimi', 'x102', 'ykato@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('23', 'Gerard', 'Martin', 'x2312', 'mgerard@classicmodelcars.com');
+INSERT INTO `students` (`id`, `lastName`, `firstName`, `extension`, `email`) VALUES ('24', 'Doe', 'Jane', '', 'janedoe@example.com');
+
+
+#
+# TABLE STRUCTURE FOR: subjects
+#
+
+DROP TABLE IF EXISTS `subjects`;
+
+CREATE TABLE `subjects` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `code` varchar(25) DEFAULT NULL,
+  `unit` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+INSERT INTO `subjects` (`id`, `name`, `code`, `unit`) VALUES ('1', 'English', 'ENG111', '3');
+INSERT INTO `subjects` (`id`, `name`, `code`, `unit`) VALUES ('2', 'Principles of Programming ', 'PROG101', '3');
+INSERT INTO `subjects` (`id`, `name`, `code`, `unit`) VALUES ('3', 'Data structures and algorithm', 'DDD111', '3');
+INSERT INTO `subjects` (`id`, `name`, `code`, `unit`) VALUES ('4', 'Psychology', 'PSY111', '3');
+INSERT INTO `subjects` (`id`, `name`, `code`, `unit`) VALUES ('5', 'Rizal', 'RIZAL111', '3');
+
 
 #
 # TABLE STRUCTURE FOR: users
@@ -207,9 +331,11 @@ CREATE TABLE `users` (
   `company` varchar(100) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES ('1', '127.0.0.1', 'member', '$2y$08$kkqUE2hrqAJtg.pPnAhvL.1iE7LIujK5LZ61arONLpaBBWh/ek61G', NULL, 'member@member.com', NULL, NULL, NULL, NULL, '1451903855', '1451905011', '1', 'Member', 'One', NULL, NULL);
+INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES ('2', '::1', 'johndoe', '$2y$08$GW.BtJ3ANRQrMLr8XNlNUenTwGimkrKlGoa0T1uMOqXlrabEM2bM2', NULL, 'johndoe@example.com', NULL, NULL, NULL, NULL, '1543038536', NULL, '1', 'John', 'Doe', NULL, NULL);
+INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES ('3', '::1', 'janedoe', '$2y$08$3jhfEkrqpaDrus88S7gS8.ADsBPz.FKVng.7aG9CkN9x55GiAXn2O', NULL, 'janedoe@example.com', NULL, NULL, NULL, NULL, '1543042602', NULL, '1', 'Jane', 'Doe', NULL, NULL);
 
 
 #
@@ -223,8 +349,10 @@ CREATE TABLE `users_groups` (
   `user_id` int(11) unsigned NOT NULL,
   `group_id` mediumint(8) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES ('1', '1', '1');
+INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES ('2', '2', '1');
+INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES ('3', '3', '1');
 
 
