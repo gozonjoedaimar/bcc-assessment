@@ -26,4 +26,4 @@ application/composer.lock
 
 ### SQL backup files ###
 sql/backup/*
-sql/backup/!index.html
+!sql/backup/index.html
