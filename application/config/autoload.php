@@ -131,4 +131,4 @@ $autoload['language'] = array();
 |
 |	$autoload['model'] = array('first_model' => 'first');
 */
-$autoload['model'] = array('defaults_model' => 'defaults');
+$autoload['model'] = array('defaults_model' => 'defaults', 'assessment_forms_model'=>'assessment_forms');

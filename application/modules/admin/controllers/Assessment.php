@@ -7,6 +7,8 @@ class Assessment extends Admin_Controller {
 	{
 		parent::__construct();
 		$this->load->library('form_builder');
+		$this->add_stylesheet('assets/local/css/local.css');
+		$this->add_script('assets/local/js/local.js');
 	}
 
 	// Frontend User CRUD
@@ -41,13 +43,12 @@ class Assessment extends Admin_Controller {
 		return redirect('admin/assessment/create');
 	}
 
-	// Create Frontend User
-	public function create()
+	public function save_assessment_form() 
 	{
-		$form = $this->form_builder->create_form();
-
-		if ($form->validate())
+		$form = $this->assessment_forms;
+		if ($form->assessment_form->validate())
 		{
+			$this->system_message->add_error('Assessment Form: Form validated but unable to save at the moment');
 			// // passed validation
 			// $username = $this->input->post('username');
 			// $email = $this->input->post('email');
@@ -84,8 +85,28 @@ class Assessment extends Admin_Controller {
 			// 	$errors = $this->ion_auth->errors();
 			// 	$this->system_message->set_error($errors);
 			// }
-			// refresh();
 		}
+		redirect('admin/assessment/create');
+	}
+
+	public function save_statement_of_account() 
+	{
+		$form = $this->assessment_forms;
+		if ($form->statement_of_account->validate())
+		{
+			$this->system_message->add_error('Statement of Account: Form validated but unable to save at the moment');
+		}
+		redirect('admin/assessment/create');
+	}
+
+	// Create Frontend User
+	public function create()
+	{
+		// $form = $this->form_builder->create_form();
+		$form_helper = $this->form_builder->create_form();
+		$form = $this->assessment_forms;
+
+		$this->mViewData['debug'] = property_exists($this, 'assessment_forms');
 
 		// get list of Frontend user groups
 		$this->load->model('group_model', 'groups');
@@ -93,6 +114,7 @@ class Assessment extends Admin_Controller {
 		$this->mPageTitle = 'Assessment';
 
 		$this->mViewData['form'] = $form;
+		$this->mViewData['form_helper'] = $form_helper;
 		$this->render('assessment/create');
 	}
 

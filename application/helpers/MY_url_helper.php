@@ -111,3 +111,15 @@ function module_url($path = "")
 	$CI =& get_instance();
 	return site_url($CI->router->fetch_module() . "/" . $path);
 }
+
+function module_dir($path = "") 
+{
+	$CI =& get_instance();
+	return APPPATH . "modules/" . $CI->router->fetch_module() . "/" . $path;
+}
+
+function module_view_dir($path = "") 
+{
+	$CI =& get_instance();
+	return module_dir( 'views/' . $path );
+}

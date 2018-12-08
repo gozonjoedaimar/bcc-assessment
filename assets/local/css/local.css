@@ -1,0 +1,34 @@
+
+.full-width {
+  display: block;
+  width: 100%;
+}
+
+.border-bottom {
+  border-bottom: 1px solid grey;
+  padding: 0 5px;
+}
+
+.border-bottom.sub {
+  border-bottom: 3px solid grey;
+}
+
+.show-hidden {
+	font-weight: bold;
+}
+
+input.borderless {
+    width: 100%;
+    display: inline-block;
+    border: 0;
+    text-align: right;
+    font-weight: bold;
+    margin: 0 -5px;
+    padding: 0 5px;
+    box-sizing: content-box;
+}
+
+
+.hide {
+  display: none !important; 
+}

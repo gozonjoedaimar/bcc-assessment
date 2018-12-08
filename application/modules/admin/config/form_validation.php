@@ -150,4 +150,20 @@ $config = array(
 		)
 	),
 
+	'assessment/save_statement_of_account' => array(
+		array(
+			'field'=>'payment_stated',
+			'label'=>'Payment',
+			'rules'=>'greater_than[0]',
+		)
+	),
+
+	'assessment/save_assessment_form' => array(
+		array(
+			'field'=>'units',
+			'label'=>'Units',
+			'rules'=>'required'
+		)
+	),
+
 );
