@@ -7,6 +7,7 @@ class Assessment extends Admin_Controller {
 	{
 		parent::__construct();
 		$this->load->library('form_builder');
+		$this->load->model('assessment_forms_model','assessment_forms');
 		$this->add_stylesheet('assets/local/css/local.css');
 		$this->add_script('assets/local/js/local.js');
 	}
@@ -85,8 +86,8 @@ class Assessment extends Admin_Controller {
 			// 	$errors = $this->ion_auth->errors();
 			// 	$this->system_message->set_error($errors);
 			// }
+			redirect('admin/assessment/create');
 		}
-		redirect('admin/assessment/create');
 	}
 
 	public function save_statement_of_account() 
@@ -95,8 +96,8 @@ class Assessment extends Admin_Controller {
 		if ($form->statement_of_account->validate())
 		{
 			$this->system_message->add_error('Statement of Account: Form validated but unable to save at the moment');
+			redirect('admin/assessment/create');
 		}
-		redirect('admin/assessment/create');
 	}
 
 	// Create Frontend User

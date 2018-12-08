@@ -154,14 +154,19 @@ $config = array(
 		array(
 			'field'=>'payment_stated',
 			'label'=>'Payment',
-			'rules'=>'greater_than[0]',
+			'rules'=>'required|greater_than[0]',
 		)
 	),
 
 	'assessment/save_assessment_form' => array(
 		array(
-			'field'=>'units',
+			'field'=>'total_units',
 			'label'=>'Units',
+			'rules'=>'required'
+		),
+		array(
+			'field'=>'payment_stated',
+			'label'=>'Payment',
 			'rules'=>'required'
 		)
 	),

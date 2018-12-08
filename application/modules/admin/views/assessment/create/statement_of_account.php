@@ -15,25 +15,25 @@
 
 					<div class="row">
 						<div class="col-sm-4">
-							<?php echo $form->assessment_form->bs3_text('Last Name',''); ?>
+							<?php echo $form->assessment_form->bs3_text('Last Name','last_name'); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->assessment_form->bs3_text('First Name',''); ?>
+							<?php echo $form->assessment_form->bs3_text('First Name','first_name'); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->assessment_form->bs3_text('Middle Name',''); ?>
+							<?php echo $form->assessment_form->bs3_text('Middle Name','middle_name'); ?>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-sm-4">
-							<?php echo $form->assessment_form->bs3_text('Course',''); ?>
+							<?php echo $form->assessment_form->bs3_text('Course','course'); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->assessment_form->bs3_text('Year',''); ?>
+							<?php echo $form->assessment_form->bs3_text('Year','year'); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->assessment_form->bs3_text('Section',''); ?>
+							<?php echo $form->assessment_form->bs3_text('Section','section'); ?>
 						</div>
 					</div>
 					
@@ -87,7 +87,7 @@
 						</div>
 					</div>
 					<div class="col-xs-3 border-bottom">
-						<?php echo form_input('description','',array( 'class'=>'borderless text-left', 'style'=>'text-align:left;' )); ?>
+						<?php echo $form->statement_of_account->field_text('description','',array( 'class'=>'borderless text-left', 'style'=>'text-align:left;' )); ?>
 					</div>
 				</div>
 			</div>
@@ -113,7 +113,7 @@
 						</div>
 							<div class="col-sm-3 ">
 								<span class="border-bottom full-width text-right">
-									<?php echo form_input('payment_stated', '', array('class'=>'borderless')) ?>
+									<?php echo $form->statement_of_account->field_text('payment_stated', '', array('class'=>'borderless')) ?>
 								</span>
 							</div>
 

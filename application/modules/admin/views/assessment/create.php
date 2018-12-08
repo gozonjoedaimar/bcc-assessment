@@ -1,7 +1,14 @@
 <?php
 
 echo $form_helper->messages();
+
+// $data = $this->session->flashdata();
 ?>
+
+
+<?php if (isset($data) && $data) : ?>
+  <pre><?php var_dump($data) ?></pre>
+<?php endif; ?>
 
 <div id="assessment-create" class=" hide show-on-load">
 
