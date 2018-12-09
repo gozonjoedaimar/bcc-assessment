@@ -94,6 +94,11 @@ $config['ci_bootstrap'] = array(
 			'url'=>'subjects',
 			'icon' => 'fa fa-list-ul'
 		),*/
+		'courses' => array(
+			'name'=>'Courses',
+			'url'=>'courses',
+			'icon' => 'fa fa-list-ul'
+		),
 		'defaults' => array(
 			'name' => 'Defaults',
 			'url' => 'defaults/set',
@@ -145,6 +150,7 @@ $config['ci_bootstrap'] = array(
 		'assessment/create'			=> array('admin', 'staff'),
 		'ledger/create'			=> array('admin', 'staff'),
 		'subjects' => array('admin', 'staff'),
+		'courses' => array('admin', 'staff'),
 		'defaults/set' => array('admin')
 	),
 
