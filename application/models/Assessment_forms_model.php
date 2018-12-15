@@ -75,4 +75,22 @@ class Assessment_forms_model extends CI_Model
 		$html .= "</div>";
 		return $html;
 	}
+
+	public function show_hidden($name, $value = NULL, $form_builder = NULL, $extras = array())
+	{
+		if ( ! $value && $form_builder) {
+			$field_value = $form_builder->get_field_value($name);
+			if ($field_value) {
+				$value = $field_value;
+			}
+		}
+
+		$class = implode(" ", $extras);
+
+		$html  = form_hidden($name, $value);
+		$html .= '<span class="border-bottom full-width text-right show-hidden ' . $class . '">';
+		$html .= $value ? $value: "--";
+		$html .= '</span>';
+		return $html;
+	}
 }

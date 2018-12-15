@@ -27,10 +27,10 @@
 
 					<div class="row">
 						<div class="col-sm-4">
-							<?php echo $form->bs3_dropdown('Course', 'course', $form->get_course_options(), $form->statement_of_account) ?>
+							<?php echo $form->bs3_dropdown('Course', 'course_code', $form->get_course_options(), $form->statement_of_account) ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->bs3_dropdown('Year', 'year', $form->get_year_options(), $form->statement_of_account); ?>
+							<?php echo $form->bs3_dropdown('Year', 'year_level', $form->get_year_options(), $form->statement_of_account); ?>
 							<script type="text/javascript">
 								console.log("Year value:", "<?php echo $form->statement_of_account->get_field_value('year') ?>");
 							</script>

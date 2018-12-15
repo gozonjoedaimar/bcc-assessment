@@ -10,25 +10,25 @@
 
 					<div class="row">
 						<div class="col-sm-4">
-							<?php echo $form->assessment_form->bs3_text('Last Name',''); ?>
+							<?php echo $form->assessment_form->bs3_text('Last Name','last_name'); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->assessment_form->bs3_text('First Name',''); ?>
+							<?php echo $form->assessment_form->bs3_text('First Name','first_name'); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->assessment_form->bs3_text('Middle Name',''); ?>
+							<?php echo $form->assessment_form->bs3_text('Middle Name','middle_name'); ?>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-sm-4">
-							<?php echo $form->assessment_form->bs3_text('Course',''); ?>
+							<?php echo $form->bs3_dropdown('Course','course_code', $form->get_course_options(), $form->assessment_form); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->assessment_form->bs3_text('Year',''); ?>
+							<?php echo $form->bs3_dropdown('Year','year_level', $form->get_year_options(), $form->assessment_form); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->assessment_form->bs3_text('ID No.',''); ?>
+							<?php echo $form->assessment_form->bs3_text('ID No.','student_id'); ?>
 						</div>
 					</div>
 					
@@ -48,7 +48,7 @@
 						<div class="col-sm-7">
 							<div class="form-group">
 								<?php echo form_label('No. of Units') ?>
-								<?php echo form_input('total_units','', array('style'=>'width: 120px;')) ?>
+								<?php echo $form->assessment_form->field_text('total_units', NULL, array('style'=>'width: 120px;')) ?>
 								<?php echo form_hidden('units', $this->defaults->get('units')) ?>
 								<?php echo form_label(' x P' . $this->defaults->get('units')) ?>
 							</div>
@@ -57,8 +57,7 @@
 							<span class="">P</span>
 						</div>
 						<div class="col-sm-3 col-xs-10">
-							<?php echo form_hidden('units_cost') ?>
-							<span class="border-bottom full-width text-right show-hidden">--</span>
+							<?php echo $form->show_hidden('units_cost', NULL, $form->assessment_form) ?>
 						</div>
 					</div>
 
@@ -68,10 +67,7 @@
 							<div class="form-group"><?php echo form_label('Registration Fee:') ?></div>
 						</div>
 						<div class="col-sm-3 col-sm-offset-3">
-							<?php echo form_hidden('registration_fee', $this->defaults->get('registration_fee')) ?>
-							<span class="border-bottom full-width text-right show-hidden">
-								<?php echo $this->defaults->get('registration_fee') ?>
-							</span>
+							<?php echo $form->show_hidden('registration_fee', $this->defaults->get('registration_fee')) ?>
 						</div>
 					</div>
 
@@ -80,8 +76,7 @@
 							<div class="form-group"><?php echo form_label('Sub-total') ?></div>
 						</div>
 						<div class="col-sm-3 col-sm-offset-3">
-							<?php echo form_hidden('sub_total') ?>
-							<span class="border-bottom sub full-width text-right show-hidden">--</span>
+							<?php echo $form->show_hidden('sub_total', NULL, $form->assessment_form, ['sub']) ?>
 						</div>
 					</div>
 
@@ -98,10 +93,7 @@
 							<div class="form-group"><?php echo form_label('Library Fee') ?></div>
 						</div>
 						<div class="col-sm-3 col-sm-offset-2">
-							<?php echo form_hidden('library_fee', $this->defaults->get('library_fee')) ?>
-							<span class="border-bottom full-width text-right show-hidden">
-								<?php echo $this->defaults->get('library_fee') ?>
-							</span>
+							<?php echo $form->show_hidden('library_fee', $this->defaults->get('library_fee')) ?>
 						</div>
 					</div>
 
@@ -110,10 +102,7 @@
 							<div class="form-group"><?php echo form_label('Development Fee') ?></div>
 						</div>
 						<div class="col-sm-3 col-sm-offset-2">
-							<?php echo form_hidden('development_fee', $this->defaults->get('development_fee')) ?>
-							<span class="border-bottom full-width text-right show-hidden">
-								<?php echo $this->defaults->get('development_fee') ?>
-							</span>
+							<?php echo $form->show_hidden('development_fee', $this->defaults->get('development_fee')) ?>
 						</div>
 					</div>
 
@@ -122,10 +111,7 @@
 							<div class="form-group"><?php echo form_label('Sports') ?></div>
 						</div>
 						<div class="col-sm-3 col-sm-offset-2">
-							<?php echo form_hidden('sports', $this->defaults->get('sports')) ?>
-							<span class="border-bottom full-width text-right show-hidden">
-								<?php echo $this->defaults->get('sports') ?>
-							</span>
+							<?php echo $form->show_hidden('sports', $this->defaults->get('sports')) ?>
 						</div>
 					</div>
 
@@ -134,10 +120,7 @@
 							<div class="form-group"><?php echo form_label('Cultural') ?></div>
 						</div>
 						<div class="col-sm-3 col-sm-offset-2">
-							<?php echo form_hidden('cultural', $this->defaults->get('cultural')) ?>
-							<span class="border-bottom full-width text-right show-hidden">
-								<?php echo $this->defaults->get('cultural') ?>
-							</span>
+							<?php echo $form->show_hidden('cultural', $this->defaults->get('cultural')) ?>
 						</div>
 					</div>
 
@@ -146,10 +129,7 @@
 							<div class="form-group"><?php echo form_label('Laboratory Fee') ?></div>
 						</div>
 						<div class="col-sm-3 col-sm-offset-2">
-							<?php echo form_hidden('laboratory_fee', $this->defaults->get('laboratory_fee')) ?>
-							<span class="border-bottom full-width text-right show-hidden">
-								<?php echo $this->defaults->get('laboratory_fee') ?>
-							</span>
+							<?php echo $form->show_hidden('laboratory_fee', $this->defaults->get('laboratory_fee')) ?>
 						</div>
 					</div>
 
@@ -158,10 +138,7 @@
 							<div class="form-group"><?php echo form_label('NSTP') ?></div>
 						</div>
 						<div class="col-sm-3 col-sm-offset-2">
-							<?php echo form_hidden('nstp', $this->defaults->get('nstp')) ?>
-							<span class="border-bottom full-width text-right show-hidden">
-								<?php echo $this->defaults->get('nstp') ?>
-							</span>
+							<?php echo $form->show_hidden('nstp', $this->defaults->get('nstp')) ?>
 						</div>
 					</div>
 
@@ -170,10 +147,7 @@
 							<div class="form-group"><?php echo form_label('City Smile (Sch. Paper)') ?></div>
 						</div>
 						<div class="col-sm-3 col-sm-offset-2">
-							<?php echo form_hidden('city_smile', $this->defaults->get('city_smile')) ?>
-							<span class="border-bottom full-width text-right show-hidden">
-								<?php echo $this->defaults->get('city_smile') ?>
-							</span>
+							<?php echo $form->show_hidden('city_smile', $this->defaults->get('city_smile')) ?>
 						</div>
 					</div>
 
@@ -183,7 +157,7 @@
 						</div>
 						<div class="col-sm-3 col-sm-offset-2">
 							<span class="border-bottom full-width text-right">
-								<?php echo form_input('other_fees', '', array('class'=>'borderless')) ?>
+								<?php echo $form->assessment_form->field_text('other_fees', NULL, array('class'=>'borderless')) ?>
 							</span>
 						</div>
 					</div>
@@ -196,8 +170,7 @@
 						</div>
 						<div class="col-sm-1 col-sm-offset-3 text-right"><span>P</span></div>
 						<div class="col-sm-3 ">
-							<?php echo form_hidden('total_fees') ?>
-							<span class="border-bottom full-width text-right show-hidden sub">--</span>
+							<?php echo $form->show_hidden('total_fees', NULL, $form->assessment_form, ['sub']) ?>
 						</div>
 					</div>
 					
@@ -222,7 +195,7 @@
 							</div>
 							<div class="col-sm-3 ">
 								<span class="border-bottom full-width text-right">
-									<?php echo form_input('payment_stated', '', array('class'=>'borderless')) ?>
+									<?php echo $form->assessment_form->field_text('payment_stated', NULL, array('class'=>'borderless')) ?>
 								</span>
 							</div>
 
@@ -238,8 +211,7 @@
 								<span>P</span>
 							</div>
 							<div class="col-sm-3 ">
-								<?php echo form_hidden('balance') ?>
-								<span class="border-bottom full-width text-right show-hidden sub">--</span>
+								<?php echo $form->show_hidden('balance', NULL, $form->assessment_form, ['sub']) ?>
 							</div>
 
 

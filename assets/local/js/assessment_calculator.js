@@ -31,7 +31,7 @@ var getHiddenAmount = function(name) {
 }
 
 var clearCalculator = function() {
-	var clearFields = ['sub_total', 'units_cost'];
+	var clearFields = ['sub_total', 'units_cost','total_fees', 'balance'];
 	for (var field_index = 0; field_index < clearFields.length; field_index++) {
 		var field = clearFields[field_index];
 		var inputEl = $parent.find('input[name="'+field+'"]');
