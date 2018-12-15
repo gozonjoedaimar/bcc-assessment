@@ -47,45 +47,11 @@ class Assessment extends Admin_Controller {
 	public function save_assessment_form() 
 	{
 		$form = $this->assessment_forms;
+		$post_data = $this->input->post();
 		if ($form->assessment_form->validate())
 		{
 			$this->system_message->add_error('Assessment Form: Form validated but unable to save at the moment');
-			// // passed validation
-			// $username = $this->input->post('username');
-			// $email = $this->input->post('email');
-			// $password = $this->input->post('password');
-			// $identity = empty($username) ? $email : $username;
-			// $additional_data = array(
-			// 	'first_name'	=> $this->input->post('first_name'),
-			// 	'last_name'		=> $this->input->post('last_name'),
-			// );
-			// $groups = $this->input->post('groups');
-
-			// // [IMPORTANT] override database tables to update Frontend Users instead of Admin Users
-			// $this->ion_auth_model->tables = array(
-			// 	'users'				=> 'users',
-			// 	'groups'			=> 'groups',
-			// 	'users_groups'		=> 'users_groups',
-			// 	'login_attempts'	=> 'login_attempts',
-			// );
-
-			// // proceed to create user
-			// $user_id = $this->ion_auth->register($identity, $password, $email, $additional_data, $groups);			
-			// if ($user_id)
-			// {
-			// 	// success
-			// 	$messages = $this->ion_auth->messages();
-			// 	$this->system_message->set_success($messages);
-
-			// 	// directly activate user
-			// 	$this->ion_auth->activate($user_id);
-			// }
-			// else
-			// {
-			// 	// failed
-			// 	$errors = $this->ion_auth->errors();
-			// 	$this->system_message->set_error($errors);
-			// }
+			$form->set_form_data('assessment_form', $post_data);
 			redirect('admin/assessment/create');
 		}
 	}
@@ -93,9 +59,11 @@ class Assessment extends Admin_Controller {
 	public function save_statement_of_account() 
 	{
 		$form = $this->assessment_forms;
+		$post_data = $this->input->post();
 		if ($form->statement_of_account->validate())
 		{
 			$this->system_message->add_error('Statement of Account: Form validated but unable to save at the moment');
+			$form->set_form_data('statement_of_account', $post_data);
 			redirect('admin/assessment/create');
 		}
 	}

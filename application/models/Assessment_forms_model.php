@@ -93,4 +93,10 @@ class Assessment_forms_model extends CI_Model
 		$html .= '</span>';
 		return $html;
 	}
+
+	public function set_form_data($form_id, $form_data) 
+	{
+		$session_key = 'form-'.$form_id;
+		$this->CI->session->set_flashdata($session_key, $form_data);
+	}
 }
