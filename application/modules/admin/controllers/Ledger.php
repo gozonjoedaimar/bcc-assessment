@@ -13,12 +13,12 @@ class Ledger extends Admin_Controller {
 	public function index()
 	{
 		$crud = $this->generate_crud('students');
-		$crud->columns('firstName', 'lastName', 'email');
-		$crud->display_as('lastName', 'Last Name');
-		$crud->display_as('firstName', 'First Name');
+		$crud->columns('first_name', 'last_name', 'email');
+		$crud->display_as('last_name', 'Last Name');
+		$crud->display_as('first_name', 'First Name');
 		$crud->set_subject('Students');
 
-		$crud->fields(['firstName','lastName','email']);
+		$crud->fields(['first_name','last_name','email']);
 
 		// only webmaster and admin can change member groups
 		if ($crud->getState()=='list' || $this->ion_auth->in_group(array('webmaster', 'admin')))
