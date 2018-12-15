@@ -153,7 +153,7 @@ $config = array(
 	'assessment/save_statement_of_account' => array(
 		array(
 			'field'=>'payment_stated',
-			'label'=>'Payment',
+			'label'=>'Amount Due',
 			'rules'=>'required|greater_than[0]',
 		)
 	),
@@ -161,13 +161,13 @@ $config = array(
 	'assessment/save_assessment_form' => array(
 		array(
 			'field'=>'total_units',
-			'label'=>'Units',
-			'rules'=>'required'
+			'label'=>'No. of Units',
+			'rules'=>'required|greater_than[0]'
 		),
 		array(
 			'field'=>'payment_stated',
-			'label'=>'Payment',
-			'rules'=>'required'
+			'label'=>'Payment Upon Enrollment',
+			'rules'=>'required|greater_than[0]'
 		)
 	),
 

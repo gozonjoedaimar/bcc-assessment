@@ -15,25 +15,28 @@
 
 					<div class="row">
 						<div class="col-sm-4">
-							<?php echo $form->assessment_form->bs3_text('Last Name','last_name'); ?>
+							<?php echo $form->statement_of_account->bs3_text('Last Name','last_name'); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->assessment_form->bs3_text('First Name','first_name'); ?>
+							<?php echo $form->statement_of_account->bs3_text('First Name','first_name'); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->assessment_form->bs3_text('Middle Name','middle_name'); ?>
+							<?php echo $form->statement_of_account->bs3_text('Middle Name','middle_name'); ?>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-sm-4">
-							<?php echo $form->assessment_form->bs3_text('Course','course'); ?>
+							<?php echo $form->bs3_dropdown('Course', 'course', $form->get_course_options(), $form->statement_of_account) ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->assessment_form->bs3_text('Year','year'); ?>
+							<?php echo $form->bs3_dropdown('Year', 'year', $form->get_year_options(), $form->statement_of_account); ?>
+							<script type="text/javascript">
+								console.log("Year value:", "<?php echo $form->statement_of_account->get_field_value('year') ?>");
+							</script>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->assessment_form->bs3_text('Section','section'); ?>
+							<?php echo $form->statement_of_account->bs3_text('Section','section'); ?>
 						</div>
 					</div>
 					
@@ -48,46 +51,46 @@
 				<div class="row">
 					<div class="col-xs-offset-1 col-xs-11">
 						<div class="checkbox">
-							<label><?php echo form_checkbox('examination') ?>Examination Dues</label>
+							<label><?php echo $form->checkbox('examination', NULL, $form->statement_of_account) ?>Examination Dues</label>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-offset-2 col-xs-10">
 						<div class="checkbox">
-							<label><?php echo form_checkbox('examterm', 'midterm') ?>Midterm</label>
+							<label><?php echo $form->checkbox('examterm', 'midterm', $form->statement_of_account) ?>Midterm</label>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-offset-2 col-xs-10">
 						<div class="checkbox">
-							<label><?php echo form_checkbox('examterm', 'endterm') ?>End-Term</label>
+							<label><?php echo $form->checkbox('examterm', 'endterm', $form->statement_of_account) ?>End-Term</label>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-offset-1 col-xs-11">
 						<div class="checkbox">
-							<label><?php echo form_checkbox('') ?>Old Account</label>
+							<label><?php echo $form->checkbox('old_account', NULL, $form->statement_of_account) ?>Old Account</label>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-offset-1 col-xs-11">
 						<div class="checkbox">
-							<label><?php echo form_checkbox('') ?>Certification/s</label>
+							<label><?php echo $form->checkbox('certification', NULL, $form->statement_of_account) ?>Certification/s</label>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-offset-1 col-xs-3">
 						<div class="checkbox">
-							<label><?php echo form_checkbox('other_payment') ?>Others</label>
+							<label><?php echo $form->checkbox('other_payment', NULL, $form->statement_of_account) ?>Others</label>
 						</div>
 					</div>
 					<div class="col-xs-3 border-bottom">
-						<?php echo $form->statement_of_account->field_text('description','',array( 'class'=>'borderless text-left', 'style'=>'text-align:left;' )); ?>
+						<?php echo $form->statement_of_account->field_text('description', NULL,array( 'class'=>'borderless text-left', 'style'=>'text-align:left;' )); ?>
 					</div>
 				</div>
 			</div>
@@ -113,7 +116,7 @@
 						</div>
 							<div class="col-sm-3 ">
 								<span class="border-bottom full-width text-right">
-									<?php echo $form->statement_of_account->field_text('payment_stated', '', array('class'=>'borderless')) ?>
+									<?php echo $form->statement_of_account->field_text('payment_stated', NULL, array('class'=>'borderless')) ?>
 								</span>
 							</div>
 
@@ -159,7 +162,7 @@
 			<div class="box box-primary">
 				<div class="box-body">
 
-						<?php echo $form->assessment_form->bs3_submit('Save'); ?>
+						<?php echo $form->statement_of_account->bs3_submit('Save'); ?>
 						
 				</div>
 			</div>
