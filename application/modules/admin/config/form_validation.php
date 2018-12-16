@@ -171,4 +171,12 @@ $config = array(
 		)
 	),
 
+	'ledger/save_student_information' => array(
+		array(
+			'field'=>'student_id',
+			'label'=>'Student ID',
+			'rules'=>'required',
+		)
+	),
+
 );

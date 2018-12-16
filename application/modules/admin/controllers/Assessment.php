@@ -15,32 +15,7 @@ class Assessment extends Admin_Controller {
 	// Frontend User CRUD
 	public function index()
 	{
-		// $crud = $this->generate_crud('ledger');
-		// $crud->columns('firstName', 'lastName', 'email');
-		// $crud->display_as('lastName', 'Last Name');
-		// $crud->display_as('firstName', 'First Name');
-		// $crud->set_subject('List');
-
-		// $crud->fields(['firstName','lastName','email']);
-
-		// // only webmaster and admin can change member groups
-		// if ($crud->getState()=='list' || $this->ion_auth->in_group(array('webmaster', 'admin')))
-		// {
-		// 	$crud->set_relation_n_n('groups', 'users_groups', 'groups', 'user_id', 'group_id', 'name');
-		// }
-
-		// // only webmaster and admin can reset user password
-		// if ($this->ion_auth->in_group(array('webmaster', 'admin')))
-		// {
-		// 	$crud->add_action('Reset Password', '', 'admin/user/reset_password', 'fa fa-repeat');
-		// }
-
-		// // disable direct create / delete Frontend User
-		// // $crud->unset_add();
-		// $crud->unset_delete();
-
-		// $this->mPageTitle = 'Ledger';
-		// $this->render_crud();
+		/* Redirect index to create page */
 		return redirect('admin/assessment/create');
 	}
 
@@ -93,48 +68,5 @@ class Assessment extends Admin_Controller {
 		$crud = $this->generate_crud('groups');
 		$this->mPageTitle = 'User Groups';
 		$this->render_crud();
-	}
-
-	// Frontend User Reset Password
-	public function reset_password($user_id)
-	{
-		// only top-level users can reset user passwords
-		$this->verify_auth(array('webmaster', 'admin'));
-
-		$form = $this->form_builder->create_form();
-		if ($form->validate())
-		{
-			// pass validation
-			$data = array('password' => $this->input->post('new_password'));
-			
-			// [IMPORTANT] override database tables to update Frontend Users instead of Admin Users
-			$this->ion_auth_model->tables = array(
-				'users'				=> 'users',
-				'groups'			=> 'groups',
-				'users_groups'		=> 'users_groups',
-				'login_attempts'	=> 'login_attempts',
-			);
-
-			// proceed to change user password
-			if ($this->ion_auth->update($user_id, $data))
-			{
-				$messages = $this->ion_auth->messages();
-				$this->system_message->set_success($messages);
-			}
-			else
-			{
-				$errors = $this->ion_auth->errors();
-				$this->system_message->set_error($errors);
-			}
-			refresh();
-		}
-
-		$this->load->model('user_model', 'users');
-		$target = $this->users->get($user_id);
-		$this->mViewData['target'] = $target;
-
-		$this->mViewData['form'] = $form;
-		$this->mPageTitle = 'Reset User Password';
-		$this->render('user/reset_password');
 	}
 }

@@ -1,4 +1,4 @@
-<?php echo $form->messages(); ?>
+<?php echo $form->student_information->messages(); ?>
 
 <div class="row">
 
@@ -8,49 +8,49 @@
 				<h3 class="box-title">Student Information</h3>
 			</div>
 			<div class="box-body">
-				<?php echo $form->open(); ?>
+				<?php echo $form->student_information->open(); ?>
 
 					<div class="row">
 						<div class="col-sm-4">
-							<?php echo $form->bs3_text('Student Number', 'studentNumber'); ?>
+							<?php echo $form->student_information->bs3_text('Student Number', 'student_id'); ?>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-4">
-							<?php echo $form->bs3_text('Last Name', 'lastName'); ?>
+							<?php echo $form->student_information->bs3_text('Last Name', 'last_name'); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->bs3_text('First Name', 'firstName'); ?>
+							<?php echo $form->student_information->bs3_text('First Name', 'first_name'); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->bs3_text('Middle Name', 'middleName'); ?>
+							<?php echo $form->student_information->bs3_text('Middle Name', 'middle_name'); ?>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-4">
-							<?php echo $form->bs3_text('Department',''); ?>
+							<?php echo $form->student_information->bs3_text('Department','department'); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->bs3_text('Course',''); ?>
+							<?php echo $form->bs3_dropdown('Couse', 'course_code', $form->get_course_options(), $form->student_information); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->bs3_text('Sex',''); ?>
+							<?php echo $form->bs3_dropdown('Sex', 'gender', ['male'=>'Male','female'=>'Female'], $form->student_information); ?>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-sm-8">
-							<div class="form-group">
-								<?php echo form_label('Permanent Address'); ?>
-								<?php echo form_textarea(array( 'rows'=>2, 'class'=>'form-control' )); ?>
-							</div>
+						<div class="col-sm-4">
+							<?php echo $form->bs3_textarea('Permanent Address','permanent_address', NULL, $form->student_information); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->bs3_text('Tel. No.',''); ?>
+							<?php echo $form->student_information->bs3_text('Email','email'); ?>
+						</div>
+						<div class="col-sm-4">
+							<?php echo $form->student_information->bs3_text('Tel. No.','phone_number'); ?>
 						</div>
 					</div>
-					<?php echo $form->bs3_submit('Save'); ?>
+					<?php echo $form->student_information->bs3_submit('Save'); ?>
 					
-				<?php echo $form->close(); ?>
+				<?php echo $form->student_information->close(); ?>
 			</div>
 		</div>
 		<div class="box box-primary">
@@ -81,6 +81,7 @@
 					</tfoot>
 					<tbody>
 						<?php if (isset($record)) : ?>
+							<!-- Student Ledger -->
 						<?php else: ?>
 							<tr><td colspan="6" class="text-center">No Record</td></tr>
 						<?php endif; ?>

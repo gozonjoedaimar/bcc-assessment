@@ -7,31 +7,29 @@ class Ledger extends Admin_Controller {
 	{
 		parent::__construct();
 		$this->load->library('form_builder');
+		$this->load->model('assessment_forms_model','assessment_forms');
 	}
 
 	// Frontend User CRUD
 	public function index()
 	{
 		$crud = $this->generate_crud('students');
-		$crud->columns('first_name', 'last_name', 'email');
+		$crud->columns('student_id','first_name', 'last_name', 'middle_name', 'gender');
+		$crud->display_as('student_id', 'Student ID');
 		$crud->display_as('last_name', 'Last Name');
 		$crud->display_as('first_name', 'First Name');
+		$crud->display_as('middle_name', 'Middle Name');
 		$crud->set_subject('Students');
 
-		$crud->fields(['first_name','last_name','email']);
+		$crud->callback_column('gender', array($this, 'ucfirst'));
+
+		$crud->field_type('gender', 'dropdown');
 
 		// only webmaster and admin can change member groups
 		if ($crud->getState()=='list' || $this->ion_auth->in_group(array('webmaster', 'admin')))
 		{
 			$crud->set_relation_n_n('groups', 'users_groups', 'groups', 'user_id', 'group_id', 'name');
 		}
-
-		// only webmaster and admin can reset user password
-		// if ($this->ion_auth->in_group(array('webmaster', 'admin')))
-		// {
-			// $crud->add_action('Reset Password', '', 'admin/user/reset_password', 'fa fa-repeat');
-		// }
-
 
 		$crud->add_action('View', '', 'admin/ledger/view', 'fa fa-eye');
 
@@ -47,117 +45,73 @@ class Ledger extends Admin_Controller {
 		$this->render_crud();
 	}
 
-	// Create Frontend User
-	public function create()
+	public function view($id = NULL, $session = NULL)
 	{
-		$form = $this->form_builder->create_form();
+		if ( ! $id) show_404();
+		$form = $this->assessment_forms;
+		
+		/* Prepare form */
+		$form->student_information->set_post_url('admin/ledger/save_student_information/' . $id);
+		$student_information_data = $this->get_student_information_data($id);
+		$form->set_form_data("student_information", $student_information_data);
+		if ( $session === NULL ) redirect('admin/ledger/view/' . $id . "/" . md5(time()));
 
-		if ($form->validate())
-		{
-			// passed validation
-			$username = $this->input->post('username');
-			$email = $this->input->post('email');
-			$password = $this->input->post('password');
-			$identity = empty($username) ? $email : $username;
-			$additional_data = array(
-				'first_name'	=> $this->input->post('first_name'),
-				'last_name'		=> $this->input->post('last_name'),
-			);
-			$groups = $this->input->post('groups');
-
-			// [IMPORTANT] override database tables to update Frontend Users instead of Admin Users
-			$this->ion_auth_model->tables = array(
-				'users'				=> 'users',
-				'groups'			=> 'groups',
-				'users_groups'		=> 'users_groups',
-				'login_attempts'	=> 'login_attempts',
-			);
-
-			// proceed to create user
-			$user_id = $this->ion_auth->register($identity, $password, $email, $additional_data, $groups);			
-			if ($user_id)
-			{
-				// success
-				$messages = $this->ion_auth->messages();
-				$this->system_message->set_success($messages);
-
-				// directly activate user
-				$this->ion_auth->activate($user_id);
-			}
-			else
-			{
-				// failed
-				$errors = $this->ion_auth->errors();
-				$this->system_message->set_error($errors);
-			}
-			refresh();
-		}
-
-		// get list of Frontend user groups
-		$this->load->model('group_model', 'groups');
-		$this->mViewData['groups'] = $this->groups->get_all();
-		$this->mPageTitle = 'Create User';
-
-		$this->mViewData['form'] = $form;
-		$this->render('user/create');
-	}
-
-	public function view()
-	{
-		$form = $this->form_builder->create_form();
 		$this->mViewData['form'] = $form;
 		$this->mPageTitle = "Student Ledger";
 		$this->render('student/ledger');
 	}
 
-	// User Groups CRUD
-	public function group()
+	public function save_student_information($id = NULL) 
 	{
-		$crud = $this->generate_crud('groups');
-		$this->mPageTitle = 'User Groups';
-		$this->render_crud();
+		if ( ! $id) show_404();
+		
+		/* Prepare form */
+		$form = $this->assessment_forms;
+		$form_url = 'admin/ledger/view/' . $id . "/" . md5(time());
+		$form->student_information->set_form_url($form_url);
+
+		if ($form->student_information->validate()) {
+
+			$post_data = $this->input->post();
+
+			foreach ($post_data as $key => $value) {
+				$this->db->set($key, $value);
+			}
+			$this->db->where('id', $id);
+			
+			if ($this->db->update('students')) {
+				$this->system_message->add_success('Student Information Updated');
+				$student_information_data = $this->get_student_information_data($id);
+				$form->set_form_data("student_information", $student_information_data);
+			}
+			else {
+				$this->system_message->add_error('Unable to save student information');
+				$form->set_form_data("student_information", $post_data);
+			}
+
+			redirect($form_url);
+		}
 	}
 
-	// Frontend User Reset Password
-	public function reset_password($user_id)
+	public function get_student_information($id)
 	{
-		// only top-level users can reset user passwords
-		$this->verify_auth(array('webmaster', 'admin'));
+		$this->db->where('id', $id);
+		return $this->db->get('students');
+	}
 
-		$form = $this->form_builder->create_form();
-		if ($form->validate())
-		{
-			// pass validation
-			$data = array('password' => $this->input->post('new_password'));
-			
-			// [IMPORTANT] override database tables to update Frontend Users instead of Admin Users
-			$this->ion_auth_model->tables = array(
-				'users'				=> 'users',
-				'groups'			=> 'groups',
-				'users_groups'		=> 'users_groups',
-				'login_attempts'	=> 'login_attempts',
-			);
+	public function get_student_information_data($id)
+	{
+		$query = $this->get_student_information($id);
+		$info = $query->row_array();
 
-			// proceed to change user password
-			if ($this->ion_auth->update($user_id, $data))
-			{
-				$messages = $this->ion_auth->messages();
-				$this->system_message->set_success($messages);
-			}
-			else
-			{
-				$errors = $this->ion_auth->errors();
-				$this->system_message->set_error($errors);
-			}
-			refresh();
-		}
+		// $info['course_code'] = strtoupper($info['course_code']);
+		// $info['gender'] = ucfirst($info['gender']);
 
-		$this->load->model('user_model', 'users');
-		$target = $this->users->get($user_id);
-		$this->mViewData['target'] = $target;
+		return $info;
+	}
 
-		$this->mViewData['form'] = $form;
-		$this->mPageTitle = 'Reset User Password';
-		$this->render('user/reset_password');
+	public function ucfirst($value, $row) 
+	{
+		return ucfirst($value);
 	}
 }

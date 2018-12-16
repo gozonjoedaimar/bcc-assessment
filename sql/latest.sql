@@ -13,7 +13,6 @@ CREATE TABLE `admin_groups` (
 
 INSERT INTO `admin_groups` (`id`, `name`, `description`) VALUES ('1', 'webmaster', 'Webmaster');
 INSERT INTO `admin_groups` (`id`, `name`, `description`) VALUES ('2', 'admin', 'Administrator');
-INSERT INTO `admin_groups` (`id`, `name`, `description`) VALUES ('3', 'manager', 'Manager');
 INSERT INTO `admin_groups` (`id`, `name`, `description`) VALUES ('4', 'staff', 'Staff');
 
 
@@ -56,9 +55,9 @@ CREATE TABLE `admin_users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
-INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('1', '127.0.0.1', 'webmaster', '$2y$08$/X5gzWjesYi78GqeAv5tA.dVGBVP7C1e1PzqnYCVe5s1qhlDIPPES', NULL, NULL, NULL, NULL, NULL, NULL, '1451900190', '1544851001', '1', 'Webmaster', '');
-INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('2', '127.0.0.1', 'admin', '$2y$08$7Bkco6JXtC3Hu6g9ngLZDuHsFLvT7cyAxiz1FzxlX5vwccvRT7nKW', NULL, NULL, NULL, NULL, NULL, 'tTXDuQ63FrUQg5x39cDFgO', '1451900228', '1544834793', '1', 'Admin', '');
-INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('3', '127.0.0.1', 'manager', '$2y$08$snzIJdFXvg/rSHe0SndIAuvZyjktkjUxBXkrrGdkPy1K6r5r/dMLa', NULL, NULL, NULL, NULL, NULL, NULL, '1451900430', '1543586196', '1', 'Manager', NULL);
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('1', '127.0.0.1', 'webmaster', '$2y$08$/X5gzWjesYi78GqeAv5tA.dVGBVP7C1e1PzqnYCVe5s1qhlDIPPES', NULL, NULL, NULL, NULL, NULL, NULL, '1451900190', '1544933467', '1', 'Webmaster', '');
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('2', '127.0.0.1', 'admin', '$2y$08$7Bkco6JXtC3Hu6g9ngLZDuHsFLvT7cyAxiz1FzxlX5vwccvRT7nKW', NULL, NULL, NULL, NULL, NULL, 'tTXDuQ63FrUQg5x39cDFgO', '1451900228', '1544926342', '1', 'Admin', '');
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('3', '127.0.0.1', 'manager', '$2y$08$snzIJdFXvg/rSHe0SndIAuvZyjktkjUxBXkrrGdkPy1K6r5r/dMLa', NULL, NULL, NULL, NULL, NULL, NULL, '1451900430', '1543586196', '0', 'Manager', NULL);
 INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('4', '127.0.0.1', 'staff', '$2y$08$NigAXjN23CRKllqe3KmjYuWXD5iSRPY812SijlhGeKfkrMKde9da6', NULL, NULL, NULL, NULL, NULL, NULL, '1451900439', '1544264907', '1', 'Staff', '');
 
 
@@ -272,33 +271,38 @@ CREATE TABLE `students` (
   `extension` varchar(10) NOT NULL,
   `email` varchar(255) DEFAULT NULL,
   `student_id` varchar(255) DEFAULT NULL,
+  `phone_number` varchar(255) DEFAULT NULL,
+  `department` varchar(255) DEFAULT NULL,
+  `gender` varchar(255) DEFAULT NULL,
+  `permanent_address` varchar(255) DEFAULT NULL,
+  `course_code` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('1', 'Murphils', 'Diane', NULL, 'x5800', 'dmurphy@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('2', 'Patterson', 'Mary', NULL, 'x4611', 'mpatterso@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('3', 'Firrelli', 'Jeff', NULL, 'x9273', 'jfirrelli@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('4', 'Patterson', 'William', NULL, 'x4871', 'wpatterson@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('5', 'Bondur', 'Gerard', NULL, 'x5408', 'gbondur@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('6', 'Bow', 'Anthony', NULL, 'x5428', 'abow@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('7', 'Jennings', 'Leslie', NULL, 'x3291', 'ljennings@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('8', 'Thompson', 'Leslie', NULL, 'x4065', 'lthompson@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('9', 'Firrelli', 'Julie', NULL, 'x2173', 'jfirrelli@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('10', 'Patterson', 'Steve', NULL, 'x4334', 'spatterson@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('11', 'Tseng', 'Foon Yue', NULL, 'x2248', 'ftseng@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('12', 'Vanauf', 'George', NULL, 'x4102', 'gvanauf@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('13', 'Bondur', 'Loui', NULL, 'x6493', 'lbondur@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('14', 'Hernandez', 'Gerard', NULL, 'x2028', 'ghernande@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('15', 'Castillo', 'Pamela', NULL, 'x2759', 'pcastillo@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('16', 'Bott', 'Larry', NULL, 'x2311', 'lbott@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('17', 'Jones', 'Barry', NULL, 'x102', 'bjones@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('18', 'Fixter', 'Andy', NULL, 'x101', 'afixter@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('19', 'Marsh', 'Peter', NULL, 'x102', 'pmarsh@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('20', 'King', 'Tom', NULL, 'x103', 'tking@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('21', 'Nishi', 'Mami', NULL, 'x101', 'mnishi@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('22', 'Kato', 'Yoshimi', NULL, 'x102', 'ykato@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('23', 'Gerard', 'Martin', NULL, 'x2312', 'mgerard@classicmodelcars.com', NULL);
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`) VALUES ('24', 'Doe', 'Jane', NULL, '', 'janedoe@example.com', NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('1', 'Murphils', 'Diane', NULL, 'x5800', 'dmurphy@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('2', 'Patterson', 'Mary', 'Geralds', 'x4611', 'mpatterso@classicmodelcars.com', '2576', '', '', 'female', '', 'BSIT');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('3', 'Firrelli', 'Jeff', NULL, 'x9273', 'jfirrelli@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('4', 'Patterson', 'William', 'Spase', 'x4871', 'wpatterson@classicmodelcars.com', '2511', '', '', 'male', '', 'BSOA');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('5', 'Bondur', 'Gerard', NULL, 'x5408', 'gbondur@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('6', 'Bow', 'Anthony', NULL, 'x5428', 'abow@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('7', 'Jennings', 'Leslie', NULL, 'x3291', 'ljennings@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('8', 'Thompson', 'Leslie', NULL, 'x4065', 'lthompson@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('9', 'Firrelli', 'Julie', NULL, 'x2173', 'jfirrelli@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('10', 'Patterson', 'Steve', NULL, 'x4334', 'spatterson@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('11', 'Tseng', 'Foon Yue', NULL, 'x2248', 'ftseng@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('12', 'Vanauf', 'George', NULL, 'x4102', 'gvanauf@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('13', 'Bondur', 'Loui', NULL, 'x6493', 'lbondur@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('14', 'Hernandez', 'Gerard', NULL, 'x2028', 'ghernande@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('15', 'Castillo', 'Pamela', NULL, 'x2759', 'pcastillo@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('16', 'Bott', 'Larry', NULL, 'x2311', 'lbott@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('17', 'Jones', 'Barry', NULL, 'x102', 'bjones@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('18', 'Fixter', 'Andy', NULL, 'x101', 'afixter@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('19', 'Marsh', 'Peter', NULL, 'x102', 'pmarsh@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('20', 'King', 'Tom', NULL, 'x103', 'tking@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('21', 'Nishi', 'Mami', NULL, 'x101', 'mnishi@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('22', 'Kato', 'Yoshimi', NULL, 'x102', 'ykato@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('23', 'Gerard', 'Martin', NULL, 'x2312', 'mgerard@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`) VALUES ('24', 'Doe', 'Jane', NULL, '', 'janedoe@example.com', NULL, NULL, NULL, NULL, NULL, NULL);
 
 
 #
