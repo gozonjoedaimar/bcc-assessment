@@ -61,12 +61,4 @@ class Assessment extends Admin_Controller {
 		$this->mViewData['form_helper'] = $form_helper;
 		$this->render('assessment/create');
 	}
-
-	// User Groups CRUD
-	public function group()
-	{
-		$crud = $this->generate_crud('groups');
-		$this->mPageTitle = 'User Groups';
-		$this->render_crud();
-	}
 }
