@@ -21,6 +21,17 @@ class Admin_Controller extends MY_Controller {
 
 		// store site config values
 		$this->mUsefulLinks = $this->mConfig['useful_links'];
+
+		/* Set role page titles */
+		if ($this->ion_auth->in_group('webmaster')) {
+			$this->mSiteName = "Webmaster";
+		}
+		else if ($this->ion_auth->in_group('admin')) {
+			$this->mSiteName = "Admin Panel";
+		}
+		else if ($this->ion_auth->in_group('staff')) {
+			$this->mSiteName = "Staff Panel";
+		}
 	}
 
 	// Render template (override parent)
