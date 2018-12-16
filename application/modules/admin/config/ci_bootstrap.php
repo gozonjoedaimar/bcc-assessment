@@ -74,11 +74,6 @@ $config['ci_bootstrap'] = array(
 				'User Groups'	=> 'user/group',
 			),
 		),*/
-		/*'new_ledger' => array(
-			'name' => "Add entry",
-			'url'  => 'ledger/create',
-			'icon' => 'fa fa-plus',
-		),*/
 		'assessment' => array(
 			'name' => "Assessment",
 			'url'  => 'assessment/create',
@@ -158,7 +153,7 @@ $config['ci_bootstrap'] = array(
 	'adminlte' => array(
 		'body_class' => array(
 			'webmaster'	=> 'skin-red',
-			'admin'		=> 'skin-purple',
+			'admin'		=> 'skin-yellow',
 			/*'manager'	=> 'skin-black',*/
 			'staff'		=> 'skin-blue',
 		)
