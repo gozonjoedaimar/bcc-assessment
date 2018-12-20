@@ -2,6 +2,7 @@
 
 	<div class="col-md-12">
 		<?php echo $form->assessment_form->open(); ?>
+		<?php echo form_hidden('form_type', 'assessment_form') ?>
 		<div class="box box-primary">
 			<div class="box-header">
 				<h3 class="box-title">Student Information</h3>

@@ -1,6 +1,7 @@
 <div class="row" id="statement_of_account">
 	
 		<?php echo $form->statement_of_account->open() ?>
+		<?php echo form_hidden('form_type', 'statement_of_account') ?>
 
 
 		<div class="col-md-6">
