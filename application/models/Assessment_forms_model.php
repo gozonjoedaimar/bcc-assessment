@@ -135,9 +135,34 @@ class Assessment_forms_model extends CI_Model
 		return $html;
 	}
 
+	/* Checks if student id is already taken */
 	public function student_id_exists($id, $db_id = NULL)
 	{
-		$exists = $this->db->limit(1)->get_where('students', array('student_id' => $id))->num_rows() === 1;
-		return $exists;
+		return $this->db->limit(1)->get_where('students', array('student_id' => $id))->num_rows() === 1;
+	}
+
+	/* Used for admin confirmation */
+	public function admin_auth($username, $password)
+	{
+		$query = $this->db->limit(1)->get_where('admin_users', array('username'=>$username));
+
+		if ($query->num_rows() === 1) {
+			$user = $query->row();
+
+			$id = $user->id;
+
+			if ($this->ion_auth->hash_password_db($id, $password) !== TRUE)
+			{
+				return FALSE;
+			}
+			else {
+				return TRUE;
+			}
+		}
+		else {
+			return FALSE;
+		}
+
+
 	}
 }
