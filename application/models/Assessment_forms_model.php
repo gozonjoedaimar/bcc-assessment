@@ -134,4 +134,10 @@ class Assessment_forms_model extends CI_Model
 		
 		return $html;
 	}
+
+	public function student_id_exists($id, $db_id = NULL)
+	{
+		$exists = $this->db->limit(1)->get_where('students', array('student_id' => $id))->num_rows() === 1;
+		return $exists;
+	}
 }

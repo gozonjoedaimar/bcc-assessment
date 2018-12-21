@@ -25,8 +25,15 @@ class Assessment extends Admin_Controller {
 		$post_data = $this->input->post();
 		if ($form->assessment_form->validate())
 		{
-			$this->system_message->add_error('Assessment Form: Form validated but unable to save at the moment');
 			$form->set_form_data('assessment_form', $post_data);
+
+			if ($form->student_id_exists($post_data['student_id'])) {
+				$this->system_message->add_error('Assessment Form: Student exists! New balance should be recorded but not at the moment.');
+			}
+			else {
+				$this->system_message->add_error('Assessment Form: New Student! Form validated but unable to save at the moment');
+			}
+
 			redirect('admin/assessment/create');
 		}
 	}
@@ -37,8 +44,15 @@ class Assessment extends Admin_Controller {
 		$post_data = $this->input->post();
 		if ($form->statement_of_account->validate())
 		{
-			$this->system_message->add_error('Statement of Account: Form validated but unable to save at the moment');
 			$form->set_form_data('statement_of_account', $post_data);
+
+			if ($form->student_id_exists($post_data['student_id'])) {
+				$this->system_message->add_error('Statement of Account: Student exists! New balance should be recorded but not at the moment.');
+			}
+			else {
+				$this->system_message->add_error('Statement of Account: Student does not exists! Form validated but unable to save at the moment');
+			}
+			
 			redirect('admin/assessment/create');
 		}
 	}
