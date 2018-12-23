@@ -1,52 +1,27 @@
--- MySQL dump 10.15  Distrib 10.0.36-MariaDB, for debian-linux-gnu (x86_64)
---
--- Host: localhost    Database: assessmentdb
--- ------------------------------------------------------
--- Server version	10.0.36-MariaDB-0ubuntu0.16.04.1
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
---
--- Table structure for table `admin_groups`
---
+#
+# TABLE STRUCTURE FOR: admin_groups
+#
 
 DROP TABLE IF EXISTS `admin_groups`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `admin_groups` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `description` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `admin_groups`
---
+INSERT INTO `admin_groups` (`id`, `name`, `description`) VALUES ('1', 'webmaster', 'Webmaster');
+INSERT INTO `admin_groups` (`id`, `name`, `description`) VALUES ('2', 'admin', 'Administrator');
+INSERT INTO `admin_groups` (`id`, `name`, `description`) VALUES ('4', 'staff', 'Staff');
 
-LOCK TABLES `admin_groups` WRITE;
-/*!40000 ALTER TABLE `admin_groups` DISABLE KEYS */;
-INSERT INTO `admin_groups` VALUES (1,'webmaster','Webmaster'),(2,'admin','Administrator'),(4,'staff','Staff');
-/*!40000 ALTER TABLE `admin_groups` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `admin_login_attempts`
---
+#
+# TABLE STRUCTURE FOR: admin_login_attempts
+#
 
 DROP TABLE IF EXISTS `admin_login_attempts`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `admin_login_attempts` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(15) NOT NULL,
@@ -54,24 +29,13 @@ CREATE TABLE `admin_login_attempts` (
   `time` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `admin_login_attempts`
---
-
-LOCK TABLES `admin_login_attempts` WRITE;
-/*!40000 ALTER TABLE `admin_login_attempts` DISABLE KEYS */;
-/*!40000 ALTER TABLE `admin_login_attempts` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `admin_users`
---
+#
+# TABLE STRUCTURE FOR: admin_users
+#
 
 DROP TABLE IF EXISTS `admin_users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `admin_users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(15) NOT NULL,
@@ -90,25 +54,19 @@ CREATE TABLE `admin_users` (
   `last_name` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `admin_users`
---
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('1', '127.0.0.1', 'webmaster', '$2y$08$/X5gzWjesYi78GqeAv5tA.dVGBVP7C1e1PzqnYCVe5s1qhlDIPPES', NULL, NULL, NULL, NULL, NULL, NULL, '1451900190', '1545530600', '1', 'Webmaster', '');
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('2', '127.0.0.1', 'admin', '$2y$08$7Bkco6JXtC3Hu6g9ngLZDuHsFLvT7cyAxiz1FzxlX5vwccvRT7nKW', NULL, NULL, NULL, NULL, NULL, 'tTXDuQ63FrUQg5x39cDFgO', '1451900228', '1545523573', '1', 'Admin', '');
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('3', '127.0.0.1', 'manager', '$2y$08$snzIJdFXvg/rSHe0SndIAuvZyjktkjUxBXkrrGdkPy1K6r5r/dMLa', NULL, NULL, NULL, NULL, NULL, NULL, '1451900430', '1543586196', '0', 'Manager', NULL);
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('4', '127.0.0.1', 'staff', '$2y$08$NigAXjN23CRKllqe3KmjYuWXD5iSRPY812SijlhGeKfkrMKde9da6', NULL, NULL, NULL, NULL, NULL, NULL, '1451900439', '1545006024', '1', 'Staff', '');
 
-LOCK TABLES `admin_users` WRITE;
-/*!40000 ALTER TABLE `admin_users` DISABLE KEYS */;
-INSERT INTO `admin_users` VALUES (1,'127.0.0.1','webmaster','$2y$08$/X5gzWjesYi78GqeAv5tA.dVGBVP7C1e1PzqnYCVe5s1qhlDIPPES',NULL,NULL,NULL,NULL,NULL,NULL,1451900190,1545036569,1,'Webmaster',''),(2,'127.0.0.1','admin','$2y$08$7Bkco6JXtC3Hu6g9ngLZDuHsFLvT7cyAxiz1FzxlX5vwccvRT7nKW',NULL,NULL,NULL,NULL,NULL,'tTXDuQ63FrUQg5x39cDFgO',1451900228,1544926342,1,'Admin',''),(3,'127.0.0.1','manager','$2y$08$snzIJdFXvg/rSHe0SndIAuvZyjktkjUxBXkrrGdkPy1K6r5r/dMLa',NULL,NULL,NULL,NULL,NULL,NULL,1451900430,1543586196,0,'Manager',NULL),(4,'127.0.0.1','staff','$2y$08$NigAXjN23CRKllqe3KmjYuWXD5iSRPY812SijlhGeKfkrMKde9da6',NULL,NULL,NULL,NULL,NULL,NULL,1451900439,1545006024,1,'Staff','');
-/*!40000 ALTER TABLE `admin_users` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `admin_users_groups`
---
+#
+# TABLE STRUCTURE FOR: admin_users_groups
+#
 
 DROP TABLE IF EXISTS `admin_users_groups`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `admin_users_groups` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
@@ -118,26 +76,18 @@ CREATE TABLE `admin_users_groups` (
   KEY `admin_group_ref` (`group_id`),
   CONSTRAINT `admin_users_groups_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `admin_users` (`id`),
   CONSTRAINT `admin_users_groups_ibfk_2` FOREIGN KEY (`group_id`) REFERENCES `admin_groups` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
---
--- Dumping data for table `admin_users_groups`
---
+INSERT INTO `admin_users_groups` (`id`, `user_id`, `group_id`) VALUES ('1', '1', '1');
+INSERT INTO `admin_users_groups` (`id`, `user_id`, `group_id`) VALUES ('2', '2', '2');
 
-LOCK TABLES `admin_users_groups` WRITE;
-/*!40000 ALTER TABLE `admin_users_groups` DISABLE KEYS */;
-INSERT INTO `admin_users_groups` VALUES (1,1,1),(2,2,2);
-/*!40000 ALTER TABLE `admin_users_groups` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `api_access`
---
+#
+# TABLE STRUCTURE FOR: api_access
+#
 
 DROP TABLE IF EXISTS `api_access`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `api_access` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `key` varchar(40) NOT NULL DEFAULT '',
@@ -146,24 +96,13 @@ CREATE TABLE `api_access` (
   `date_modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `api_access`
---
-
-LOCK TABLES `api_access` WRITE;
-/*!40000 ALTER TABLE `api_access` DISABLE KEYS */;
-/*!40000 ALTER TABLE `api_access` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `api_keys`
---
+#
+# TABLE STRUCTURE FOR: api_keys
+#
 
 DROP TABLE IF EXISTS `api_keys`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `api_keys` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -175,25 +114,16 @@ CREATE TABLE `api_keys` (
   `date_created` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `api_keys`
---
+INSERT INTO `api_keys` (`id`, `user_id`, `key`, `level`, `ignore_limits`, `is_private_key`, `ip_addresses`, `date_created`) VALUES ('1', '0', 'anonymous', '1', '1', '0', NULL, '1463388382');
 
-LOCK TABLES `api_keys` WRITE;
-/*!40000 ALTER TABLE `api_keys` DISABLE KEYS */;
-INSERT INTO `api_keys` VALUES (1,0,'anonymous',1,1,0,NULL,1463388382);
-/*!40000 ALTER TABLE `api_keys` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `api_limits`
---
+#
+# TABLE STRUCTURE FOR: api_limits
+#
 
 DROP TABLE IF EXISTS `api_limits`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `api_limits` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uri` varchar(255) NOT NULL,
@@ -202,24 +132,13 @@ CREATE TABLE `api_limits` (
   `api_key` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `api_limits`
---
-
-LOCK TABLES `api_limits` WRITE;
-/*!40000 ALTER TABLE `api_limits` DISABLE KEYS */;
-/*!40000 ALTER TABLE `api_limits` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `api_logs`
---
+#
+# TABLE STRUCTURE FOR: api_logs
+#
 
 DROP TABLE IF EXISTS `api_logs`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `api_logs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uri` varchar(255) NOT NULL,
@@ -233,24 +152,13 @@ CREATE TABLE `api_logs` (
   `response_code` smallint(3) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `api_logs`
---
-
-LOCK TABLES `api_logs` WRITE;
-/*!40000 ALTER TABLE `api_logs` DISABLE KEYS */;
-/*!40000 ALTER TABLE `api_logs` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `assessment`
---
+#
+# TABLE STRUCTURE FOR: assessment
+#
 
 DROP TABLE IF EXISTS `assessment`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `assessment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `payment` double DEFAULT NULL,
@@ -260,29 +168,21 @@ CREATE TABLE `assessment` (
   `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `main_balance` (`assessment_group`),
-  CONSTRAINT `assessment_ibfk_1` FOREIGN KEY (`assessment_group`) REFERENCES `assessment_group` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  CONSTRAINT `assessment_ibfk_1` FOREIGN KEY (`assessment_group`) REFERENCES `assessment_group` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `assessment`
---
+INSERT INTO `assessment` (`id`, `payment`, `paid`, `assessment_group`, `form_type`, `datetime`) VALUES ('1', '1000', '0', '5', 'assessment_form', '2018-12-23 09:22:06');
 
-LOCK TABLES `assessment` WRITE;
-/*!40000 ALTER TABLE `assessment` DISABLE KEYS */;
-/*!40000 ALTER TABLE `assessment` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `assessment_group`
---
+#
+# TABLE STRUCTURE FOR: assessment_group
+#
 
 DROP TABLE IF EXISTS `assessment_group`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `assessment_group` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_id` int(11) DEFAULT NULL,
+  `student_id` varchar(255) DEFAULT NULL,
   `year_level` varchar(255) DEFAULT NULL,
   `course_code` varchar(255) DEFAULT NULL,
   `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -291,27 +191,19 @@ CREATE TABLE `assessment_group` (
   PRIMARY KEY (`id`),
   KEY `student_ref0001` (`student_id`),
   KEY `course_ref0002` (`course_code`),
-  CONSTRAINT `assessment_group_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `students` (`id`),
-  CONSTRAINT `assessment_group_ibfk_2` FOREIGN KEY (`course_code`) REFERENCES `courses` (`code`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+  CONSTRAINT `assessment_group_ibfk_2` FOREIGN KEY (`course_code`) REFERENCES `courses` (`code`),
+  CONSTRAINT `assessment_group_std_ref` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `assessment_group`
---
+INSERT INTO `assessment_group` (`id`, `student_id`, `year_level`, `course_code`, `datetime`, `description`, `balance`) VALUES ('5', '2576', '1', 'BSOA', '2018-12-23 09:22:06', NULL, '3195');
 
-LOCK TABLES `assessment_group` WRITE;
-/*!40000 ALTER TABLE `assessment_group` DISABLE KEYS */;
-/*!40000 ALTER TABLE `assessment_group` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `courses`
---
+#
+# TABLE STRUCTURE FOR: courses
+#
 
 DROP TABLE IF EXISTS `courses`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `courses` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `code` varchar(255) DEFAULT NULL,
@@ -319,50 +211,34 @@ CREATE TABLE `courses` (
   PRIMARY KEY (`id`),
   KEY `course_ref_main` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `courses`
---
+INSERT INTO `courses` (`id`, `code`, `name`) VALUES ('1', 'BSOA', 'Bachelor of Science in Office Administration');
+INSERT INTO `courses` (`id`, `code`, `name`) VALUES ('2', 'BSIS', 'Bachelor of Science in Information Systems');
+INSERT INTO `courses` (`id`, `code`, `name`) VALUES ('3', 'BSIT', 'Bachelor of Science in Industrial Technology');
 
-LOCK TABLES `courses` WRITE;
-/*!40000 ALTER TABLE `courses` DISABLE KEYS */;
-INSERT INTO `courses` VALUES (1,'BSOA','Bachelor of Science in Office Administration'),(2,'BSIS','Bachelor of Science in Information Systems'),(3,'BSIT','Bachelor of Science in Industrial Technology');
-/*!40000 ALTER TABLE `courses` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `groups`
---
+#
+# TABLE STRUCTURE FOR: groups
+#
 
 DROP TABLE IF EXISTS `groups`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `groups` (
   `id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(20) NOT NULL,
   `description` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `groups`
---
+INSERT INTO `groups` (`id`, `name`, `description`) VALUES ('1', 'members', 'General User');
 
-LOCK TABLES `groups` WRITE;
-/*!40000 ALTER TABLE `groups` DISABLE KEYS */;
-INSERT INTO `groups` VALUES (1,'members','General User');
-/*!40000 ALTER TABLE `groups` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `login_attempts`
---
+#
+# TABLE STRUCTURE FOR: login_attempts
+#
 
 DROP TABLE IF EXISTS `login_attempts`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `login_attempts` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(15) NOT NULL,
@@ -370,24 +246,13 @@ CREATE TABLE `login_attempts` (
   `time` int(11) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `login_attempts`
---
-
-LOCK TABLES `login_attempts` WRITE;
-/*!40000 ALTER TABLE `login_attempts` DISABLE KEYS */;
-/*!40000 ALTER TABLE `login_attempts` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `price_defaults`
---
+#
+# TABLE STRUCTURE FOR: price_defaults
+#
 
 DROP TABLE IF EXISTS `price_defaults`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `price_defaults` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(255) DEFAULT NULL,
@@ -395,31 +260,30 @@ CREATE TABLE `price_defaults` (
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `price_defaults`
---
+INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('2', 'Units', '30', 'units');
+INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('3', 'Registration Fee', '100', 'registration_fee');
+INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('4', 'Library Fee', '5', 'library_fee');
+INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('5', 'Developement Fee', '25', 'development_fee');
+INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('6', 'Sports', '10', 'sports');
+INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('7', 'Cultural', '5', 'cultural');
+INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('8', 'Laboratory Fee', '15', 'laboratory_fee');
+INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('9', 'NSTP', '45', 'nstp');
+INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('10', 'City Smile ( Sch. Paper )', '20', 'city_smile');
 
-LOCK TABLES `price_defaults` WRITE;
-/*!40000 ALTER TABLE `price_defaults` DISABLE KEYS */;
-INSERT INTO `price_defaults` VALUES (2,'Units','30','units'),(3,'Registration Fee','100','registration_fee'),(4,'Library Fee','5','library_fee'),(5,'Developement Fee','25','development_fee'),(6,'Sports','10','sports'),(7,'Cultural','5','cultural'),(8,'Laboratory Fee','15','laboratory_fee'),(9,'NSTP','45','nstp'),(10,'City Smile ( Sch. Paper )','20','city_smile');
-/*!40000 ALTER TABLE `price_defaults` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `students`
---
+#
+# TABLE STRUCTURE FOR: students
+#
 
 DROP TABLE IF EXISTS `students`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `students` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `last_name` varchar(255) DEFAULT NULL,
   `first_name` varchar(255) DEFAULT NULL,
   `middle_name` varchar(255) DEFAULT NULL,
-  `extension` varchar(10) NOT NULL,
+  `extension` varchar(10) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `student_id` varchar(255) DEFAULT NULL,
   `phone_number` varchar(255) DEFAULT NULL,
@@ -427,29 +291,45 @@ CREATE TABLE `students` (
   `gender` varchar(255) DEFAULT NULL,
   `permanent_address` varchar(255) DEFAULT NULL,
   `course_code` varchar(255) DEFAULT NULL,
+  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `course_ref0001` (`course_code`),
+  KEY `student_id_main` (`student_id`),
   CONSTRAINT `students_ibfk_1` FOREIGN KEY (`course_code`) REFERENCES `courses` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `students`
---
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('1', 'Murphils', 'Diane', NULL, NULL, 'dmurphy@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('2', 'Patterson', 'Mary', 'Geralds', NULL, 'mpatterso@classicmodelcars.com', '2576', '', '', 'female', '', 'BSIT', '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('3', 'Firrelli', 'Jeff', '', NULL, 'jfirrelli@classicmodelcars.com', '299', '', '', 'male', '', 'BSOA', '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('4', 'Patterson', 'William', 'Spase', NULL, 'wpatterson@classicmodelcars.com', '2511', '', '', 'male', '', 'BSOA', '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('5', 'Bondur', 'Gerard', NULL, NULL, 'gbondur@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('6', 'Bow', 'Anthony', NULL, NULL, 'abow@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('7', 'Jennings', 'Leslie', NULL, NULL, 'ljennings@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('8', 'Thompson', 'Leslie', NULL, NULL, 'lthompson@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('9', 'Firrelli', 'Julie', NULL, NULL, 'jfirrelli@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('10', 'Patterson', 'Steve', NULL, NULL, 'spatterson@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('11', 'Tseng', 'Foon Yue', NULL, NULL, 'ftseng@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('12', 'Vanauf', 'George', NULL, NULL, 'gvanauf@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('13', 'Bondur', 'Loui', NULL, NULL, 'lbondur@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('14', 'Hernandez', 'Gerard', NULL, NULL, 'ghernande@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('15', 'Castillo', 'Pamela', NULL, NULL, 'pcastillo@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('16', 'Bott', 'Larry', NULL, NULL, 'lbott@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('17', 'Jones', 'Barry', NULL, NULL, 'bjones@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('18', 'Fixter', 'Andy', NULL, NULL, 'afixter@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('19', 'Marsh', 'Peter', NULL, NULL, 'pmarsh@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('20', 'King', 'Tom', NULL, NULL, 'tking@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('21', 'Nishi', 'Mami', NULL, NULL, 'mnishi@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('22', 'Kato', 'Yoshimi', NULL, NULL, 'ykato@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('23', 'Gerard', 'Martin', NULL, NULL, 'mgerard@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('24', 'Doe', 'Jane', NULL, NULL, 'janedoe@example.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
 
-LOCK TABLES `students` WRITE;
-/*!40000 ALTER TABLE `students` DISABLE KEYS */;
-INSERT INTO `students` VALUES (1,'Murphils','Diane',NULL,'x5800','dmurphy@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(2,'Patterson','Mary','Geralds','x4611','mpatterso@classicmodelcars.com','2576','','','female','','BSIT'),(3,'Firrelli','Jeff','','x9273','jfirrelli@classicmodelcars.com','299','','','male','','BSOA'),(4,'Patterson','William','Spase','x4871','wpatterson@classicmodelcars.com','2511','','','male','','BSOA'),(5,'Bondur','Gerard',NULL,'x5408','gbondur@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(6,'Bow','Anthony',NULL,'x5428','abow@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(7,'Jennings','Leslie',NULL,'x3291','ljennings@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(8,'Thompson','Leslie',NULL,'x4065','lthompson@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(9,'Firrelli','Julie',NULL,'x2173','jfirrelli@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(10,'Patterson','Steve',NULL,'x4334','spatterson@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(11,'Tseng','Foon Yue',NULL,'x2248','ftseng@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(12,'Vanauf','George',NULL,'x4102','gvanauf@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(13,'Bondur','Loui',NULL,'x6493','lbondur@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(14,'Hernandez','Gerard',NULL,'x2028','ghernande@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(15,'Castillo','Pamela',NULL,'x2759','pcastillo@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(16,'Bott','Larry',NULL,'x2311','lbott@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(17,'Jones','Barry',NULL,'x102','bjones@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(18,'Fixter','Andy',NULL,'x101','afixter@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(19,'Marsh','Peter',NULL,'x102','pmarsh@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(20,'King','Tom',NULL,'x103','tking@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(21,'Nishi','Mami',NULL,'x101','mnishi@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(22,'Kato','Yoshimi',NULL,'x102','ykato@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(23,'Gerard','Martin',NULL,'x2312','mgerard@classicmodelcars.com',NULL,NULL,NULL,NULL,NULL,NULL),(24,'Doe','Jane',NULL,'','janedoe@example.com',NULL,NULL,NULL,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `students` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `subjects`
---
+#
+# TABLE STRUCTURE FOR: subjects
+#
 
 DROP TABLE IF EXISTS `subjects`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `subjects` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -457,25 +337,20 @@ CREATE TABLE `subjects` (
   `unit` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `subjects`
---
+INSERT INTO `subjects` (`id`, `name`, `code`, `unit`) VALUES ('1', 'English', 'ENG111', '3');
+INSERT INTO `subjects` (`id`, `name`, `code`, `unit`) VALUES ('2', 'Principles of Programming ', 'PROG101', '3');
+INSERT INTO `subjects` (`id`, `name`, `code`, `unit`) VALUES ('3', 'Data structures and algorithm', 'DDD111', '3');
+INSERT INTO `subjects` (`id`, `name`, `code`, `unit`) VALUES ('4', 'Psychology', 'PSY111', '3');
+INSERT INTO `subjects` (`id`, `name`, `code`, `unit`) VALUES ('5', 'Rizal', 'RIZAL111', '3');
 
-LOCK TABLES `subjects` WRITE;
-/*!40000 ALTER TABLE `subjects` DISABLE KEYS */;
-INSERT INTO `subjects` VALUES (1,'English','ENG111',3),(2,'Principles of Programming ','PROG101',3),(3,'Data structures and algorithm','DDD111',3),(4,'Psychology','PSY111',3),(5,'Rizal','RIZAL111',3);
-/*!40000 ALTER TABLE `subjects` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `users`
---
+#
+# TABLE STRUCTURE FOR: users
+#
 
 DROP TABLE IF EXISTS `users`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `ip_address` varchar(15) NOT NULL,
@@ -496,50 +371,27 @@ CREATE TABLE `users` (
   `phone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `users`
---
+INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES ('1', '127.0.0.1', 'member', '$2y$08$kkqUE2hrqAJtg.pPnAhvL.1iE7LIujK5LZ61arONLpaBBWh/ek61G', NULL, 'member@member.com', NULL, NULL, NULL, NULL, '1451903855', '1451905011', '1', 'Member', 'One', NULL, NULL);
+INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES ('2', '::1', 'johndoe', '$2y$08$GW.BtJ3ANRQrMLr8XNlNUenTwGimkrKlGoa0T1uMOqXlrabEM2bM2', NULL, 'johndoe@example.com', NULL, NULL, NULL, NULL, '1543038536', NULL, '1', 'John', 'Doe', NULL, NULL);
+INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES ('3', '::1', 'janedoe', '$2y$08$3jhfEkrqpaDrus88S7gS8.ADsBPz.FKVng.7aG9CkN9x55GiAXn2O', NULL, 'janedoe@example.com', NULL, NULL, NULL, NULL, '1543042602', NULL, '1', 'Jane', 'Doe', NULL, NULL);
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'127.0.0.1','member','$2y$08$kkqUE2hrqAJtg.pPnAhvL.1iE7LIujK5LZ61arONLpaBBWh/ek61G',NULL,'member@member.com',NULL,NULL,NULL,NULL,1451903855,1451905011,1,'Member','One',NULL,NULL),(2,'::1','johndoe','$2y$08$GW.BtJ3ANRQrMLr8XNlNUenTwGimkrKlGoa0T1uMOqXlrabEM2bM2',NULL,'johndoe@example.com',NULL,NULL,NULL,NULL,1543038536,NULL,1,'John','Doe',NULL,NULL),(3,'::1','janedoe','$2y$08$3jhfEkrqpaDrus88S7gS8.ADsBPz.FKVng.7aG9CkN9x55GiAXn2O',NULL,'janedoe@example.com',NULL,NULL,NULL,NULL,1543042602,NULL,1,'Jane','Doe',NULL,NULL);
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
-UNLOCK TABLES;
 
---
--- Table structure for table `users_groups`
---
+#
+# TABLE STRUCTURE FOR: users_groups
+#
 
 DROP TABLE IF EXISTS `users_groups`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
+
 CREATE TABLE `users_groups` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `user_id` int(11) unsigned NOT NULL,
   `group_id` mediumint(8) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
 
---
--- Dumping data for table `users_groups`
---
+INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES ('1', '1', '1');
+INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES ('2', '2', '1');
+INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES ('3', '3', '1');
 
-LOCK TABLES `users_groups` WRITE;
-/*!40000 ALTER TABLE `users_groups` DISABLE KEYS */;
-INSERT INTO `users_groups` VALUES (1,1,1),(2,2,1),(3,3,1);
-/*!40000 ALTER TABLE `users_groups` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-
--- Dump completed on 2018-12-17 16:54:14

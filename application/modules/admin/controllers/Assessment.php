@@ -27,11 +27,64 @@ class Assessment extends Admin_Controller {
 		{
 			$form->set_form_data('assessment_form', $post_data);
 
+			$is_new_student = FALSE;
+
 			if ($form->student_id_exists($post_data['student_id'])) {
-				$this->system_message->add_error('Assessment Form: Student exists! New balance should be recorded but not at the moment.');
+				$this->db->where('student_id', $post_data['student_id']);
+				$this->db->set('student_id', $post_data['student_id']);
+				$student_saved = $this->db->update('students');
 			}
 			else {
-				$this->system_message->add_error('Assessment Form: New Student! Form validated but unable to save at the moment');
+				/* Save new student info */
+				$this->db->set('last_name', $post_data['last_name']);
+				$this->db->set('first_name', $post_data['first_name']);
+				$this->db->set('middle_name', $post_data['middle_name']);
+				$this->db->set('student_id', $post_data['student_id']);
+				$this->db->set('course_code', $post_data['course_code']);
+				$student_saved = $this->db->insert('students');
+				$is_new_student = TRUE;
+			}
+
+			if ( ! $student_saved) {
+				$this->system_message->add_error("Assessment Form: Unable to save assessment. An error occured.");
+			}
+			else {
+				if ($is_new_student) $this->system_message->add_success("Student information saved");	
+
+				/* Save account balance */
+				$this->db->set('student_id', $post_data['student_id']);
+				$this->db->set('year_level', $post_data['year_level']);
+				$this->db->set('course_code', $post_data['course_code']);
+				$this->db->set('balance', $post_data['total_fees']);
+				$saved = $this->db->insert('assessment_group');
+
+				if ( ! $saved) {
+					$this->system_message->add_error("Assessment Form: Unable to save assessment. An error occured.");
+				}
+				else {
+					$assessment_id = $this->db->insert_id();
+
+					/* Save assessment */
+					$this->db->set('assessment_group', $assessment_id);
+					$this->db->set('form_type', $post_data['form_type']);
+					$this->db->set('paid', 0); // Set unpaid
+					$this->db->set('payment', $post_data['payment_stated']);
+					$assessment_saved = $this->db->insert('assessment');
+
+					if ( ! $assessment_saved) {
+						$this->system_message->add_error("Assessment Form: Unable to save assessment. An error occured.");
+					}
+					else {
+						if ($is_new_student) {
+							$this->system_message->add_success("Account created for new student");
+						}
+						else {
+							$this->system_message->add_success("Account added for existing student");
+						}
+					}
+
+					$form->set_form_data('assessment_form', []);	
+				}
 			}
 
 			redirect('admin/assessment/create');

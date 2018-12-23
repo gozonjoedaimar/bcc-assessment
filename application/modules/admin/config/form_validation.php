@@ -168,6 +168,11 @@ $config = array(
 			'field'=>'payment_stated',
 			'label'=>'Payment Upon Enrollment',
 			'rules'=>'required|greater_than[0]'
+		),
+		array(
+			'field'=>'student_id',
+			'label'=>'Student ID',
+			'rules'=>'required'
 		)
 	),
 

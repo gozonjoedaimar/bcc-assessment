@@ -14,11 +14,12 @@ class Ledger extends Admin_Controller {
 	public function index()
 	{
 		$crud = $this->generate_crud('students');
-		$crud->columns('student_id','first_name', 'last_name', 'middle_name', 'gender');
+		$crud->columns('student_id','first_name', 'last_name', 'middle_name', 'gender', 'course_code');
 		$crud->display_as('student_id', 'Student ID');
 		$crud->display_as('last_name', 'Last Name');
 		$crud->display_as('first_name', 'First Name');
 		$crud->display_as('middle_name', 'Middle Name');
+		$crud->display_as('course_code', 'Course');
 		$crud->set_subject('Students');
 
 		$crud->callback_column('gender', array($this, 'ucfirst'));
