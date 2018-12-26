@@ -32,6 +32,14 @@ class Ledger extends REST_Controller
 			];
 
 			$account = $this->ledger->get_account($query);
+
+			if ( ! $account) {
+				return $this->response([
+					'status'=>FALSE,
+					'error' => "No account found"
+				]);
+			}
+
 			$account_total = $account->balance;
 			$remaining = intval($account_total);
 
