@@ -49,7 +49,19 @@ class Assessment extends Admin_Controller {
 				$this->system_message->add_error("Assessment Form: Unable to save assessment. An error occured.");
 			}
 			else {
-				if ($is_new_student) $this->system_message->add_success("Student information saved");	
+				if ($is_new_student) {
+					$this->system_message->add_success("Student information saved");
+				}
+				else {
+					if ($this->db->limit(1)->get_where('assessment_group', array(
+						'student_id'=>$post_data['student_id'],
+						'year_level'=>$post_data['year_level'],
+						'course_code'=>$post_data['course_code'] ))->num_rows() === 1)
+					{
+						$this->system_message->add_error("Assessment Form: Unable to save assessment. Account already created for year level: <b><u>" . $post_data['year_level'] . "</u></b>");
+						return redirect('admin/assessment/create');
+					}
+				}	
 
 				/* Save account balance */
 				$this->db->set('student_id', $post_data['student_id']);
