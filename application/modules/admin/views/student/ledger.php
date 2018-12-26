@@ -32,7 +32,7 @@
 							<?php echo $form->student_information->bs3_text('Department','department'); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->bs3_dropdown('Couse', 'course_code', $form->get_course_options(), $form->student_information); ?>
+							<?php echo $form->bs3_dropdown('Course', 'course_code', $form->get_course_options(), $form->student_information); ?>
 						</div>
 						<div class="col-sm-4">
 							<?php echo $form->bs3_dropdown('Sex', 'gender', ['male'=>'Male','female'=>'Female'], $form->student_information); ?>
@@ -57,6 +57,11 @@
 		<div class="box box-primary">
 			<div class="box-header">
 				<h3 class="box-title">Ledger</h3>
+				<div style="width: 300px; float: right;" class="row">
+					<div class="col-xs-6 text-right"><label>Year Level: </label></div>
+					<div class="col-xs-6"><?php echo form_dropdown('year_select', $form->get_year_options(), [], ['id'=>'year_select', 'class'=>'form-control']) ?></div>
+				</div>
+				<div class="clearfix"></div>
 			</div>
 			<div class="box-body">
 				<table class="table table-bordered table-striped">
@@ -81,11 +86,7 @@
 						</tr>
 					</tfoot>
 					<tbody>
-						<?php if (isset($record)) : ?>
-							<!-- Student Ledger -->
-						<?php else: ?>
 							<tr><td colspan="6" class="text-center">No Record</td></tr>
-						<?php endif; ?>
 					</tbody>
 				</table>
 			</div>
