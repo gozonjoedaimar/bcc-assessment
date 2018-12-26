@@ -55,7 +55,7 @@ CREATE TABLE `admin_users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
-INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('1', '127.0.0.1', 'webmaster', '$2y$08$/X5gzWjesYi78GqeAv5tA.dVGBVP7C1e1PzqnYCVe5s1qhlDIPPES', NULL, NULL, NULL, NULL, NULL, NULL, '1451900190', '1545530600', '1', 'Webmaster', '');
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('1', '127.0.0.1', 'webmaster', '$2y$08$/X5gzWjesYi78GqeAv5tA.dVGBVP7C1e1PzqnYCVe5s1qhlDIPPES', NULL, NULL, NULL, NULL, NULL, NULL, '1451900190', '1545801751', '1', 'Webmaster', '');
 INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('2', '127.0.0.1', 'admin', '$2y$08$7Bkco6JXtC3Hu6g9ngLZDuHsFLvT7cyAxiz1FzxlX5vwccvRT7nKW', NULL, NULL, NULL, NULL, NULL, 'tTXDuQ63FrUQg5x39cDFgO', '1451900228', '1545523573', '1', 'Admin', '');
 INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('3', '127.0.0.1', 'manager', '$2y$08$snzIJdFXvg/rSHe0SndIAuvZyjktkjUxBXkrrGdkPy1K6r5r/dMLa', NULL, NULL, NULL, NULL, NULL, NULL, '1451900430', '1543586196', '0', 'Manager', NULL);
 INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('4', '127.0.0.1', 'staff', '$2y$08$NigAXjN23CRKllqe3KmjYuWXD5iSRPY812SijlhGeKfkrMKde9da6', NULL, NULL, NULL, NULL, NULL, NULL, '1451900439', '1545006024', '1', 'Staff', '');
@@ -165,7 +165,7 @@ CREATE TABLE `assessment` (
   `paid` int(11) DEFAULT NULL,
   `assessment_group` int(11) DEFAULT NULL,
   `form_type` varchar(255) DEFAULT NULL,
-  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `main_balance` (`assessment_group`),
   CONSTRAINT `assessment_ibfk_1` FOREIGN KEY (`assessment_group`) REFERENCES `assessment_group` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
@@ -185,7 +185,7 @@ CREATE TABLE `assessment_group` (
   `student_id` varchar(255) DEFAULT NULL,
   `year_level` varchar(255) DEFAULT NULL,
   `course_code` varchar(255) DEFAULT NULL,
-  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `description` text,
   `balance` double DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -291,20 +291,20 @@ CREATE TABLE `students` (
   `gender` varchar(255) DEFAULT NULL,
   `permanent_address` varchar(255) DEFAULT NULL,
   `course_code` varchar(255) DEFAULT NULL,
-  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `course_ref0001` (`course_code`),
   KEY `student_id_main` (`student_id`),
   CONSTRAINT `students_ibfk_1` FOREIGN KEY (`course_code`) REFERENCES `courses` (`code`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('1', 'Murphils', 'Diane', NULL, NULL, 'dmurphy@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('1', 'Murphils', 'Diane', '', NULL, 'dmurphy@classicmodelcars.com', '7869', '', '', 'male', '', 'BSOA', '2018-12-26 13:07:30');
 INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('2', 'Patterson', 'Mary', 'Geralds', NULL, 'mpatterso@classicmodelcars.com', '2576', '', '', 'female', '', 'BSIT', '2018-12-23 09:03:49');
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('3', 'Firrelli', 'Jeff', '', NULL, 'jfirrelli@classicmodelcars.com', '299', '', '', 'male', '', 'BSOA', '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('3', 'Firrelli', 'Jeff', '', NULL, 'jfirrelli@classicmodelcars.com', '2991', '', '', 'male', '', 'BSOA', '2018-12-26 13:07:41');
 INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('4', 'Patterson', 'William', 'Spase', NULL, 'wpatterson@classicmodelcars.com', '2511', '', '', 'male', '', 'BSOA', '2018-12-23 09:03:49');
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('5', 'Bondur', 'Gerard', NULL, NULL, 'gbondur@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('6', 'Bow', 'Anthony', NULL, NULL, 'abow@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('7', 'Jennings', 'Leslie', NULL, NULL, 'ljennings@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('5', 'Bondur', 'Gerard', '', NULL, 'gbondur@classicmodelcars.com', '2512', '', '', 'male', '', 'BSOA', '2018-12-26 13:05:07');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('6', 'Bow', 'Anthony', '', NULL, 'abow@classicmodelcars.com', '7889', '', '', 'male', '', 'BSOA', '2018-12-26 13:07:11');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('7', 'Jennings', 'Leslie', '', NULL, 'ljennings@classicmodelcars.com', '9887', '', '', 'male', '', 'BSOA', '2018-12-26 13:10:48');
 INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('8', 'Thompson', 'Leslie', NULL, NULL, 'lthompson@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
 INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('9', 'Firrelli', 'Julie', NULL, NULL, 'jfirrelli@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
 INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('10', 'Patterson', 'Steve', NULL, NULL, 'spatterson@classicmodelcars.com', NULL, NULL, NULL, NULL, NULL, NULL, '2018-12-23 09:03:49');
