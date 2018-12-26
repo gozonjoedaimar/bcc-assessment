@@ -39,6 +39,9 @@
 						<div class="col-sm-4">
 							<?php echo $form->statement_of_account->bs3_text('Section','section'); ?>
 						</div>
+						<div class="col-sm-4">
+							<?php echo $form->statement_of_account->bs3_text('Student ID','student_id'); ?>
+						</div>
 					</div>
 					
 			</div>

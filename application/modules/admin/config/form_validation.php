@@ -157,6 +157,11 @@ $config = array(
 			'rules'=>'required|greater_than[0]',
 		),
 		array(
+			'field'=>'student_id',
+			'label'=>'Student ID',
+			'rules'=>'required'
+		),
+		array(
 			'field'=>'first_name',
 			'label'=>'First Name',
 			'rules'=>'required'

@@ -183,4 +183,10 @@ class Assessment_forms_model extends CI_Model
 			return FALSE;
 		}
 	}
+
+	/* Checks if student has account */
+	public function get_account($student_id, $year_level, $course_code) 
+	{
+		return $this->db->limit(1)->get_where('assessment_group', [ 'student_id'=>$student_id, 'year_level'=>$year_level, 'course_code'=>$course_code ]);
+	}
 }

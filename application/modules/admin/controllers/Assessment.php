@@ -111,11 +111,49 @@ class Assessment extends Admin_Controller {
 		{
 			$form->set_form_data('statement_of_account', $post_data);
 
+			$required = ['examterm', 'old_account', 'certification', 'description'];
+			$valid = FALSE; $description = [];
+
+			foreach ($required as $field) {
+				if (isset($post_data[$field]) && $post_data[$field]) {
+					$description[] = $post_data[$field];
+					$valid = TRUE;
+				}
+			}
+
+			if ( ! $valid) {
+				$this->system_message->add_error("Please fill up fees");
+				return redirect('admin/assessment/create');
+			}
+
+
 			if ($form->student_id_exists($post_data['student_id'])) {
-				$this->system_message->add_error('Statement of Account: Student exists! New balance should be recorded but not at the moment.');
+				$student_account = $form->get_account($post_data['student_id'], $post_data['year_level'], $post_data['course_code']);
+				if ($student_account->num_rows() === 1) {
+					$account = $student_account->row();
+
+					/* Save assessment */
+					$this->db->set('assessment_group', $account->id);
+					$this->db->set('form_type', $post_data['form_type']);
+					$this->db->set('paid', 0); // Set unpaid
+					$this->db->set('payment', $post_data['payment_stated']);
+					$this->db->set('description', implode(' | ', $description));
+					$assessment_saved = $this->db->insert('assessment');
+
+					if ($assessment_saved)  {
+						$form->set_form_data('statement_of_account', []);
+						$this->system_message->add_success('Update has been added to the student ledger');
+					}
+					else {
+						$this->system_message->add_error('Unable to save assessment. An error occured.');
+					}
+				}
+				else {
+					$this->system_message->add_error('No account found. Check the following fields: Course, Year Level, Student ID');
+				}
 			}
 			else {
-				$this->system_message->add_error('Statement of Account: Student does not exists! Form validated but unable to save at the moment');
+				$this->system_message->add_error('Student does not exists!');
 			}
 			
 			redirect('admin/assessment/create');
