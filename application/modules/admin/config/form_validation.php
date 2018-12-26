@@ -155,6 +155,16 @@ $config = array(
 			'field'=>'payment_stated',
 			'label'=>'Amount Due',
 			'rules'=>'required|greater_than[0]',
+		),
+		array(
+			'field'=>'first_name',
+			'label'=>'First Name',
+			'rules'=>'required'
+		),
+		array(
+			'field'=>'last_name',
+			'label'=>'Last Name',
+			'rules'=>'required'
 		)
 	),
 
@@ -173,6 +183,16 @@ $config = array(
 			'field'=>'student_id',
 			'label'=>'Student ID',
 			'rules'=>'required'
+		),
+		array(
+			'field'=>'first_name',
+			'label'=>'First Name',
+			'rules'=>'required'
+		),
+		array(
+			'field'=>'last_name',
+			'label'=>'Last Name',
+			'rules'=>'required'
 		)
 	),
 
@@ -181,6 +201,16 @@ $config = array(
 			'field'=>'student_id',
 			'label'=>'Student ID',
 			'rules'=>'required',
+		),
+		array(
+			'field'=>'first_name',
+			'label'=>'First Name',
+			'rules'=>'required'
+		),
+		array(
+			'field'=>'last_name',
+			'label'=>'Last Name',
+			'rules'=>'required'
 		)
 	),
 

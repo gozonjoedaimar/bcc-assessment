@@ -75,8 +75,17 @@ class Ledger extends Admin_Controller {
 
 			$post_data = $this->input->post();
 
+			if ($form->student_id_exists($post_data['student_id'], $post_data['db_id']))
+			{
+				$form->set_form_data("student_information", $post_data);
+				$this->system_message->add_error('Student ID already exists');
+				return redirect($form_url);
+			}
+
+			$exclude = ['id', 'db_id'];
+
 			foreach ($post_data as $key => $value) {
-				$this->db->set($key, $value);
+				if ( ! in_array($key, $exclude)) $this->db->set($key, $value);
 			}
 			$this->db->where('id', $id);
 			
@@ -106,7 +115,7 @@ class Ledger extends Admin_Controller {
 		$info = $query->row_array();
 
 		// $info['course_code'] = strtoupper($info['course_code']);
-		// $info['gender'] = ucfirst($info['gender']);
+		$info['db_id'] = $info['id'];
 
 		return $info;
 	}

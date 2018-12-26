@@ -12,6 +12,7 @@
 
 					<div class="row">
 						<div class="col-sm-4">
+							<?php echo $form->hidden('db_id', NULL, $form->student_information) ?>
 							<?php echo $form->student_information->bs3_text('Student Number', 'student_id'); ?>
 						</div>
 					</div>

@@ -70,6 +70,13 @@ class Assessment_forms_model extends CI_Model
 		return form_checkbox($name, $value, $checked, $extras);
 	}
 
+	public function hidden($name, $value, $form_builder, $extras = array()) 
+	{
+		if ( ! $value) $value = $form_builder->get_field_value($name);
+
+		return form_hidden($name, $value, $extras);
+	}
+
 	public function dropdown($name, $options, $form_builder, $extras = array())
 	{
 		return $form_builder->field_dropdown($name, $options, $form_builder->get_field_value($name), $extras);
@@ -138,7 +145,20 @@ class Assessment_forms_model extends CI_Model
 	/* Checks if student id is already taken */
 	public function student_id_exists($id, $db_id = NULL)
 	{
-		return $this->db->limit(1)->get_where('students', array('student_id' => $id))->num_rows() === 1;
+		if ($db_id === NULL) {
+			return $this->db->limit(1)->get_where('students', array('student_id' => $id))->num_rows() === 1;
+		}
+		else {
+			$query = $this->db->limit(1)->get_where('students', array('student_id' => $id));
+			if ($query->num_rows() === 1) {
+				$row = $query->row();
+				/* Returns false if the id exists and db_id is equal to row id */
+				return $row->id != $db_id;
+			}
+			else {
+				return FALSE;
+			}
+		}
 	}
 
 	/* Used for admin confirmation */
@@ -162,7 +182,5 @@ class Assessment_forms_model extends CI_Model
 		else {
 			return FALSE;
 		}
-
-
 	}
 }
