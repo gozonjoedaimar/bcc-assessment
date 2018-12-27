@@ -16,7 +16,7 @@ class Ledger extends REST_Controller
 
 		$important = ['student_id', 'course_code', 'year_level'];
 
-		$response = []; $checks = []; $valid = TRUE; $query = []; $account_total = NULL; $response_data = []; $remaining = NULL;
+		$response = []; $checks = []; $valid = TRUE; $query = []; $account_total = NULL; $response_data = []; $remaining = NULL; $enrolled = NULL;
 
 		/* Check important fields */
 		foreach ($important as $field) {
@@ -41,6 +41,7 @@ class Ledger extends REST_Controller
 			}
 
 			$account_total = $account->balance;
+			$enrolled = $account->datetime;
 			$remaining = intval($account_total);
 
 			$response['account'] = $account->id;
@@ -58,6 +59,7 @@ class Ledger extends REST_Controller
 		$response['account_total'] = $account_total;
 		$response['data'] = $response_data;
 		$response['remaining'] = $remaining;
+		$response['enrolled'] = $enrolled;
 		/* Checks */
 		$response['status'] = $valid;
 		$response['checks'] = $checks;
