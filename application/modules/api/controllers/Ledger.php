@@ -12,7 +12,7 @@ class Ledger extends REST_Controller
 	/*  */
 	public function index_get()
 	{
-		$data = json_decode(file_get_contents('php://input'));
+		// $data = json_decode(file_get_contents('php://input'));
 
 		$important = ['student_id', 'course_code', 'year_level'];
 
@@ -20,15 +20,15 @@ class Ledger extends REST_Controller
 
 		/* Check important fields */
 		foreach ($important as $field) {
-			$checks[$field] = property_exists($data, $field);
+			$checks[$field] = ! empty($this->get($field));
 			if ( ! $checks[$field]) $valid = FALSE;
 		}
 
 		if ($valid) {
 			$query = [
-				'student_id'=>$data->student_id,
-				'course_code'=>$data->course_code,
-				'year_level'=>$data->year_level
+				'student_id'  => $this->get('student_id'),
+				'course_code' => $this->get('course_code'),
+				'year_level'  => $this->get('year_level')
 			];
 
 			$account = $this->ledger->get_account($query);
@@ -59,7 +59,7 @@ class Ledger extends REST_Controller
 		$response['data'] = $response_data;
 		$response['remaining'] = $remaining;
 		/* Checks */
-		$response['valid'] = $valid;
+		$response['status'] = $valid;
 		$response['checks'] = $checks;
 
 		$this->response($response);
