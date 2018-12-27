@@ -99,17 +99,20 @@
 <div class="modal fade add-receipt" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content">
+    	<?php echo form_open('api/ledger', [ 'id'=>'add-receipt' ]) ?>
     	<div class="modal-header">
     		<?php echo form_label("Official Receipt") ?>
     	</div>
     	<div class="modal-body">
 	    	<div class="form-group">
+		      <?php echo  form_input([ "class"=>'account-id', 'name'=>'id', 'type'=>'hidden' ]) ?>
 		      <?php echo  form_input('receipt', NULL, [ "class"=>'form-control' ]) ?>
 	    	</div>
     	</div>
     	<div class="modal-footer text-right">
-    		<?php echo form_submit('submit', "Submit", [ 'class'=>'btn btn-primary' ]) . form_reset('cancel', 'Cancel', [ 'class' => 'btn btn-default', "data-dismiss"=>"modal" ]); ?>
+    		<?php echo form_submit('submit', "Submit", [ 'class'=>'btn btn-primary' ]) . form_reset('close', 'Close', [ 'class' => 'btn btn-default', "data-dismiss"=>"modal" ]); ?>
     	</div>
+    	<?php echo form_close(); ?>
     </div>
   </div>
 </div>
@@ -159,7 +162,7 @@ var receipt = function(row, data) {
 
 }
 
-var reload_table = function() {
+var reload_table = function(callback) {
 	var table = $("table#ledger");
 	var body = table.find('tbody');
 	var norecord = $('<tr><td colspan="6" class="text-center">No Record</td></tr>');
@@ -232,8 +235,13 @@ var reload_table = function() {
 			body.append(row);
 
 			table.find('button.pay').on('click', function() {
-				$('.add-receipt').modal();
+				var btn = $(this);
+				var modal = $('.add-receipt');
+				modal.find('input.account-id').val(btn.data('row-id'));
+				modal.modal();
 			})
+
+			if (typeof callback == "function") callback();
 		}
 		else {
 			body.html(norecord);
@@ -245,6 +253,50 @@ reload_table();
 
 $('select[name="year_level"], select[name="course_code"]').on('change', function() {
 	reload_table();
+});
+
+$('.add-receipt').on('hide.bs.modal', function() {
+	var modal = $(this);
+	modal.find('input.account-id, input[name="receipt"]').val('');
+	modal.find('input[name="submit"]').removeAttr('disabled');
+	modal.find('.alert').remove();
+});
+
+$('form#add-receipt').on('submit', function(e) {
+	var form = $(this);
+	e.preventDefault();
+
+	var form_data = form.serialize();
+	var modal = $('.add-receipt');
+	modal.find('.alert').remove();
+	modal.find('input[name="submit"]').attr('disabled',true);
+
+	if ( ! modal.find('input[name="receipt"]').val()) {
+		modal.find('.modal-body').append('<div class="alert alert-warning">Receipt field is required</div>');
+		modal.find('input[name="submit"]').removeAttr('disabled');
+		return;
+	}
+
+	var settings = {
+		"async": true,
+		"crossDomain": true,
+		"url": form.attr('action'),
+		"method": "POST",
+		"headers": {},
+		"data": form_data
+	}
+
+	$.ajax(settings).done(function(response) {
+		if (response.status) {
+			modal.find('.modal-body').append('<div class="alert alert-success">'+response.message+'</div>')
+			reload_table(function() { setTimeout(function() { modal.modal('hide'); }, 3000) });
+		}
+		else {
+			modal.find('.modal-body').append('<div class="alert alert-danger">'+response.message+'</div>');
+			modal.find('input[name="submit"]').removeAttr('disabled');
+		}
+	})
+
 });
 
 })(jQuery);

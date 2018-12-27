@@ -66,4 +66,31 @@ class Ledger extends REST_Controller
 
 		$this->response($response);
 	}
+
+	public function index_post() {
+		$query = $this->db->limit(1)->get_where('assessment', [ 'id'=>$this->post('id') ]);
+		if ($query->num_rows() === 1) {
+
+			$query = $this->db->limit(1)->get_where('assessment', ['official_receipt'=>$this->post('receipt')]);
+
+			if ($query->num_rows() === 1) {
+				return $this->response([ 'status'=> FALSE, 'message'=>'Receipt already added' ]);
+			}
+
+			$this->db->set('paid', 1);
+			$this->db->set('official_receipt', $this->post('receipt'));
+			$this->db->where('id', $this->post('id'));
+			$saved = $this->db->update('assessment');
+
+			if ($saved) {
+				$this->response([ 'status'=> TRUE, 'message'=>'Account updated' ]);
+			}
+			else {
+				$this->response([ 'status'=> FALSE, 'message'=>'There was an error on your request' ]);
+			}
+		}
+		else {
+			$this->response([ 'status'=> FALSE, 'message'=>'Account does not exist' ]);
+		}
+	}
 }
