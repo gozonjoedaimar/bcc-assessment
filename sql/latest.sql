@@ -55,7 +55,7 @@ CREATE TABLE `admin_users` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
-INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('1', '127.0.0.1', 'webmaster', '$2y$08$/X5gzWjesYi78GqeAv5tA.dVGBVP7C1e1PzqnYCVe5s1qhlDIPPES', NULL, NULL, NULL, NULL, NULL, NULL, '1451900190', '1545835107', '1', 'Webmaster', '');
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('1', '127.0.0.1', 'webmaster', '$2y$08$/X5gzWjesYi78GqeAv5tA.dVGBVP7C1e1PzqnYCVe5s1qhlDIPPES', NULL, NULL, NULL, NULL, NULL, NULL, '1451900190', '1545878793', '1', 'Webmaster', '');
 INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('2', '127.0.0.1', 'admin', '$2y$08$7Bkco6JXtC3Hu6g9ngLZDuHsFLvT7cyAxiz1FzxlX5vwccvRT7nKW', NULL, NULL, NULL, NULL, NULL, 'tTXDuQ63FrUQg5x39cDFgO', '1451900228', '1545832318', '1', 'Admin', '');
 INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('3', '127.0.0.1', 'manager', '$2y$08$snzIJdFXvg/rSHe0SndIAuvZyjktkjUxBXkrrGdkPy1K6r5r/dMLa', NULL, NULL, NULL, NULL, NULL, NULL, '1451900430', '1543586196', '0', 'Manager', NULL);
 INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('4', '127.0.0.1', 'staff', '$2y$08$NigAXjN23CRKllqe3KmjYuWXD5iSRPY812SijlhGeKfkrMKde9da6', NULL, NULL, NULL, NULL, NULL, NULL, '1451900439', '1545006024', '1', 'Staff', '');
@@ -163,6 +163,7 @@ CREATE TABLE `assessment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `payment` double DEFAULT NULL,
   `paid` int(11) DEFAULT NULL,
+  `official_receipt` varchar(255) NOT NULL,
   `assessment_group` int(11) DEFAULT NULL,
   `form_type` varchar(255) DEFAULT NULL,
   `description` text NOT NULL,
@@ -170,11 +171,13 @@ CREATE TABLE `assessment` (
   PRIMARY KEY (`id`),
   KEY `main_balance` (`assessment_group`),
   CONSTRAINT `assessment_ibfk_1` FOREIGN KEY (`assessment_group`) REFERENCES `assessment_group` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
-INSERT INTO `assessment` (`id`, `payment`, `paid`, `assessment_group`, `form_type`, `description`, `datetime`) VALUES ('7', '1000', '0', '9', 'assessment_form', '', '2018-12-26 22:35:11');
-INSERT INTO `assessment` (`id`, `payment`, `paid`, `assessment_group`, `form_type`, `description`, `datetime`) VALUES ('8', '100', '0', '9', 'statement_of_account', 'City Smile', '2018-12-26 22:35:51');
-INSERT INTO `assessment` (`id`, `payment`, `paid`, `assessment_group`, `form_type`, `description`, `datetime`) VALUES ('9', '1200', '0', '9', 'statement_of_account', 'midterm | old_account | NSTP', '2018-12-26 22:37:41');
+INSERT INTO `assessment` (`id`, `payment`, `paid`, `official_receipt`, `assessment_group`, `form_type`, `description`, `datetime`) VALUES ('7', '1000', '0', '', '9', 'assessment_form', '', '2018-12-26 22:35:11');
+INSERT INTO `assessment` (`id`, `payment`, `paid`, `official_receipt`, `assessment_group`, `form_type`, `description`, `datetime`) VALUES ('8', '100', '0', '', '9', 'statement_of_account', 'City Smile', '2018-12-26 22:35:51');
+INSERT INTO `assessment` (`id`, `payment`, `paid`, `official_receipt`, `assessment_group`, `form_type`, `description`, `datetime`) VALUES ('9', '1200', '0', '', '9', 'statement_of_account', 'midterm | old_account | NSTP', '2018-12-26 22:37:41');
+INSERT INTO `assessment` (`id`, `payment`, `paid`, `official_receipt`, `assessment_group`, `form_type`, `description`, `datetime`) VALUES ('10', '1000', '0', '', '10', 'assessment_form', 'enrollment', '2018-12-27 09:24:47');
+INSERT INTO `assessment` (`id`, `payment`, `paid`, `official_receipt`, `assessment_group`, `form_type`, `description`, `datetime`) VALUES ('11', '1000', '1', '', '10', 'statement_of_account', 'midterm | City Smile', '2018-12-27 09:25:38');
 
 
 #
@@ -196,9 +199,10 @@ CREATE TABLE `assessment_group` (
   KEY `course_ref0002` (`course_code`),
   CONSTRAINT `assessment_group_ibfk_2` FOREIGN KEY (`course_code`) REFERENCES `courses` (`code`),
   CONSTRAINT `assessment_group_std_ref` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 
 INSERT INTO `assessment_group` (`id`, `student_id`, `year_level`, `course_code`, `datetime`, `description`, `balance`) VALUES ('9', '2998', '1', 'BSIT', '2018-12-26 22:35:11', NULL, '3195');
+INSERT INTO `assessment_group` (`id`, `student_id`, `year_level`, `course_code`, `datetime`, `description`, `balance`) VALUES ('10', '2576', '1', 'BSIS', '2018-12-27 09:24:47', NULL, '2865');
 
 
 #
@@ -302,7 +306,7 @@ CREATE TABLE `students` (
 ) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
 
 INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('1', 'Murphils', 'Diane', '', NULL, 'dmurphy@classicmodelcars.com', '7869', '', '', 'male', '', 'BSOA', '2018-12-26 13:07:30');
-INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('2', 'Patterson', 'Mary', 'Geralds', NULL, 'mpatterso@classicmodelcars.com', '2576', '', '', 'female', '', 'BSIT', '2018-12-23 09:03:49');
+INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('2', 'Patterson', 'Mary', 'Geralds', NULL, 'mpatterso@classicmodelcars.com', '2576', '', '', 'female', '', 'BSIS', '2018-12-23 09:03:49');
 INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('3', 'Firrelli', 'Jeff', '', NULL, 'jfirrelli@classicmodelcars.com', '2991', '', '', 'male', '', 'BSOA', '2018-12-26 13:07:41');
 INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('4', 'Patterson', 'William', 'Spase', NULL, 'wpatterson@classicmodelcars.com', '2511', '', '', 'male', '', 'BSOA', '2018-12-23 09:03:49');
 INSERT INTO `students` (`id`, `last_name`, `first_name`, `middle_name`, `extension`, `email`, `student_id`, `phone_number`, `department`, `gender`, `permanent_address`, `course_code`, `datetime`) VALUES ('5', 'Bondur', 'Gerard', '', NULL, 'gbondur@classicmodelcars.com', '2512', '', '', 'male', '', 'BSOA', '2018-12-26 13:05:07');
