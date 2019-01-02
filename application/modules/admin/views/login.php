@@ -1,6 +1,9 @@
 <div class="login-box">
 
-	<div class="login-logo"><b><?php echo $site_name; ?></b></div>
+	<div class="login-logo">
+		<img src="<?php echo site_url('assets/local/img/bcc-logo.png') ?>" style="width: 170px;"><br/>
+		<b><?php echo $site_name; ?></b>
+	</div>
 
 	<div class="login-box-body">
 		<p class="login-box-msg">Sign in to start your session</p>

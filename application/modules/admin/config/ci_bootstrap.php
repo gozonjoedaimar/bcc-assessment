@@ -15,7 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $config['ci_bootstrap'] = array(
 
 	// Site name
-	'site_name' => 'Assessment Panel',
+	'site_name' => 'Student Assessment System',
 
 	// Default page title prefix
 	'page_title_prefix' => '',
