@@ -17,7 +17,7 @@
 					<?php endif; ?>
 
 					<?php echo $form->bs3_submit('Save'); ?>
-					<a href="<?php echo base_url('admin/defaults/labels') ?>" class="btn btn-default">Manage Labels</a>
+					<a href="<?php echo module_url('defaults/labels') ?>" class="btn btn-default">Manage Labels</a>
 					
 				<?php echo $form->close(); ?>
 			</div>
