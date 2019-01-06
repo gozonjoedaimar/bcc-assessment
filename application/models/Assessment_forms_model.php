@@ -59,6 +59,19 @@ class Assessment_forms_model extends CI_Model
 		return $list;
 	}
 
+	public function get_department_options($full = FALSE)
+	{
+		$list = array();
+		$db = $this->CI->db;
+		$query = $db->get('department');
+
+		foreach ($query->result() as $course) {
+			$list[$course->code] = $full ? $couse->name: $course->code;
+		}
+
+		return $list;
+	}
+
 	public function checkbox($name, $value, $form_builder, $extras = array()) 
 	{
 		if ( ! $value) $value = $name;
@@ -188,5 +201,25 @@ class Assessment_forms_model extends CI_Model
 	public function get_account($student_id, $year_level, $course_code) 
 	{
 		return $this->db->limit(1)->get_where('assessment_group', [ 'student_id'=>$student_id, 'year_level'=>$year_level, 'course_code'=>$course_code ]);
+	}
+
+	public function input($name, $type, $form_builder, $extras = array())
+	{
+		$prop = array_merge([
+			'name'=>$name,
+			'type'=>$type,
+			'value'=>$form_builder->get_field_value($name)
+		], $extras);
+
+		return form_input($prop);
+	}
+
+	public function bs3_input($label, $name, $type, $form_builder, $extras = array())
+	{
+		if ( ! isset($extras['class'])) $extras['class'] = "form-control";
+		$html  = "<div class=\"form-group\">";
+		$html .= form_label($label) . $this->input($name, $type, $form_builder, $extras);
+		$html .= "</div>";
+		return $html;
 	}
 }

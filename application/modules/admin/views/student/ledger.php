@@ -29,7 +29,7 @@
 					</div>
 					<div class="row">
 						<div class="col-sm-4">
-							<?php echo $form->student_information->bs3_text('Department','department'); ?>
+							<?php echo $form->bs3_dropdown('Department', 'department', $form->get_department_options(), $form->student_information); ?>
 						</div>
 						<div class="col-sm-4">
 							<?php echo $form->bs3_dropdown('Course', 'course_code', $form->get_course_options(), $form->student_information); ?>
@@ -46,7 +46,7 @@
 							<?php echo $form->student_information->bs3_text('Email','email'); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->student_information->bs3_text('Tel. No.','phone_number'); ?>
+							<?php echo $form->bs3_input('Tel. No.','phone_number', 'number', $form->student_information); ?>
 						</div>
 					</div>
 					<?php echo $form->student_information->bs3_submit('Save'); ?>
