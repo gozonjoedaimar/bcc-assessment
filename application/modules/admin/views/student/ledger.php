@@ -49,7 +49,7 @@
 							<?php echo $form->bs3_input('Tel. No.', 'phone_number', 'number', NULL, $form->student_information); ?>
 						</div>
 					</div>
-					<?php echo $form->student_information->bs3_submit('Save'); ?>
+					<?php if ($this->ion_auth->in_group(array('admin'))) echo $form->student_information->bs3_submit('Save'); ?>
 					
 				<?php echo $form->student_information->close(); ?>
 			</div>
