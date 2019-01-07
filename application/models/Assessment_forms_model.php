@@ -203,22 +203,22 @@ class Assessment_forms_model extends CI_Model
 		return $this->db->limit(1)->get_where('assessment_group', [ 'student_id'=>$student_id, 'year_level'=>$year_level, 'course_code'=>$course_code ]);
 	}
 
-	public function input($name, $type, $form_builder, $extras = array())
+	public function input($name, $type, $value, $form_builder, $extras = array())
 	{
 		$prop = array_merge([
 			'name'=>$name,
 			'type'=>$type,
-			'value'=>$form_builder->get_field_value($name)
+			'value'=> $value ? $value: $form_builder->get_field_value($name)
 		], $extras);
 
 		return form_input($prop);
 	}
 
-	public function bs3_input($label, $name, $type, $form_builder, $extras = array())
+	public function bs3_input($label, $name, $type, $value, $form_builder, $extras = array())
 	{
 		if ( ! isset($extras['class'])) $extras['class'] = "form-control";
 		$html  = "<div class=\"form-group\">";
-		$html .= form_label($label) . $this->input($name, $type, $form_builder, $extras);
+		$html .= form_label($label) . $this->input($name, $type, $value, $form_builder, $extras);
 		$html .= "</div>";
 		return $html;
 	}

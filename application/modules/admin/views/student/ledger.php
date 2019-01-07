@@ -46,7 +46,7 @@
 							<?php echo $form->student_information->bs3_text('Email','email'); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->bs3_input('Tel. No.','phone_number', 'number', $form->student_information); ?>
+							<?php echo $form->bs3_input('Tel. No.', 'phone_number', 'number', NULL, $form->student_information); ?>
 						</div>
 					</div>
 					<?php echo $form->student_information->bs3_submit('Save'); ?>

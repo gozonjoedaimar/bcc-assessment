@@ -29,7 +29,7 @@
 							<?php echo $form->bs3_dropdown('Year','year_level', $form->get_year_options(), $form->assessment_form); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->assessment_form->bs3_text('ID No.','student_id'); ?>
+							<?php echo $form->bs3_input('ID No.','student_id', 'number', NULL, $form->assessment_form); ?>
 						</div>
 					</div>
 					
@@ -49,7 +49,7 @@
 						<div class="col-sm-7">
 							<div class="form-group">
 								<?php echo form_label('No. of Units') ?>
-								<?php echo $form->assessment_form->field_text('total_units', NULL, array('style'=>'width: 120px;')) ?>
+								<?php echo $form->input('total_units', 'number', NULL, $form->assessment_form, array('style'=>'width: 120px;')) ?>
 								<?php echo form_hidden('units', $this->defaults->get('units')) ?>
 								<?php echo form_label(' x P' . $this->defaults->get('units')) ?>
 							</div>
@@ -196,7 +196,7 @@
 							</div>
 							<div class="col-sm-3 ">
 								<span class="border-bottom full-width text-right">
-									<?php echo $form->assessment_form->field_text('payment_stated', NULL, array('class'=>'borderless')) ?>
+									<?php echo $form->input('payment_stated', 'number', NULL, $form->assessment_form, array('class'=>'borderless')) ?>
 								</span>
 							</div>
 
@@ -234,8 +234,8 @@
 							<div class="col-sm-5 col-sm-offset-1">
 								<?php echo form_label('Assessed By:'); ?>
 							</div>
-							<div class="col-sm-6 ">
-								<span class="border-bottom full-width text-right">&nbsp;</span>
+							<div class="col-sm-6">
+								<span class="border-bottom full-width text-center"><?php echo $user->first_name . " " . $user->last_name ?></span>
 							</div>
 
 
@@ -247,7 +247,7 @@
 								<?php echo form_label('Date'); ?>
 							</div>
 							<div class="col-sm-6 ">
-								<span class="border-bottom full-width text-right">&nbsp;</span>
+								<span class="border-bottom full-width text-center"><?php echo date("M d, Y") ?></span>
 							</div>
 
 

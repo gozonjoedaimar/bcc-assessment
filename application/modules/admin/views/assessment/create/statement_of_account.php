@@ -40,7 +40,7 @@
 							<?php echo $form->statement_of_account->bs3_text('Section','section'); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->statement_of_account->bs3_text('Student ID','student_id'); ?>
+							<?php echo $form->bs3_input('Student ID','student_id', 'number', NULL, $form->statement_of_account); ?>
 						</div>
 					</div>
 					
@@ -120,7 +120,7 @@
 						</div>
 							<div class="col-sm-3 ">
 								<span class="border-bottom full-width text-right">
-									<?php echo $form->statement_of_account->field_text('payment_stated', NULL, array('class'=>'borderless')) ?>
+									<?php echo $form->input('payment_stated', 'number', NULL, $form->statement_of_account, array('class'=>'borderless')) ?>
 								</span>
 							</div>
 
@@ -142,7 +142,7 @@
 								<?php echo form_label('Assessed By:'); ?>
 							</div>
 							<div class="col-sm-6 ">
-								<span class="border-bottom full-width text-right">&nbsp;</span>
+								<span class="border-bottom full-width text-center"><?php echo $user->first_name . " " . $user->last_name ?></span>
 							</div>
 
 
@@ -154,7 +154,7 @@
 								<?php echo form_label('Date Issued'); ?>
 							</div>
 							<div class="col-sm-6 ">
-								<span class="border-bottom full-width text-right">&nbsp;</span>
+								<span class="border-bottom full-width text-center"><?php echo date('M d, Y') ?></span>
 							</div>
 
 
