@@ -94,6 +94,11 @@ $config['ci_bootstrap'] = array(
 			'url'=>'courses',
 			'icon' => 'fa fa-list-ul'
 		),
+		'department' => array(
+			'name'=>'Departments',
+			'url'=>'department',
+			'icon' => 'fa fa-group'
+		),
 		'defaults' => array(
 			'name' => 'Defaults',
 			'url' => 'defaults/set',
@@ -131,10 +136,10 @@ $config['ci_bootstrap'] = array(
 	'page_auth' => array(
 		'user/create'				=> array('webmaster', 'admin', 'manager'),
 		'user/group'				=> array('webmaster', 'admin', 'manager'),
-		'panel'						=> array('webmaster'),
-		'panel/admin_user'			=> array('webmaster'),
-		'panel/admin_user_create'	=> array('webmaster'),
-		'panel/admin_user_group'	=> array('webmaster'),
+		'panel'						=> array('webmaster', 'admin'),
+		'panel/admin_user'			=> array('webmaster', 'admin'),
+		'panel/admin_user_create'	=> array('webmaster', 'admin'),
+		'panel/admin_user_group'	=> array('webmaster', 'admin'),
 		'util'						=> array('webmaster'),
 		'util/list_db'				=> array('webmaster'),
 		'util/backup_db'			=> array('webmaster'),
@@ -146,6 +151,7 @@ $config['ci_bootstrap'] = array(
 		'ledger/create'			=> array('admin', 'staff'),
 		'subjects' => array('admin', 'staff'),
 		'courses' => array('admin', 'staff'),
+		'department' => array('admin'),
 		'defaults/set' => array('admin')
 	),
 
