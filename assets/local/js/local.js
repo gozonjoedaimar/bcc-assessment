@@ -14,6 +14,23 @@
 
     window.addEventListener('load', function() {
       $('.show-on-load').removeClass('hide');
+      initStudentSearchModal();
     })
+
+    var initStudentSearchModal = function() {
+        var searchModal = createModal('studentSearchModal', 'Search Student');
+        $('body').append(searchModal.modal);
+
+        $(searchModal.modal).on('bs.modal.show', function() {
+            console.log('Hey');
+        });
+
+        var resultDiv = createDiv('searchResult', null);
+        var input = searchInput('searchInput', 'form-control', function(el) {
+            $('#searchResult').html(el.value);
+        });
+        searchModal.body.appendChild(input);
+        searchModal.body.appendChild(resultDiv);
+    };
 
 })(window.jQuery);

@@ -8,8 +8,8 @@ class Assessment extends Admin_Controller {
 		parent::__construct();
 		$this->load->library('form_builder');
 		$this->load->model('assessment_forms_model','assessment_forms');
-		$this->add_stylesheet('assets/local/css/local.css');
-		$this->add_script('assets/local/js/local.js');
+		// $this->add_stylesheet('assets/local/css/local.css');
+		// $this->add_script('assets/local/js/local.js');
 	}
 
 	// Frontend User CRUD

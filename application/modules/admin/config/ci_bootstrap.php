@@ -35,7 +35,9 @@ $config['ci_bootstrap'] = array(
 		'head'	=> array(
 			'assets/dist/admin/adminlte.min.js',
 			'assets/dist/admin/lib.min.js',
-			'assets/dist/admin/app.min.js'
+			'assets/dist/admin/app.min.js',
+			'assets/local/js/elements.js',
+			'assets/local/js/local.js',
 		),
 		'foot'	=> array(
 		),
@@ -46,7 +48,8 @@ $config['ci_bootstrap'] = array(
 		'screen' => array(
 			'assets/dist/admin/adminlte.min.css',
 			'assets/dist/admin/lib.min.css',
-			'assets/dist/admin/app.min.css'
+			'assets/dist/admin/app.min.css',
+			'assets/local/css/local.css'
 		)
 	),
 
