@@ -25,9 +25,10 @@ $config['ci_bootstrap'] = array(
 
 	// Default meta data
 	'meta_data'	=> array(
-		'author'		=> '',
+		'author'	  		=> '',
 		'description'	=> '',
-		'keywords'		=> ''
+		'keywords'		=> '',
+		'base_url'     => BASE_URL
 	),
 	
 	// Default scripts to embed at page head or end
