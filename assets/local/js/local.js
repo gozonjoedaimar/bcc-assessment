@@ -16,10 +16,9 @@
 
     window.addEventListener('load', function() {
       $('.show-on-load').removeClass('hide');
-      initStudentSearchModal();
     })
 
-    var initStudentSearchModal = function() {
+    window.initStudentSearchModal = function(callback) {
         var searchModal = createModal('studentSearchModal', 'Search Student');
         $('body').append(searchModal.modal);
 
@@ -41,6 +40,7 @@
                 var row = resultHtml.find('tbody tr');
                 row.css({ cursor: 'pointer' });
                 row.on('click', function() {
+                    if (typeof callback == "function") callback(result);
                     $('#studentSearchModal').modal('hide');
                 });
 
@@ -61,11 +61,5 @@
             $(resultDiv).html('');
         })
     };
-
-
-    /* For debugging */
-    $(document).on('dblclick', function() {
-        $('#studentSearchModal').modal('show');
-    });
 
 })(window.jQuery);
