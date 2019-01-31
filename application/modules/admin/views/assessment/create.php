@@ -28,7 +28,7 @@ echo $form_helper->messages();
 
   window.addEventListener('load', function() {
     initStudentSearchModal(function(row, result) {
-      var data = result.data[row.get(0).rowIndex];
+      var data = result.data[row.rowIndex - 1];
       for (key in data) {
         $('[name='+key+']:visible').val(data[key]);
       }
