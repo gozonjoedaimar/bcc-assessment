@@ -1,16 +1,12 @@
 <?php
 
 echo $form_helper->messages();
-
-// $data = $this->session->flashdata();
 ?>
 
-
-<?php if (isset($data) && $data) : ?>
-  <pre><?php var_dump($data) ?></pre>
-<?php endif; ?>
-
 <div id="assessment-create" class=" hide show-on-load">
+
+  <!-- Search Student -->
+  <div style="margin-bottom: 10px;"><button class="btn btn-primary btn-lg searchStudent" >Search Student</button></div>
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
@@ -25,3 +21,25 @@ echo $form_helper->messages();
   </div>
 
 </div>
+
+<script type="text/javascript">
+
+(function($) { if (!$) return;
+
+  window.addEventListener('load', function() {
+    initStudentSearchModal(function(row, result) {
+      var data = result.data[row.get(0).rowIndex];
+      for (key in data) {
+        $('[name='+key+']:visible').val(data[key]);
+      }
+    });
+
+    $('button.searchStudent').on('click', function() {
+      $('#studentSearchModal').modal('show');
+    });
+
+  });
+
+})(window.jQuery);
+
+</script>

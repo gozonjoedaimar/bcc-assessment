@@ -30,6 +30,8 @@ class Students extends REST_Controller
 
 		if (!$this->get('q') || !$response['data']->num_rows()) $response['html'] = '<p class="text-center alert alert-warning">No result found</p>';
 
+		$response['data'] = $response['data']->result();
+
 		$this->response($response);
 	}
 }

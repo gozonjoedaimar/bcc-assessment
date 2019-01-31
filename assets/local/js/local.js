@@ -40,7 +40,7 @@
                 var row = resultHtml.find('tbody tr');
                 row.css({ cursor: 'pointer' });
                 row.on('click', function() {
-                    if (typeof callback == "function") callback(result);
+                    if (typeof callback == "function") callback(row, result);
                     $('#studentSearchModal').modal('hide');
                 });
 
