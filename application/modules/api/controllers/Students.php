@@ -15,7 +15,7 @@ class Students extends REST_Controller
 
 		$response = [];
 
-		$this->db->select(['first_name', 'middle_name', 'last_name', 'student_id', 'gender', 'course_code']);
+		$this->db->select(['first_name', 'middle_name', 'last_name', 'student_id', 'gender', 'course_code', 'year_level']);
 		$this->db->like('first_name', $this->get('q'));
 		$this->db->or_like('middle_name', $this->get('q'));
 		$this->db->or_like('last_name', $this->get('q'));
@@ -24,7 +24,7 @@ class Students extends REST_Controller
 		$response['data'] = $this->db->get('students');
 
 		$this->table->set_template([ 'table_open'=>'<table class="table table-striped table-bordered">', 'heading_row_start'=>'<tr class="active">' ]);
-		$this->table->set_heading(['Fist Name', 'Middle Name', 'Last Name', 'Student ID', 'Gender', 'Course']);
+		$this->table->set_heading(['Fist Name', 'Middle Name', 'Last Name', 'Student ID', 'Gender', 'Course', 'Year Level']);
 
 		$response['html'] = $this->table->generate($response['data']);
 

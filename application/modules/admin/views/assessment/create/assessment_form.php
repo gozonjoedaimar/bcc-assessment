@@ -29,7 +29,7 @@
 							<?php echo $form->bs3_dropdown('Year','year_level', $form->get_year_options(), $form->assessment_form); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->bs3_input('ID No.','student_id', 'number', NULL, $form->assessment_form); ?>
+							<?php echo $form->bs3_input('ID No.','student_id', 'text', NULL, $form->assessment_form, ["class"=>"id-input form-control", "maxlength"=>7]); ?>
 						</div>
 					</div>
 					

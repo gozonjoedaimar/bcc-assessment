@@ -1,6 +1,7 @@
 (function($) { if (!$) return console.error('System requires jQuery to function');
 
     var base_url = $('meta[name="base_url"]').attr('content');
+    var $document = $(document);
 
     // for bootstrap 3 use 'shown.bs.tab', for bootstrap 2 use 'shown' in the next line
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
@@ -13,6 +14,14 @@
     if (lastTab) {
         $('[href="' + lastTab + '"]').tab('show');
     }
+
+    $document.on('keydown', '.id-input',
+        (e) => e.key.match(new RegExp(/[0-9]/)) ||
+            (e.key.match(new RegExp(/[-]/)) && ! e.target.value.match(new RegExp(/[-]/))) ||
+            (e.shiftKey && e.key.length > 1) ||
+            e.key.length > 1 ||
+            e.ctrlKey
+            ? true: false )
 
     window.addEventListener('load', function() {
       $('.show-on-load').removeClass('hide');
