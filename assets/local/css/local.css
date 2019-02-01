@@ -28,6 +28,13 @@ input.borderless {
     box-sizing: content-box;
 }
 
+.table-hover > tbody > tr:hover {
+    background-color: orange;
+}
+.table-hover > tbody > tr:hover td {
+  border: 1px solid orange;
+  color: white;
+}
 
 .hide {
   display: none !important; 
