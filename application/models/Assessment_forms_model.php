@@ -61,7 +61,7 @@ class Assessment_forms_model extends CI_Model
 
 	public function get_department_options($full = FALSE)
 	{
-		$list = array();
+		$list = array(""=>"Select department");
 		$db = $this->CI->db;
 		$query = $db->get('department');
 

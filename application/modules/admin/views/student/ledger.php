@@ -13,7 +13,8 @@
 					<div class="row">
 						<div class="col-sm-4">
 							<?php echo $form->hidden('db_id', NULL, $form->student_information) ?>
-							<?php echo $form->student_information->bs3_text('Student Number', 'student_id'); ?>
+							<?php // echo $form->student_information->bs3_text('Student Number', 'student_id'); ?>
+							<?php echo $form->bs3_input('Student Number','student_id', 'text', NULL, $form->student_information, ["class"=>"id-input form-control", "maxlength"=>7, "readonly"=>"readonly"]); ?>
 						</div>
 					</div>
 					<div class="row">
@@ -59,7 +60,7 @@
 				<h3 class="box-title">Ledger</h3>
 				<div style="width: 300px; float: right;" class="row">
 					<div class="col-xs-6 text-right"><label>Year Level: </label></div>
-					<div class="col-xs-6"><?php echo form_dropdown('year_level', $form->get_year_options(), [], ['id'=>'year_level', 'class'=>'form-control']) ?></div>
+					<div class="col-xs-6"><?php echo $form->dropdown('year_level', $form->get_year_options(), $form->student_information, ['id'=>'year_level', 'class'=>'form-control']) ?></div>
 				</div>
 				<div class="clearfix"></div>
 			</div>

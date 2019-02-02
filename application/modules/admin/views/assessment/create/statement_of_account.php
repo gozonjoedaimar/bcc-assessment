@@ -40,7 +40,7 @@
 							<?php echo $form->statement_of_account->bs3_text('Section','section'); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->bs3_input('Student ID','student_id', 'number', NULL, $form->statement_of_account); ?>
+							<?php echo $form->bs3_input('Student ID','student_id', 'text', NULL, $form->statement_of_account, ["class"=>"id-input form-control", "maxlength"=>7]); ?>
 						</div>
 					</div>
 					

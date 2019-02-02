@@ -31,7 +31,8 @@ class Assessment extends Admin_Controller {
 
 			if ($form->student_id_exists($post_data['student_id'])) {
 				$this->db->where('student_id', $post_data['student_id']);
-				$this->db->set('student_id', $post_data['student_id']);
+				$this->db->set('course_code', $post_data['course_code']);
+				$this->db->set('year_level', $post_data['year_level']);
 				$student_saved = $this->db->update('students');
 			}
 			else {
@@ -41,6 +42,7 @@ class Assessment extends Admin_Controller {
 				$this->db->set('middle_name', $post_data['middle_name']);
 				$this->db->set('student_id', $post_data['student_id']);
 				$this->db->set('course_code', $post_data['course_code']);
+				$this->db->set('year_level', $post_data['year_level']);
 				$student_saved = $this->db->insert('students');
 				$is_new_student = TRUE;
 			}
