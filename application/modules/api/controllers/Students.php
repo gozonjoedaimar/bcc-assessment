@@ -23,7 +23,7 @@ class Students extends REST_Controller
 
 		$response['data'] = $this->db->get('students');
 
-		$this->table->set_template([ 'table_open'=>'<table class="table table-striped table-bordered">', 'heading_row_start'=>'<tr class="active">' ]);
+		$this->table->set_template([ 'table_open'=>'<table class="table table-striped table-bordered table-hover">', 'heading_row_start'=>'<tr class="active">' ]);
 		$this->table->set_heading(['Fist Name', 'Middle Name', 'Last Name', 'Student ID', 'Gender', 'Course']);
 
 		$response['html'] = $this->table->generate($response['data']);
