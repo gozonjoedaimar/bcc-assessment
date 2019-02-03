@@ -4,16 +4,11 @@
     var $document = $(document);
 
     // for bootstrap 3 use 'shown.bs.tab', for bootstrap 2 use 'shown' in the next line
-    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    $document.on('shown.bs.tab', 'a[data-toggle="tab"]', function (e) {
         // save the latest tab; use cookies if you like 'em better:
         localStorage.setItem('lastTab', $(this).attr('href'));
     });
 
-    // go to the latest tab, if it exists:
-    var lastTab = localStorage.getItem('lastTab');
-    if (lastTab) {
-        $('[href="' + lastTab + '"]').tab('show');
-    }
 
     $document.on('keydown', '.id-input',
         (e) => e.key.match(new RegExp(/[0-9]/)) ||
@@ -24,7 +19,12 @@
             ? true: false )
 
     window.addEventListener('load', function() {
-      $('.show-on-load').removeClass('hide');
+        // go to the latest tab, if it exists:
+        var lastTab = localStorage.getItem('lastTab');
+        if (lastTab) {
+            $('[href="' + lastTab + '"]').tab('show');
+        }
+        $('.show-on-load').removeClass('hide');
     })
 
     window.initStudentSearchModal = function(callback) {
