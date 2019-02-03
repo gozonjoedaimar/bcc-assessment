@@ -56,7 +56,7 @@ CREATE TABLE `admin_users` (
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('1', '127.0.0.1', 'webmaster', '$2y$08$/X5gzWjesYi78GqeAv5tA.dVGBVP7C1e1PzqnYCVe5s1qhlDIPPES', NULL, NULL, NULL, NULL, NULL, NULL, '1451900190', '1546506429', '1', 'Webmaster', '');
-INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('2', '127.0.0.1', 'admin', '$2y$08$7Bkco6JXtC3Hu6g9ngLZDuHsFLvT7cyAxiz1FzxlX5vwccvRT7nKW', NULL, NULL, NULL, NULL, NULL, 'tTXDuQ63FrUQg5x39cDFgO', '1451900228', '1549063106', '1', 'Admin', '');
+INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('2', '127.0.0.1', 'admin', '$2y$08$7Bkco6JXtC3Hu6g9ngLZDuHsFLvT7cyAxiz1FzxlX5vwccvRT7nKW', NULL, NULL, NULL, NULL, NULL, 'tTXDuQ63FrUQg5x39cDFgO', '1451900228', '1549150020', '1', 'Admin', '');
 INSERT INTO `admin_users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`) VALUES ('4', '127.0.0.1', 'staff', '$2y$08$NigAXjN23CRKllqe3KmjYuWXD5iSRPY812SijlhGeKfkrMKde9da6', NULL, NULL, NULL, NULL, NULL, NULL, '1451900439', '1549030668', '1', 'Staff', '');
 
 
@@ -164,6 +164,8 @@ CREATE TABLE `assessment` (
   `payment` double DEFAULT NULL,
   `paid` int(11) DEFAULT NULL,
   `official_receipt` varchar(255) NOT NULL,
+  `receipt_datetime` timestamp NULL DEFAULT NULL,
+  `cheque` varchar(255) NOT NULL,
   `assessment_group` int(11) DEFAULT NULL,
   `form_type` varchar(255) DEFAULT NULL,
   `description` text NOT NULL,
@@ -171,7 +173,7 @@ CREATE TABLE `assessment` (
   PRIMARY KEY (`id`),
   KEY `main_balance` (`assessment_group`),
   CONSTRAINT `assessment_ibfk_1` FOREIGN KEY (`assessment_group`) REFERENCES `assessment_group` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 #
 # TABLE STRUCTURE FOR: assessment_group
@@ -190,9 +192,22 @@ CREATE TABLE `assessment_group` (
   PRIMARY KEY (`id`),
   KEY `student_ref0001` (`student_id`),
   KEY `course_ref0002` (`course_code`),
-  CONSTRAINT `assessment_group_ibfk_2` FOREIGN KEY (`course_code`) REFERENCES `courses` (`code`),
-  CONSTRAINT `assessment_group_std_ref` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
+  CONSTRAINT `assessment_group_ibfk_2` FOREIGN KEY (`course_code`) REFERENCES `courses` (`code`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `assessment_group_std_ref` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+#
+# TABLE STRUCTURE FOR: checks
+#
+
+DROP TABLE IF EXISTS `checks`;
+
+CREATE TABLE `checks` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `number` varchar(255) NOT NULL,
+  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 #
 # TABLE STRUCTURE FOR: courses
@@ -287,6 +302,40 @@ INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('10', 'Cit
 
 
 #
+# TABLE STRUCTURE FOR: scholars
+#
+
+DROP TABLE IF EXISTS `scholars`;
+
+CREATE TABLE `scholars` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_id` varchar(255) NOT NULL,
+  `sponsor` int(11) NOT NULL,
+  `year` int(255) NOT NULL,
+  `semister` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `student_scholar_ref` (`student_id`),
+  KEY `sponsor_ref` (`sponsor`),
+  CONSTRAINT `scholars_ibfk_1` FOREIGN KEY (`sponsor`) REFERENCES `sponsors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `scholars_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+#
+# TABLE STRUCTURE FOR: sponsors
+#
+
+DROP TABLE IF EXISTS `sponsors`;
+
+CREATE TABLE `sponsors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+INSERT INTO `sponsors` (`id`, `name`) VALUES ('1', 'Handumanan');
+
+
+#
 # TABLE STRUCTURE FOR: students
 #
 
@@ -311,7 +360,7 @@ CREATE TABLE `students` (
   KEY `course_ref0001` (`course_code`),
   KEY `student_id_main` (`student_id`),
   CONSTRAINT `students_ibfk_1` FOREIGN KEY (`course_code`) REFERENCES `courses` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 #
 # TABLE STRUCTURE FOR: subjects
@@ -359,7 +408,7 @@ CREATE TABLE `users` (
   `company` varchar(100) DEFAULT NULL,
   `phone` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 INSERT INTO `users` (`id`, `ip_address`, `username`, `password`, `salt`, `email`, `activation_code`, `forgotten_password_code`, `forgotten_password_time`, `remember_code`, `created_on`, `last_login`, `active`, `first_name`, `last_name`, `company`, `phone`) VALUES ('1', '127.0.0.1', 'member', '$2y$08$kkqUE2hrqAJtg.pPnAhvL.1iE7LIujK5LZ61arONLpaBBWh/ek61G', NULL, 'member@member.com', NULL, NULL, NULL, NULL, '1451903855', '1451905011', '1', 'Member', 'One', NULL, NULL);
 
@@ -375,7 +424,7 @@ CREATE TABLE `users_groups` (
   `user_id` int(11) unsigned NOT NULL,
   `group_id` mediumint(8) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 INSERT INTO `users_groups` (`id`, `user_id`, `group_id`) VALUES ('1', '1', '1');
 
