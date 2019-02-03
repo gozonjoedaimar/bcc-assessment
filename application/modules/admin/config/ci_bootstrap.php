@@ -39,6 +39,9 @@ $config['ci_bootstrap'] = array(
 			'assets/dist/admin/app.min.js',
 			'assets/local/js/elements.js',
 			'assets/local/js/local.js',
+			'assets/local/js/jquery-plugins/bootstrap-growl.min.js',
+			'assets/local/js/jquery-plugins/jquery.form.min.js',
+			'assets/local/js/jquery-plugins/jquery.print-this.min.js',
 		),
 		'foot'	=> array(
 		),
@@ -64,9 +67,9 @@ $config['ci_bootstrap'] = array(
 	// Menu items
 	'menu' => array(
 		'home' => array(
-			'name'		=> 'Home',
-			'url'		=> '',
-			'icon'		=> 'fa fa-home',
+			'name' => 'Home',
+			'url'  => '',
+			'icon' => 'fa fa-home',
 		),
 		/*'user' => array(
 			'name'		=> 'Users',
@@ -94,42 +97,51 @@ $config['ci_bootstrap'] = array(
 			'icon' => 'fa fa-list-ul'
 		),*/
 		'courses' => array(
-			'name'=>'Courses',
-			'url'=>'courses',
+			'name' => 'Courses',
+			'url'  => 'courses',
 			'icon' => 'fa fa-list-ul'
 		),
 		'department' => array(
-			'name'=>'Departments',
-			'url'=>'department',
+			'name' => 'Departments',
+			'url'  => 'department',
 			'icon' => 'fa fa-group'
 		),
+		'scholars' => array(
+			'name'  => 'Scholars',
+			'url'   => '#',
+			'icon'  => 'fa fa-list-ul',
+			'children' => array(
+				'Sponsors' => 'sponsors',
+				'Students' => 'scholars'
+			)
+		),
 		'defaults' => array(
-			'name' => 'Defaults',
-			'url' => 'defaults/set',
-			'icon' => 'fa fa-gear'
+			'name'  => 'Defaults',
+			'url'   => 'defaults/set',
+			'icon'  => 'fa fa-gear'
 		),
 		'panel' => array(
-			'name'		=> 'Staff Manager',
-			'url'		=> 'panel',
-			'icon'		=> 'fa fa-cog',
-			'children'  => array(
-				'Staff'			=> 'panel/admin_user',
-				'Create User'		=> 'panel/admin_user_create',
-				'User Groups'		=> 'panel/admin_user_group',
+			'name'  => 'Staff Manager',
+			'url'   => 'panel',
+			'icon'  => 'fa fa-cog',
+			'children' => array(
+				'List'       => 'panel/admin_user',
+				'Create New' => 'panel/admin_user_create',
+				'Groups'     => 'panel/admin_user_group',
 			)
 		),
 		'util' => array(
-			'name'		=> 'Utilities',
-			'url'		=> 'util',
-			'icon'		=> 'fa fa-cogs',
-			'children'  => array(
-				'Database Versions'		=> 'util/list_db',
+			'name' => 'Utilities',
+			'url'  => 'util',
+			'icon' => 'fa fa-cogs',
+			'children' => array(
+				'Database Versions' => 'util/list_db',
 			)
 		),
 		'logout' => array(
-			'name'		=> 'Sign Out',
-			'url'		=> 'panel/logout',
-			'icon'		=> 'fa fa-sign-out',
+			'name' => 'Sign Out',
+			'url'  => 'panel/logout',
+			'icon' => 'fa fa-sign-out',
 		)
 	),
 

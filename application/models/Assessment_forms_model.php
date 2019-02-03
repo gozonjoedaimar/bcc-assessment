@@ -37,6 +37,7 @@ class Assessment_forms_model extends CI_Model
 	public function get_year_options()
 	{
 		$year_level = array(
+			""  => "Select year level",
 			"1" => "First",
 			"2" => "Second",
 			"3" => "Third",
@@ -48,12 +49,25 @@ class Assessment_forms_model extends CI_Model
 
 	public function get_course_options($full = FALSE)
 	{
-		$list = array();
+		$list = array(""=>"Select course");
 		$db = $this->CI->db;
 		$query = $db->get('courses');
 
 		foreach ($query->result() as $course) {
-			$list[$course->code] = $full ? $couse->name: $course->code;
+			$list[$course->code] = $full ? $course->name: $course->code;
+		}
+
+		return $list;
+	}
+
+	public function get_sponsor_options()
+	{
+		$list = array(""=>"Select sponsor");
+		$db = $this->CI->db;
+		$query = $db->get('sponsors');
+
+		foreach ($query->result() as $sponsor) {
+			$list[$sponsor->id] = $sponsor->name;
 		}
 
 		return $list;
@@ -65,8 +79,8 @@ class Assessment_forms_model extends CI_Model
 		$db = $this->CI->db;
 		$query = $db->get('department');
 
-		foreach ($query->result() as $course) {
-			$list[$course->code] = $full ? $couse->name: $course->code;
+		foreach ($query->result() as $dept) {
+			$list[$dept->code] = $full ? $dept->name: $dept->code;
 		}
 
 		return $list;

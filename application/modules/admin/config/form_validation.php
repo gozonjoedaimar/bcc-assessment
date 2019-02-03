@@ -170,6 +170,16 @@ $config = array(
 			'field'=>'last_name',
 			'label'=>'Last Name',
 			'rules'=>'required'
+		),
+		array(
+			'field'=>'course',
+			'label'=>'Course',
+			'rules'=>'required'
+		),
+		array(
+			'field'=>'year_level',
+			'label'=>'Year',
+			'rules'=>'required'
 		)
 	),
 
@@ -197,6 +207,16 @@ $config = array(
 		array(
 			'field'=>'last_name',
 			'label'=>'Last Name',
+			'rules'=>'required'
+		),
+		array(
+			'field'=>'course',
+			'label'=>'Course',
+			'rules'=>'required'
+		),
+		array(
+			'field'=>'year_level',
+			'label'=>'Year',
 			'rules'=>'required'
 		)
 	),
