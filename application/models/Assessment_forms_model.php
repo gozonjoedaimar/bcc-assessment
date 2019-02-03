@@ -34,6 +34,21 @@ class Assessment_forms_model extends CI_Model
 	public $statement_of_account;
 	public $student_information;
 
+	public function get_batch_options()
+	{
+		$batch = array( ""  => "Select batch" );
+
+		$start = 1990;
+		$current = date("Y");
+		$batch[$current] = $current;
+
+		for ($yr=$current; $yr >= $start; $yr--) { 
+			$batch[$yr] = $yr;
+		}
+
+		return $batch;
+	}
+
 	public function get_year_options()
 	{
 		$year_level = array(

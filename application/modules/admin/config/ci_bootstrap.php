@@ -115,6 +115,11 @@ $config['ci_bootstrap'] = array(
 				'Students' => 'scholars'
 			)
 		),
+		'reports' => array(
+			'name' => 'Reports',
+			'url'  => 'reports',
+			'icon' => 'fa fa-book'
+		),
 		'defaults' => array(
 			'name'  => 'Defaults',
 			'url'   => 'defaults/set',
