@@ -19,7 +19,7 @@ class Reports extends Admin_Controller {
 		$this->load->model('assessment_forms_model');
 
 		$this->mViewData['form'] = $this->assessment_forms_model;
-		$this->mViewData['form_builder'] = $this->form_builder;
+		$this->mViewData['form_builder'] = $this->form_builder->create_form(NULL, FALSE, ['id'=>'reports_gen']);
 
 		$this->render('reports/index');
 	}
