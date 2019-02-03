@@ -172,7 +172,7 @@ $config = array(
 			'rules'=>'required'
 		),
 		array(
-			'field'=>'course',
+			'field'=>'course_code',
 			'label'=>'Course',
 			'rules'=>'required'
 		),
@@ -210,7 +210,7 @@ $config = array(
 			'rules'=>'required'
 		),
 		array(
-			'field'=>'course',
+			'field'=>'course_code',
 			'label'=>'Course',
 			'rules'=>'required'
 		),

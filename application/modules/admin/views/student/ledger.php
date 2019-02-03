@@ -36,7 +36,7 @@
 							<?php echo $form->bs3_dropdown('Course', 'course_code', $form->get_course_options(), $form->student_information); ?>
 						</div>
 						<div class="col-sm-4">
-							<?php echo $form->bs3_dropdown('Sex', 'gender', ['male'=>'Male','female'=>'Female'], $form->student_information); ?>
+							<?php echo $form->bs3_dropdown('Sex', 'gender', $form->get_gender_options(), $form->student_information); ?>
 						</div>
 					</div>
 					<div class="row">

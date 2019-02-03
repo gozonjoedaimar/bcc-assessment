@@ -75,6 +75,16 @@ class Assessment_forms_model extends CI_Model
 		return $list;
 	}
 
+	public function get_gender_options()
+	{
+		$list = array(""=>"Select gender");
+
+		$list['male']   = 'Male';
+		$list['female'] = 'Female';
+
+		return $list;
+	}
+
 	public function get_sponsor_options()
 	{
 		$list = array(""=>"Select sponsor");
