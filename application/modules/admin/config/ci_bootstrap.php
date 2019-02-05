@@ -37,11 +37,12 @@ $config['ci_bootstrap'] = array(
 			'assets/dist/admin/adminlte.min.js',
 			'assets/dist/admin/lib.min.js',
 			'assets/dist/admin/app.min.js',
+			'assets/local/js/jquery-plugins/bootstrap-growl.min.js',
+			// 'assets/local/js/jquery-plugins/jquery.form.min.js',
+			'assets/local/js/jquery-plugins/jquery.print-this.min.js',
+			'assets/local/lib/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
 			'assets/local/js/elements.js',
 			'assets/local/js/local.js',
-			'assets/local/js/jquery-plugins/bootstrap-growl.min.js',
-			'assets/local/js/jquery-plugins/jquery.form.min.js',
-			'assets/local/js/jquery-plugins/jquery.print-this.min.js',
 		),
 		'foot'	=> array(
 		),
@@ -53,6 +54,7 @@ $config['ci_bootstrap'] = array(
 			'assets/dist/admin/adminlte.min.css',
 			'assets/dist/admin/lib.min.css',
 			'assets/dist/admin/app.min.css',
+			'assets/local/lib/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css',
 			'assets/local/css/local.css'
 		)
 	),
