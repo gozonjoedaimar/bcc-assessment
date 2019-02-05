@@ -16,6 +16,7 @@ class Sponsors extends REST_Controller
 		$response = [];
 
 		$this->db->select(['name']);
+		$this->db->like('name', $this->get('q'));
 
 		$response['data'] = $this->db->get('sponsors');
 
