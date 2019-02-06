@@ -1,8 +1,8 @@
 <div class="row" id="assessment_form">
 
-	<div class="col-md-12">
-		<?php echo $form->assessment_form->open(); ?>
-		<?php echo form_hidden('form_type', 'assessment_form') ?>
+	<?php echo $form->assessment_form->open(); ?>
+	<?php echo form_hidden('form_type', 'assessment_form') ?>
+	<div class="col-md-8">
 		<div class="box box-primary">
 			<div class="box-header">
 				<h3 class="box-title">Student Information</h3>
@@ -30,6 +30,25 @@
 						</div>
 						<div class="col-sm-4">
 							<?php echo $form->bs3_input('ID No.','student_id', 'text', NULL, $form->assessment_form, ["class"=>"id-input form-control", "maxlength"=>7]); ?>
+						</div>
+					</div>
+					
+			</div>
+		</div>
+
+	</div>
+	<div class="col-md-4">
+		<div class="box box-primary">
+			<div class="box-header">
+				<h3 class="box-title">Student Status</h3>
+			</div>
+			<div class="box-body">
+
+					<div class="row">
+						<div class="col-sm-12">
+							<?php echo $form->bs3_dropdown('Scholar','sponsor', $form->get_sponsor_options(), $form->assessment_form, [],
+								"Select sponsor if the student is scholar"
+								); ?>
 						</div>
 					</div>
 					
@@ -189,14 +208,27 @@
 			</div>
 				<div class="box-body">
 
-						<div class="row">
+						<div class="row" style="margin-bottom: 5px;">
+							
+							<div class="col-sm-8 col-sm-offset-1">
+								<?php echo form_label('Payment Method'); ?>
+							</div>
+							<div class="col-sm-3 ">
+								<?php echo $form->dropdown('payment_method', [
+									"Cash", "Check", "Guarantee"
+									], $form->assessment_form, ["class"=>"form-control"]) ?>
+							</div>
+
+
+						</div>
+						<div class="row" style="margin-bottom: 5px;">
 							
 							<div class="col-sm-8 col-sm-offset-1">
 								<?php echo form_label('Payment Upon Enrollment'); ?>
 							</div>
 							<div class="col-sm-3 ">
 								<span class="border-bottom full-width text-right">
-									<?php echo $form->input('payment_stated', 'number', NULL, $form->assessment_form, array('class'=>'borderless')) ?>
+									<?php echo $form->input('payment_stated', 'number', NULL, $form->assessment_form, array('class'=>'borderless form-control')) ?>
 								</span>
 							</div>
 
@@ -209,10 +241,10 @@
 								<?php echo form_label('Balance'); ?>
 							</div>
 							<div class="col-sm-1 col-sm-offset-1 text-right">
-								<span>P</span>
+								<span class="sub">P</span>
 							</div>
 							<div class="col-sm-3 ">
-								<?php echo $form->show_hidden('balance', NULL, $form->assessment_form, ['sub']) ?>
+								<?php echo $form->show_hidden('balance', NULL, $form->assessment_form, ['sub', 'form-control']) ?>
 							</div>
 
 

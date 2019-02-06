@@ -134,11 +134,13 @@ class Assessment_forms_model extends CI_Model
 		return $form_builder->field_dropdown($name, $options, $form_builder->get_field_value($name), $extras);
 	}
 
-	public function bs3_dropdown($label, $name, $options, $form_builder, $extras = array())
+	public function bs3_dropdown($label, $name, $options, $form_builder, $extras = array(), $note="")
 	{
 		if ( ! isset($extras['class'])) $extras['class'] = "form-control";
 		$html  = "<div class=\"form-group\">";
-		$html .= form_label($label) . $this->dropdown($name, $options, $form_builder, $extras);
+		$html .= form_label($label);
+		if ($note) $html .= "<br/><small>".$note."</small>";
+		$html .= $this->dropdown($name, $options, $form_builder, $extras);
 		$html .= "</div>";
 		return $html;
 	}
