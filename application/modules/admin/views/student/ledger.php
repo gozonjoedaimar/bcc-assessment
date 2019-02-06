@@ -55,12 +55,15 @@
 				<?php echo $form->student_information->close(); ?>
 			</div>
 		</div>
-		<div class="box box-primary">
+		<div class="box box-primary ledger">
 			<div class="box-header">
 				<h3 class="box-title">Ledger</h3>
 				<div style="width: 300px; float: right;" class="row">
 					<div class="col-xs-6 text-right"><label>Year Level: </label></div>
 					<div class="col-xs-6"><?php echo $form->dropdown('year_level', $form->get_year_options(), $form->student_information, ['id'=>'year_level', 'class'=>'form-control']) ?></div>
+				</div>
+				<div class="pull-right">
+					<button class="btn btn-primary print-ledger">Print</button>
 				</div>
 				<div class="clearfix"></div>
 			</div>
@@ -79,12 +82,12 @@
 					</thead>
 					<tfoot class="hide">
 						<tr>
-							<td><input type="text" class="datepicker" name=""></td>
-							<td><input type="text" name=""></td>
-							<td><input type="text" name=""></td>
-							<td><input type="text" name=""></td>
-							<td><input type="text" name=""></td>
-							<td><input type="submit" name="" class="btn btn-primary" value="Save"></td>
+							<td><input type="text" class="datepicker"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="text"></td>
+							<td><input type="submit" class="btn btn-primary" value="Save"></td>
 						</tr>
 					</tfoot>
 					<tbody>
@@ -121,6 +124,16 @@
 <script type="text/javascript">
 	
 (function($) {
+
+document.addEventListener('DOMContentLoaded', function() {
+	$('link[href$="adminlte.min.css"]').attr('media','all');
+	$('link[href$="local.css"]').attr('media','all');
+
+	$('.print-ledger').on('click', function() {
+		$('.box.ledger').printThis();
+		// console.log($('.box.ledger').get(0));
+	})
+});
 
 var ledger_api = "<?php echo site_url('api/ledger') ?>"; var pending = 0; var paid = 0;
 

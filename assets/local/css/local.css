@@ -47,3 +47,29 @@ input.borderless {
 .hide {
   display: none !important; 
 }
+
+.print-visible,
+.print-visible-block,
+.print-visible-inline,
+.print-visible-inline-block, {
+  display: none;
+}
+
+@media print {
+  .print-visible, .print-visible-block {
+    display: block;
+  }
+  .print-visible-inline {
+    display: inline;
+  }
+  .print-visible-inline-block {
+    display: inline-block;
+  }
+  .print-hidden {
+    display: none;
+  }
+  /* Hide buttons by default */
+  button, .btn {
+    display: none;
+  }
+}

@@ -34,7 +34,9 @@
 	var base_url = $('meta[name="base_url"]').attr('content');
 	var resultDiv = $('.reports .body');
 
-	$('link:first').attr('media','all');
+	// $('link:first').attr('media','all');
+	$('link[href$="adminlte.min.css"]').attr('media','all')
+	$('link[href$="local.css"]').attr('media','all')
 
 	$('.btn-print-report').on('click', function(el) {
 		resultDiv.printThis();
