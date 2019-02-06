@@ -28,6 +28,14 @@ input.borderless {
     box-sizing: content-box;
 }
 
+.borderless.text-center {
+  text-align: center;
+}
+
+.borderless.text-left {
+  text-align: left;
+}
+
 .modal .table-hover > tbody > tr:hover {
     background-color: orange;
 }

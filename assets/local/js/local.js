@@ -117,4 +117,11 @@
         })
     };
 
+    document.addEventListener('DOMContentLoaded', function() {
+        $('.date-picker').datepicker({
+            todayBtn: "linked",
+            todayHighlight: true,
+        });
+    });
+
 })(window.jQuery);

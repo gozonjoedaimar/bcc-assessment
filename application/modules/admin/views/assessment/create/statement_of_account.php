@@ -154,7 +154,9 @@
 								<?php echo form_label('Date Issued'); ?>
 							</div>
 							<div class="col-sm-6 ">
-								<span class="border-bottom full-width text-center"><?php echo date('M d, Y') ?></span>
+								<span class="border-bottom full-width">
+									<input type="text" name="datetime" value="<?php echo date("m/d/Y") ?>" id="datetime" class="borderless text-center date-picker">
+								</span>
 							</div>
 
 
