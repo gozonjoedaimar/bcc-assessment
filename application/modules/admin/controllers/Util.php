@@ -33,8 +33,12 @@ class Util extends Admin_Controller {
 		$this->load->dbutil();
 		$this->load->helper('file');
 
+		$list = $this->db->list_tables();
+		$tables = array_reverse($list);
+
+
 		// Options: http://www.codeigniter.com/user_guide/database/utilities.html?highlight=csv#setting-backup-preferences
-		$prefs = array('format' => 'txt');
+		$prefs = array('format' => 'txt', 'tables'=>$tables);
 		$backup = $this->dbutil->backup($prefs);
 		$file_path_1 = FCPATH.'sql/backup/'.date('Y-m-d_H-i-s').'.sql';
 		$result_1 = write_file($file_path_1, $backup);
