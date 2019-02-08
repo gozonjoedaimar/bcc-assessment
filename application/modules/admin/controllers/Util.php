@@ -34,8 +34,17 @@ class Util extends Admin_Controller {
 		$this->load->helper('file');
 
 		$list = $this->db->list_tables();
-		$tables = array_reverse($list);
-
+		$prio = [
+			"courses",
+			"department",
+			"students",
+			"assessment_group",
+			"assessment",
+			"sponsors",
+			"scholars"
+		];
+		
+		$tables = array_unique(array_merge($prio, $list));
 
 		// Options: http://www.codeigniter.com/user_guide/database/utilities.html?highlight=csv#setting-backup-preferences
 		$prefs = array('format' => 'txt', 'tables'=>$tables);
