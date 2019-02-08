@@ -11,10 +11,10 @@
 
 
     $document.on('keydown', '.id-input',
-        (e) => e.key.match(new RegExp(/[0-9]/)) ||
-            (e.key.match(new RegExp(/[-]/)) && ! e.target.value.match(new RegExp(/[-]/))) ||
-            (e.shiftKey && e.key.length > 1) ||
-            e.key.length > 1 ||
+        (e) => String(e.key).match(new RegExp(/[0-9]/)) ||
+            (String(e.key).match(new RegExp(/[-]/)) && ! String(e.target.value).match(new RegExp(/[-]/))) ||
+            (e.shiftKey && String(e.key).length > 1) ||
+            String(e.key).length > 1 ||
             e.ctrlKey
             ? true: false )
 
