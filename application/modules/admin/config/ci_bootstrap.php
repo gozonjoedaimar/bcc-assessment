@@ -218,6 +218,18 @@ $config['ci_bootstrap'] = array(
 		'view_data'	=> FALSE,
 		'profiler'	=> FALSE
 	),
+	// DB export table order
+	'db_export' => array(
+		'tables' => [
+			"courses",
+			"department",
+			"students",
+			"assessment_group",
+			"assessment",
+			"sponsors",
+			"scholars"
+		]
+	),
 );
 
 /*

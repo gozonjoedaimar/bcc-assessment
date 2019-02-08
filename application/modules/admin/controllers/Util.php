@@ -34,15 +34,7 @@ class Util extends Admin_Controller {
 		$this->load->helper('file');
 
 		$list = $this->db->list_tables();
-		$prio = [
-			"courses",
-			"department",
-			"students",
-			"assessment_group",
-			"assessment",
-			"sponsors",
-			"scholars"
-		];
+		$prio = $this->mConfig['db_export']['tables'];
 		
 		$tables = array_unique(array_merge($prio, $list));
 
