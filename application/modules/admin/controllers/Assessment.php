@@ -96,6 +96,12 @@ class Assessment extends Admin_Controller {
 						else {
 							$this->system_message->add_success("Account added for existing student");
 						}
+
+						if (isset($post_data['sponsor']) && $post_data['sponsor']) {
+							$this->db->set('student_id',$post_data['student_id']);
+							$this->db->set('sponsor',$post_data['sponsor']);
+							$this->db->insert('scholars');
+						}
 					}
 
 					$form->set_form_data('assessment_form', []);	
