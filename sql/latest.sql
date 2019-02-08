@@ -1,4 +1,144 @@
 #
+# TABLE STRUCTURE FOR: courses
+#
+
+DROP TABLE IF EXISTS `courses`;
+
+CREATE TABLE `courses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `course_ref_main` (`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+INSERT INTO `courses` (`id`, `code`, `name`) VALUES ('1', 'BSOA', 'Bachelor of Science in Office Administration');
+INSERT INTO `courses` (`id`, `code`, `name`) VALUES ('2', 'BSIS', 'Bachelor of Science in Information Systems');
+INSERT INTO `courses` (`id`, `code`, `name`) VALUES ('3', 'BSIT', 'Bachelor of Science in Industrial Technology');
+
+
+#
+# TABLE STRUCTURE FOR: department
+#
+
+DROP TABLE IF EXISTS `department`;
+
+CREATE TABLE `department` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `code` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `dept_ref_main` (`code`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+INSERT INTO `department` (`id`, `code`, `name`) VALUES ('2', 'BSOA', 'Bachelor of Science in Office Administration');
+INSERT INTO `department` (`id`, `code`, `name`) VALUES ('3', 'BSIS', 'Bachelor of Science in Information Systems');
+
+
+#
+# TABLE STRUCTURE FOR: students
+#
+
+DROP TABLE IF EXISTS `students`;
+
+CREATE TABLE `students` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `last_name` varchar(255) DEFAULT NULL,
+  `first_name` varchar(255) DEFAULT NULL,
+  `middle_name` varchar(255) DEFAULT NULL,
+  `extension` varchar(10) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `student_id` varchar(255) DEFAULT NULL,
+  `phone_number` varchar(255) DEFAULT NULL,
+  `department` varchar(255) DEFAULT NULL,
+  `gender` varchar(255) DEFAULT NULL,
+  `permanent_address` varchar(255) DEFAULT NULL,
+  `course_code` varchar(255) DEFAULT NULL,
+  `year_level` int(11) NOT NULL,
+  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `course_ref0001` (`course_code`),
+  KEY `student_id_main` (`student_id`),
+  CONSTRAINT `students_ibfk_1` FOREIGN KEY (`course_code`) REFERENCES `courses` (`code`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+#
+# TABLE STRUCTURE FOR: assessment_group
+#
+
+DROP TABLE IF EXISTS `assessment_group`;
+
+CREATE TABLE `assessment_group` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_id` varchar(255) DEFAULT NULL,
+  `year_level` varchar(255) DEFAULT NULL,
+  `course_code` varchar(255) DEFAULT NULL,
+  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `description` text,
+  `balance` double DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `student_ref0001` (`student_id`),
+  KEY `course_ref0002` (`course_code`),
+  CONSTRAINT `assessment_group_ibfk_2` FOREIGN KEY (`course_code`) REFERENCES `courses` (`code`) ON DELETE NO ACTION ON UPDATE CASCADE,
+  CONSTRAINT `assessment_group_std_ref` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+#
+# TABLE STRUCTURE FOR: assessment
+#
+
+DROP TABLE IF EXISTS `assessment`;
+
+CREATE TABLE `assessment` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `payment` double DEFAULT NULL,
+  `paid` int(11) DEFAULT NULL,
+  `official_receipt` varchar(255) NOT NULL,
+  `receipt_datetime` timestamp NULL DEFAULT NULL,
+  `cheque` varchar(255) NOT NULL,
+  `assessment_group` int(11) DEFAULT NULL,
+  `form_type` varchar(255) DEFAULT NULL,
+  `description` text NOT NULL,
+  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `main_balance` (`assessment_group`),
+  CONSTRAINT `assessment_ibfk_1` FOREIGN KEY (`assessment_group`) REFERENCES `assessment_group` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+#
+# TABLE STRUCTURE FOR: sponsors
+#
+
+DROP TABLE IF EXISTS `sponsors`;
+
+CREATE TABLE `sponsors` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+INSERT INTO `sponsors` (`id`, `name`) VALUES ('1', 'Handumanan');
+
+#
+# TABLE STRUCTURE FOR: scholars
+#
+
+DROP TABLE IF EXISTS `scholars`;
+
+CREATE TABLE `scholars` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `student_id` varchar(255) NOT NULL,
+  `sponsor` int(11) NOT NULL,
+  `year` int(255) NOT NULL,
+  `semister` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `student_scholar_ref` (`student_id`),
+  KEY `sponsor_ref` (`sponsor`),
+  CONSTRAINT `scholars_ibfk_1` FOREIGN KEY (`sponsor`) REFERENCES `sponsors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `scholars_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+#
 # TABLE STRUCTURE FOR: admin_groups
 #
 
@@ -154,49 +294,6 @@ CREATE TABLE `api_logs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 #
-# TABLE STRUCTURE FOR: assessment
-#
-
-DROP TABLE IF EXISTS `assessment`;
-
-CREATE TABLE `assessment` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `payment` double DEFAULT NULL,
-  `paid` int(11) DEFAULT NULL,
-  `official_receipt` varchar(255) NOT NULL,
-  `receipt_datetime` timestamp NULL DEFAULT NULL,
-  `cheque` varchar(255) NOT NULL,
-  `assessment_group` int(11) DEFAULT NULL,
-  `form_type` varchar(255) DEFAULT NULL,
-  `description` text NOT NULL,
-  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `main_balance` (`assessment_group`),
-  CONSTRAINT `assessment_ibfk_1` FOREIGN KEY (`assessment_group`) REFERENCES `assessment_group` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
-#
-# TABLE STRUCTURE FOR: assessment_group
-#
-
-DROP TABLE IF EXISTS `assessment_group`;
-
-CREATE TABLE `assessment_group` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_id` varchar(255) DEFAULT NULL,
-  `year_level` varchar(255) DEFAULT NULL,
-  `course_code` varchar(255) DEFAULT NULL,
-  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `description` text,
-  `balance` double DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `student_ref0001` (`student_id`),
-  KEY `course_ref0002` (`course_code`),
-  CONSTRAINT `assessment_group_ibfk_2` FOREIGN KEY (`course_code`) REFERENCES `courses` (`code`) ON DELETE NO ACTION ON UPDATE CASCADE,
-  CONSTRAINT `assessment_group_std_ref` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
-#
 # TABLE STRUCTURE FOR: checks
 #
 
@@ -208,42 +305,6 @@ CREATE TABLE `checks` (
   `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-#
-# TABLE STRUCTURE FOR: courses
-#
-
-DROP TABLE IF EXISTS `courses`;
-
-CREATE TABLE `courses` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `code` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `course_ref_main` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
-INSERT INTO `courses` (`id`, `code`, `name`) VALUES ('1', 'BSOA', 'Bachelor of Science in Office Administration');
-INSERT INTO `courses` (`id`, `code`, `name`) VALUES ('2', 'BSIS', 'Bachelor of Science in Information Systems');
-INSERT INTO `courses` (`id`, `code`, `name`) VALUES ('3', 'BSIT', 'Bachelor of Science in Industrial Technology');
-
-
-#
-# TABLE STRUCTURE FOR: department
-#
-
-DROP TABLE IF EXISTS `department`;
-
-CREATE TABLE `department` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `code` varchar(255) DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `dept_ref_main` (`code`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
-
-INSERT INTO `department` (`id`, `code`, `name`) VALUES ('2', 'BSOA', 'Bachelor of Science in Office Administration');
-INSERT INTO `department` (`id`, `code`, `name`) VALUES ('3', 'BSIS', 'Bachelor of Science in Information Systems');
 
 
 #
@@ -300,67 +361,6 @@ INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('8', 'Labo
 INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('9', 'NSTP', '45', 'nstp');
 INSERT INTO `price_defaults` (`id`, `label`, `value`, `name`) VALUES ('10', 'City Smile ( Sch. Paper )', '20', 'city_smile');
 
-
-#
-# TABLE STRUCTURE FOR: scholars
-#
-
-DROP TABLE IF EXISTS `scholars`;
-
-CREATE TABLE `scholars` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `student_id` varchar(255) NOT NULL,
-  `sponsor` int(11) NOT NULL,
-  `year` int(255) NOT NULL,
-  `semister` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `student_scholar_ref` (`student_id`),
-  KEY `sponsor_ref` (`sponsor`),
-  CONSTRAINT `scholars_ibfk_1` FOREIGN KEY (`sponsor`) REFERENCES `sponsors` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  CONSTRAINT `scholars_ibfk_2` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-#
-# TABLE STRUCTURE FOR: sponsors
-#
-
-DROP TABLE IF EXISTS `sponsors`;
-
-CREATE TABLE `sponsors` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
-INSERT INTO `sponsors` (`id`, `name`) VALUES ('1', 'Handumanan');
-
-
-#
-# TABLE STRUCTURE FOR: students
-#
-
-DROP TABLE IF EXISTS `students`;
-
-CREATE TABLE `students` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `last_name` varchar(255) DEFAULT NULL,
-  `first_name` varchar(255) DEFAULT NULL,
-  `middle_name` varchar(255) DEFAULT NULL,
-  `extension` varchar(10) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `student_id` varchar(255) DEFAULT NULL,
-  `phone_number` varchar(255) DEFAULT NULL,
-  `department` varchar(255) DEFAULT NULL,
-  `gender` varchar(255) DEFAULT NULL,
-  `permanent_address` varchar(255) DEFAULT NULL,
-  `course_code` varchar(255) DEFAULT NULL,
-  `year_level` int(11) NOT NULL,
-  `datetime` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `course_ref0001` (`course_code`),
-  KEY `student_id_main` (`student_id`),
-  CONSTRAINT `students_ibfk_1` FOREIGN KEY (`course_code`) REFERENCES `courses` (`code`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 #
 # TABLE STRUCTURE FOR: subjects
