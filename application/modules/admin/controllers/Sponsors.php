@@ -41,6 +41,11 @@ class Sponsors extends Admin_Controller {
 		$this->mViewData['id'] = $id;
 		$this->mViewData['list_url'] = site_url('admin/sponsors');
 
+		$this->load->model('assessment_forms_model');
+
+		$this->mViewData['form'] = $this->assessment_forms_model;
+		$this->mViewData['form_builder'] = $this->form_builder;
+
 		$this->render('sponsor/index');
 	}
 }
