@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 		let resultDiv = $('.batches');
 		$.ajax({
             url: base_url + "/api/scholars",
-            method: 'POST',
+            method: 'GET',
             data: { 
             	batch: input.name == "batch" ? input.value: $('[name="batch"]').val(),
             	sponsor: input.name == "sponsor" ? input.value: $('[name="sponsor"]').val(),

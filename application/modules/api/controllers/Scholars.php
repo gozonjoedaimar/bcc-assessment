@@ -9,7 +9,7 @@ class Scholars extends REST_Controller
 	}
 
 	/*  */
-	public function index_post()
+	public function index_get()
 	{
 		// $data = json_decode(file_get_contents('php://input'));
 
@@ -18,12 +18,12 @@ class Scholars extends REST_Controller
 		$this->db->join('students', 'students.student_id = scholars.student_id');
 		$this->db->select(['students.student_id','students.last_name','students.first_name','students.middle_name','students.course_code']);
 
-		if ($this->post('q'))
-			$this->db->where('YEAR(datetime)=', $this->post('q'));
-		if ($this->post('batch'))
-			$this->db->where('YEAR(datetime)=', $this->post('batch'));
-		if ($this->post('sponsor'))
-			$this->db->where('sponsor', $this->post('sponsor'));
+		if ($this->get('q'))
+			$this->db->where('YEAR(datetime)=', $this->get('q'));
+		if ($this->get('batch'))
+			$this->db->where('YEAR(datetime)=', $this->get('batch'));
+		if ($this->get('sponsor'))
+			$this->db->where('sponsor', $this->get('sponsor'));
 
 		$response['data'] = $this->db->get('scholars');
 

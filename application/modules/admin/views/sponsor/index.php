@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function(e) {
 		let resultDiv = $('.batches');
 		$.ajax({
             url: base_url + "/api/scholars",
-            method: 'POST',
+            method: 'GET',
             data: { q: input.value },
             beforeSend: function() {
                 $(resultDiv).html("<p class=\"text-center\">Loading...</p>");
