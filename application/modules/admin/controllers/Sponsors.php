@@ -22,7 +22,7 @@ class Sponsors extends Admin_Controller {
 		}
 		
 		$crud->unset_edit();
-		$crud->unset_delete();
+		// $crud->unset_delete();
 		$crud->unset_read();
 		
 		$crud->add_action('View', '', 'admin/sponsors/view', 'fa-book');

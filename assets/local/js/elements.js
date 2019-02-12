@@ -64,3 +64,11 @@ var searchInput = function(id, className, callback) {
     });
     return input;
 }
+
+/* Growl message */
+var growlMessage = function(message) {
+    var span = document.createElement('span');
+    span.style.marginRight = "15px";
+    span.innerHTML = message;
+    return span.outerHTML;
+};

@@ -124,4 +124,15 @@
         });
     });
 
+    window.notif = function(message, type) {
+        $.growl(growlMessage(message), {
+          type: type ? type : 'info',
+          delay: 10000,
+          animate: {
+              enter: 'animated bounceInDown',
+              exit: 'animated bounceOutUp'
+          }
+        });
+    };
+
 })(window.jQuery);

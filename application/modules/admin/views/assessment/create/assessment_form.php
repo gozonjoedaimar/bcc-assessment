@@ -49,6 +49,7 @@
 							<?php echo $form->bs3_dropdown('Scholar','sponsor', $form->get_sponsor_options(), $form->assessment_form, [],
 								"Select sponsor if the student is scholar"
 								); ?>
+							<a href="#" class="add-sponsor">+ Add sponsor</a>
 						</div>
 					</div>
 					
@@ -302,9 +303,65 @@
 				</div>
 			</div>
 			<?php echo $form->assessment_form->close(); ?>
-		</div>
-	
+		</div>	
 </div>
 
-
 <script type="text/javascript" src="<?php echo site_url('assets/local/js/assessment_calculator.js') ?>"></script>
+<script type="text/javascript">
+(function($) {
+
+	$('a.add-sponsor').on('click', function(e) {
+		e.preventDefault();
+		var modal = $('.modal.add-sponsor');
+		var form = $('form#add-sponsor');
+		var input = modal.find('input[name=name].form-control');
+
+		modal.unbind('shown.bs.modal').on('shown.bs.modal', function() {
+			input.trigger('focus');
+		});
+
+		form.unbind('submit').on('submit', function(e) {
+			e.preventDefault();
+			var that =  this;
+			var submit = form.find('input[type="submit"]');
+			submit.attr('disabled','disabled');
+			$.post(that.action, { name: input.val() }).done(function(response) {
+					$.get(that.action).done(function(response) {
+						input.val('');
+						var select = $('select[name="sponsor"]');
+						select.html('<option value="" selected="selected">Select sponsor</option>');
+						for (var i = 0; i < response.data.length; i++) {
+							var data = response.data[i];
+							select.append('<option value="'+data.id+'">'+data.name+'</option>');
+						}
+						modal.unbind('hidden.bs.modal').on('hidden.bs.modal', function() {
+							notif("Successfully added sponsor", "success");
+						});
+						modal.modal('hide');
+						submit.removeAttr('disabled');
+					})
+					.fail(function() {
+						input.val('');
+						modal.unbind('hidden.bs.modal').on('hidden.bs.modal', function() {
+							notif("Unable update sponsor list. There was an error on your request.", "danger");
+						});
+						modal.modal('hide');
+						submit.removeAttr('disabled');
+					});
+			})
+			.fail(function() {
+				input.val('');
+				modal.unbind('hidden.bs.modal').on('hidden.bs.modal', function() {
+					notif("Unable to add sponsor. There was an error on your request.", "danger");
+				});
+				modal.modal('hide');
+				submit.removeAttr('disabled');
+			});
+
+		});
+
+		modal.modal('show');
+	});
+
+})(window.jQuery);
+</script>

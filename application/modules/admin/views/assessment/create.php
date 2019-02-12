@@ -22,6 +22,26 @@ echo $form_helper->messages();
 
 </div>
 
+<div class="modal fade add-sponsor" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <?php echo form_open('api/sponsors', [ 'id'=>'add-sponsor' ]) ?>
+      <div class="modal-header">
+        <?php echo form_label("Add sponsor") ?>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <?php echo  form_input('name', NULL, [ "class"=>'form-control' ]) ?>
+        </div>
+      </div>
+      <div class="modal-footer text-right">
+        <?php echo form_submit('submit', "Submit", [ 'class'=>'btn btn-primary' ]) . form_reset('close', 'Close', [ 'class' => 'btn btn-default', "data-dismiss"=>"modal" ]); ?>
+      </div>
+      <?php echo form_close(); ?>
+    </div>
+  </div>
+</div>
+
 <script type="text/javascript">
 
 (function($) { if (!$) return;
