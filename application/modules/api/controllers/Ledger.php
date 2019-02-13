@@ -40,7 +40,7 @@ class Ledger extends REST_Controller
 				]);
 			}
 
-			$account_total = $account->balance;
+			$account_total = intval($account->balance);
 			$enrolled = $account->datetime;
 			$remaining = intval($account_total);
 
@@ -49,8 +49,12 @@ class Ledger extends REST_Controller
 			$response_data = $this->ledger->statement_of_accounts($account->id);
 
 			foreach ($response_data as $key => $statement) {
-				if (intval($statement['paid']) === 1) {
+				$paymentStatus = intval($statement['paid']);
+				if ($paymentStatus === 1 || $paymentStatus === 3) {
 					$remaining -= intval($statement['payment']);
+				}
+				elseif ($paymentStatus === 2) {
+					$remaining += intval($statement['payment']);
 				}
 			}
 		}

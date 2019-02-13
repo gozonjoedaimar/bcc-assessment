@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
 	})
 });
 
-var ledger_api = "<?php echo site_url('api/ledger') ?>"; var pending = 0; var paid = 0;
+var ledger_api = "<?php echo site_url('api/ledger') ?>"; var pending = 0; var credit = 0; var paid = 0;
 
 var toNumber = function($number) {
 	$number = Number($number);
@@ -146,17 +146,24 @@ var toNumber = function($number) {
 };
 
 var payments = function(row, data) {
-	if (Number(data.paid)) {
+	var paymentStatus = Number(data.paid);
+	if (paymentStatus == 1 || paymentStatus == 3) {
 		row.append('<td>');
 		row.append('<td class="text-right">'+toNumber(data.payment)+"</td>");
 		row.append('<td>');
 		paid += Number(data.payment);
 	}
-	else {
+	else if (paymentStatus == 0) {
 		row.append('<td class="text-right">'+toNumber(data.payment)+"</td>");
 		row.append('<td>');
 		row.append('<td>');
 		pending += Number(data.payment);
+	}
+	else {
+		row.append('<td>');
+		row.append('<td>');
+		row.append('<td class="text-right">'+toNumber(data.payment)+"</td>");
+		credit += Number(data.payment);
 	}
 };
 
@@ -204,6 +211,8 @@ var reload_table = function(callback) {
 		if (response.status) {
 			body.html("");
 
+			credit = response.account_total;
+
 			/* Prepare beginning balance */
 			var row = $('<tr>');
 			row.append('<td>'+response.enrolled+'</td>');
@@ -244,7 +253,7 @@ var reload_table = function(callback) {
 			row.append('<td>');
 			row.append('<td class="text-right"><u>'+toNumber(pending)+'</u></td>');
 			row.append('<td class="text-right"><u>'+toNumber(paid)+'</u></td>');
-			row.append('<td class="text-right"><u>'+toNumber(response.account_total)+'</u></td>');
+			row.append('<td class="text-right"><u>'+toNumber(credit)+'</u></td>');
 			row.append('<td class="text-right"><b><u>'+toNumber(response.remaining)+'</u></b></td>');
 			body.append(row);
 

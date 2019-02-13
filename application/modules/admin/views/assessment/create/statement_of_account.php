@@ -62,28 +62,28 @@
 				<div class="row">
 					<div class="col-xs-offset-2 col-xs-10">
 						<div class="checkbox">
-							<label><?php echo $form->checkbox('examterm', 'midterm', $form->statement_of_account) ?>Midterm</label>
+							<label><?php echo $form->checkbox('examterm', 'Mid-term', $form->statement_of_account) ?>Midterm</label>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-offset-2 col-xs-10">
 						<div class="checkbox">
-							<label><?php echo $form->checkbox('examterm', 'endterm', $form->statement_of_account) ?>End-Term</label>
+							<label><?php echo $form->checkbox('examterm', 'End-term', $form->statement_of_account) ?>End-Term</label>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-offset-1 col-xs-11">
 						<div class="checkbox">
-							<label><?php echo $form->checkbox('old_account', NULL, $form->statement_of_account) ?>Old Account</label>
+							<label><?php echo $form->checkbox('old_account', 'Old Account', $form->statement_of_account) ?>Old Account</label>
 						</div>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-xs-offset-1 col-xs-11">
 						<div class="checkbox">
-							<label><?php echo $form->checkbox('certification', NULL, $form->statement_of_account) ?>Certification/s</label>
+							<label><?php echo $form->checkbox('certification', 'Certification', $form->statement_of_account) ?>Certification/s</label>
 						</div>
 					</div>
 				</div>

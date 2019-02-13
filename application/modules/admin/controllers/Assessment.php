@@ -130,6 +130,10 @@ class Assessment extends Admin_Controller {
 				}
 			}
 
+			if (($post_data['adding_description'] && $post_data['adding_description']) || ($post_data['dropping_description'] && $post_data['dropping_description'])) {
+				$valid = TRUE;
+			}
+
 			if ( ! $valid) {
 				$this->system_message->add_error("Please fill up fees");
 				return redirect('admin/assessment/create');
@@ -143,8 +147,22 @@ class Assessment extends Admin_Controller {
 
 					/* Save assessment */
 					$this->db->set('assessment_group', $account->id);
-					$this->db->set('form_type', $post_data['form_type']);
-					$this->db->set('paid', 0); // Set unpaid
+
+					if ($post_data['adding_description'] && $post_data['adding_description']) {
+						$this->db->set('form_type', 'assessment_form');
+						$this->db->set('paid', 2); // Set add
+						$description = [$post_data['adding_description']];
+					}
+					elseif ($post_data['dropping_description'] && $post_data['dropping_description']) {
+						$this->db->set('form_type', 'statement_of_account');
+						$this->db->set('paid', 3); // Set drop
+						$description = [$post_data['dropping_description']];
+					}
+					else {
+						$this->db->set('form_type', $post_data['form_type']); /* statement_of_account | assessment_form */
+						$this->db->set('paid', 0); // Set unpaid
+					}
+
 					$this->db->set('payment', $post_data['payment_stated']);
 					$this->db->set('description', implode(' | ', $description));
 					$assessment_saved = $this->db->insert('assessment');
