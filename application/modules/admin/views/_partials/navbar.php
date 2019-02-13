@@ -22,7 +22,8 @@
 						</li>
 						<li class="user-footer">
 							<div class="pull-left">
-								<a href="panel/account" class="btn btn-default btn-flat">Account</a>
+								<a href="panel/account" class="btn btn-primary btn-flat">Account</a>
+								<a href="#" class="btn btn-default theme-toggle">Toggle</a>
 							</div>
 							<div class="pull-right">
 								<a href="panel/logout" class="btn btn-default btn-flat">Sign out</a>
@@ -34,3 +35,21 @@
 		</div>
 	</nav>
 </header>
+
+<script type="text/javascript">
+	(function($) {
+		$('.theme-toggle').unbind('click').on('click', function(e) {
+			e.preventDefault();
+			var defaultTheme = '<?php echo $body_class ?>';
+			var body = $('body');
+			if (body.hasClass(defaultTheme)) {
+				body.removeClass(defaultTheme);
+				body.addClass(defaultTheme + '-light');
+			}
+			else if (body.hasClass(defaultTheme + '-light')) {
+				body.removeClass(defaultTheme + '-light');
+				body.addClass(defaultTheme);
+			}
+		});
+	})(window.jQuery);
+</script>
