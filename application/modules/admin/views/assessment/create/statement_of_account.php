@@ -94,7 +94,7 @@
 						</div>
 					</div>
 					<div class="col-xs-3 border-bottom">
-						<?php echo $form->statement_of_account->field_text('description', NULL,array( 'class'=>'borderless text-left', 'style'=>'text-align:left;' )); ?>
+						<?php echo $form->statement_of_account->field_text('description', NULL,array( 'class'=>'borderless text-left', 'style'=>'text-align:left;', 'data-checkbox'=>'[name=\'other_payment\']' )); ?>
 					</div>
 				</div>
 			</div>
@@ -102,6 +102,39 @@
 
 		</div>
 		<div class="col-md-6">
+
+			<div class="box box-primary">
+			<div class="box-header">
+				<h3 class="box-title">Adding/Dropping</h3>
+			</div>
+				<div class="box-body">
+					<div class="row">
+						<div class="col-xs-offset-1 col-xs-3">
+							<div class="checkbox">
+								<label><?php echo $form->checkbox('add_payment', NULL, $form->statement_of_account) ?>Adding</label>
+							</div>
+						</div>
+						<div class="col-xs-3 ">
+							<div class="border-bottom">
+								<?php echo $form->textarea('adding_description', NULL, $form->statement_of_account, array( 'class'=>'borderless text-left form-control', 'style'=>'text-align:left;', 'placeholder'=>'Description', 'data-checkbox'=>'[name=\'add_payment\']' )); ?>
+							</div>
+						</div>
+					</div>
+					<div>&nbsp;</div>
+					<div class="row">
+						<div class="col-xs-offset-1 col-xs-3">
+							<div class="checkbox">
+								<label><?php echo $form->checkbox('drop_payment', NULL, $form->statement_of_account) ?>Dropping</label>
+							</div>
+						</div>
+						<div class="col-xs-3 ">
+							<div class="border-bottom">
+								<?php echo $form->textarea('dropping_description', NULL, $form->statement_of_account, array( 'class'=>'borderless text-left form-control', 'style'=>'text-align:left;', 'placeholder'=>'Description', 'data-checkbox'=>'[name=\'drop_payment\']' )); ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 
 			<div class="box box-primary">
 			<div class="box-header">

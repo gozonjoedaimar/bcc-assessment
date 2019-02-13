@@ -82,7 +82,7 @@ class Assessment extends Admin_Controller {
 					$this->db->set('assessment_group', $assessment_id);
 					$this->db->set('form_type', $post_data['form_type']);
 					$this->db->set('paid', 0); // Set unpaid
-					$this->db->set('description', 'enrollment'); // Set unpaid
+					$this->db->set('description', 'Enrollment'); // Set unpaid
 					$this->db->set('payment', $post_data['payment_stated']);
 					$assessment_saved = $this->db->insert('assessment');
 

@@ -2,15 +2,16 @@
 
 var $parent = $('div#statement_of_account');
 
-var other_payment = $parent.find('[name="other_payment"]');
-var description = $parent.find('[name="description"]');
+var description = $parent.find('[data-checkbox]');
 
 description.on('keyup', function() {
+	var selector = $(this).data('checkbox');
+	var checkbox = $parent.find(selector);
 	if (this.value) {
-		other_payment.prop('checked',true);
+		checkbox.prop('checked',true);
 	}
 	else {
-		other_payment.prop('checked',false);
+		checkbox.prop('checked',false);
 	}
 });
 

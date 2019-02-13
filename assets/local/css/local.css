@@ -42,6 +42,13 @@ input.borderless {
   text-align: left;
 }
 
+textarea.borderless {
+  width: 100%;
+  max-width: 100%;
+  padding: 0;
+  border: 0;
+}
+
 .modal .table-hover > tbody > tr:hover {
     background-color: orange;
 }

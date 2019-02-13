@@ -196,6 +196,30 @@ class Assessment_forms_model extends CI_Model
 		return $html;
 	}
 
+	public function textarea($name, $value, $form_builder, $extras = array())
+	{
+		/* Prepare appearance */
+		if ( ! isset($extras['class'])) $extras['class'] = "form-control";
+		if ( ! isset($extras['rows'])) $extras['rows'] = 2;
+
+		/* Prepare value */
+		if ( ! $value && $form_builder) {
+			$field_value = $form_builder->get_field_value($name);
+			if ($field_value) {
+				$value = $field_value;
+			}
+		}
+
+		/* Prepare textarea options */
+		$options = $extras;
+		$options['name'] = $name;
+		$options['value'] = $value;
+
+		$html  = form_textarea($options);
+		
+		return $html;
+	}
+
 	/* Checks if student id is already taken */
 	public function student_id_exists($id, $db_id = NULL)
 	{
