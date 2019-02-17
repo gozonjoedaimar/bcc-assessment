@@ -16,6 +16,7 @@ $parent.find('input[name="total_units"]').on('keyup', function() {
 });
 
 $parent.find('input[name="other_fees"]').on('keyup', function() { calculateMiscellaneousFee(); calculateBalance(); });
+$parent.find('form.assessment_form').on('reset', function() { setTimeout(function() { calculateMiscellaneousFee(); calculateBalance(); }, 100) });
 $parent.find('input[name="payment_stated"]').on('keyup', function() { calculateBalance(); });
 
 var setHiddenAmount = function(name, value) {

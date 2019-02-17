@@ -47,6 +47,9 @@ echo $form_helper->messages();
 (function($) { if (!$) return;
 
   window.addEventListener('load', function() {
+    $('link[href$="adminlte.min.css"]').attr('media','all');
+    $('link[href$="local.css"]').attr('media','all');
+
     initStudentSearchModal(function(row, result) {
       var data = result.data[row.rowIndex - 1];
       for (key in data) {
@@ -57,6 +60,14 @@ echo $form_helper->messages();
     $('button.searchStudent').on('click', function() {
       $('#studentSearchModal').modal('show');
     });
+
+    <?php
+    $flash_print = $this->session->flashdata('flash_print');
+    if ($flash_print): ?>
+    flashPrint("<?php echo addslashes(preg_replace("/[\r\n]+/", "", $flash_print)) ?>");
+    <?php endif; ?>
+
+
 
   });
 

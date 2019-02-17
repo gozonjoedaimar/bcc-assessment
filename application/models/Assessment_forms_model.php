@@ -9,21 +9,21 @@ class Assessment_forms_model extends CI_Model
 		$this->CI->load->library('form_builder');
 
 		/* Create instance for assessment form */
-		$this->assessment_form = $this->CI->form_builder->create_form();
+		$this->assessment_form = $this->CI->form_builder->create_form(NULL, NULL, ['class'=>'assessment_form']);
 		$this->assessment_form->set_post_url('admin/assessment/save_assessment_form');
 		$this->assessment_form->set_rule_group('assessment/save_assessment_form');
 		$this->assessment_form->set_id('assessment_form');
 		$this->assessment_form->set_form_url('admin/assessment/create');
 		
 		/* Create instance for statement of account form */
-		$this->statement_of_account = $this->CI->form_builder->create_form();
+		$this->statement_of_account = $this->CI->form_builder->create_form(NULL, NULL, ['class'=>'statement_of_account']);
 		$this->statement_of_account->set_post_url('admin/assessment/save_statement_of_account');
 		$this->statement_of_account->set_rule_group('assessment/save_statement_of_account');
 		$this->statement_of_account->set_id('statement_of_account');
 		$this->statement_of_account->set_form_url('admin/assessment/create');
 		
 		/* Create instance for student information form */
-		$this->student_information = $this->CI->form_builder->create_form();
+		$this->student_information = $this->CI->form_builder->create_form(NULL, NULL, ['class'=>'student_information']);
 		$this->student_information->set_rule_group('ledger/save_student_information');
 		$this->student_information->set_id('student_information');
 

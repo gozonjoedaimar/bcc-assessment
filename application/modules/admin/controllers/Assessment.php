@@ -23,6 +23,7 @@ class Assessment extends Admin_Controller {
 	{
 		$form = $this->assessment_forms;
 		$post_data = $this->input->post();
+
 		if ($form->assessment_form->validate())
 		{
 			$form->set_form_data('assessment_form', $post_data);
@@ -104,7 +105,14 @@ class Assessment extends Admin_Controller {
 						}
 					}
 
-					$form->set_form_data('assessment_form', []);	
+					if (isset($post_data['save']) && $post_data['save'] == 'print') {
+						$this->system_message->add_success('Print and save clicked');
+						$print_html = $this->load->view('admin/assessment/print/assessment_form', ['form_data'=>$post_data, 'user'=>$user], TRUE);
+						$this->session->set_flashdata('flash_print', $print_html);
+					}
+					else {
+						$form->set_form_data('assessment_form', []);	
+					}
 				}
 			}
 

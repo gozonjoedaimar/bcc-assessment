@@ -134,5 +134,16 @@
           }
         });
     };
-
+    window.flashPrint = function(html) {
+    	var container = document.getElementById('flashPrint');
+    	if (!container) {
+    		container = document.createElement('div');
+	    	Object.assign(container, {
+	    		id: "flashPrint",
+	    	});
+    	}
+    	container.innerHTML = html;
+    	document.body.append(container);
+    	$(container).printThis();
+    }
 })(window.jQuery);
