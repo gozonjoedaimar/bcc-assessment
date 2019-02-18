@@ -6,6 +6,7 @@ class Reports extends REST_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('api/reports_model');
 	}
 
 	/*  */
@@ -17,7 +18,7 @@ class Reports extends REST_Controller
 
 		$this->db->from('assessment_group');
 		$this->db->join('students', 'assessment_group.student_id = students.student_id');
-		$this->db->select(['first_name', 'middle_name', 'last_name', 'students.student_id', 'gender', 'assessment_group.course_code', 'assessment_group.year_level']);
+		$this->db->select(['first_name', 'middle_name', 'last_name', 'students.student_id', 'gender', 'assessment_group.course_code', 'assessment_group.year_level', 'assessment_group.balance']);
 
 		if ($this->get('course_code')) {
 			$this->db->where('assessment_group.course_code', $this->get('course_code'));
@@ -31,16 +32,23 @@ class Reports extends REST_Controller
 
 		// $response['query'] = $this->db->get_compiled_select();
 		$response['data_raw'] = $this->db->get();
-		$response['data'] = $response['data_raw'];
+		$response['data'] = $response['data_raw']->result_array();
+
+		/* Filter response */
+		$filtered = [];
+		for ($i=0; $i < count($response['data']); $i++) { 
+			$data = $response['data'][$i];
+			$data['balance'] = $this->reports_model->get_balance($data['student_id']);
+			$filtered[] = $data;
+		}
+		$response['data'] = $filtered;
 
 		$this->table->set_template([ 'table_open'=>'<table class="table table-striped table-bordered table-hover">', 'heading_row_start'=>'<tr class="active">' ]);
-		$this->table->set_heading(['Fist Name', 'Middle Name', 'Last Name', 'Student ID', 'Gender', 'Course', 'Year Level']);
+		$this->table->set_heading(['Fist Name', 'Middle Name', 'Last Name', 'Student ID', 'Gender', 'Course', 'Year Level', 'Balance']);
 
 		$response['html'] = $this->table->generate($response['data']);
 
-		if (!$response['data']->num_rows()) $response['html'] = '<p class="text-center alert alert-warning">No result found</p>';
-
-		$response['data'] = $response['data']->result();
+		if (!$response['data_raw']->num_rows()) $response['html'] = '<p class="text-center alert alert-warning">No result found</p>';
 
 		$this->response($response);
 	}
