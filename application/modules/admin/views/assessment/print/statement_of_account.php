@@ -31,12 +31,25 @@
 				</tbody>
 			</table>
 		</div>
+		<div>&nbsp;</div>
+		<div class="col-sm-12">
+			<table class="sec">
+				<tr>
+					<td><label>Particulars:</label></td>
+				</tr>
+				<tr>
+					<td><i><?php echo $particulars ?></i></td>
+				</tr>
+			</table>
+		</div>
+		<div>&nbsp;</div>
 		<div class="col-sm-12">
 			<table class="sec">
 				<tr>
 					<td class="cell-fit">Assessed by: </td>
 					<td><span class="border-bottom print-block text-center"><?php echo $form_data['admin_user'] ?></span></td>
-					<td>&nbsp;</td>
+				</tr>
+				<tr>
 					<td class="cell-fit">Date</td>
 					<td><span class="border-bottom print-block text-center"><?php echo $form_data['datetime'] ?></span></td>
 				</tr>

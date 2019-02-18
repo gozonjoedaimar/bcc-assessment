@@ -181,7 +181,7 @@ class Assessment extends Admin_Controller {
 
 						/* Handle save and print */
 						if (isset($post_data['save']) && $post_data['save'] == 'print') {
-							$print_html = $this->load->view('admin/assessment/print/statement_of_account', ['form_data'=>$post_data, 'user'=>$user], TRUE);
+							$print_html = $this->load->view('admin/assessment/print/statement_of_account', ['form_data'=>$post_data, 'user'=>$user, 'particulars'=>implode(' | ', $description)], TRUE);
 							$this->session->set_flashdata('flash_print', $print_html);
 						}
 						else {
