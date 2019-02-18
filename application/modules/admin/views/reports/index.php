@@ -7,16 +7,19 @@
 		</div>
 		<?php echo $form_builder->open() ?>
 		<div class="row">
-			<div class="col-sm-3">
+			<div class="col-sm-2">
 				<?php echo $form->dropdown('course_code', $form->get_course_options(), $form_builder, ['class'=>'form-control']); ?>
 			</div>
-			<div class="col-sm-3">
+			<div class="col-sm-2">
 				<?php echo $form->dropdown('year_level', $form->get_year_options(), $form_builder, ['class'=>'form-control']); ?>
 			</div>
-			<div class="col-sm-3">
+			<div class="col-sm-2">
 				<?php echo $form->dropdown('batch', $form->get_batch_options(), $form_builder, ['class'=>'form-control']); ?>
 			</div>
-			<div class="col-sm-3">
+			<div class="col-sm-2">
+				<?php echo $form->dropdown('balance_status', [""=>"Balance Status", "paid"=>"Paid", "unpaid"=>"Unpaid"], $form_builder, ['class'=>'form-control']); ?>
+			</div>
+			<div class="col-sm-4">
 				<?php echo form_button('Generate', 'generate', ['class'=>'btn btn-primary btn-gen-report']); ?>
 				<?php echo form_button('Print', 'print', ['class'=>'btn btn-primary btn-print-report']); ?>
 			</div>

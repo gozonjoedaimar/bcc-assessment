@@ -39,7 +39,23 @@ class Reports extends REST_Controller
 		for ($i=0; $i < count($response['data']); $i++) { 
 			$data = $response['data'][$i];
 			$data['balance'] = $this->reports_model->get_balance($data['student_id']);
-			$filtered[] = $data;
+
+			if ($this->get('balance_status')) {
+				if ($this->get('balance_status') == 'paid') {
+					if (floatval($data['balance']) <= 0) {
+						$filtered[] = $data;
+					}
+				}
+				elseif ($this->get('balance_status') == 'unpaid') {
+					if (floatval($data['balance']) > 0) {
+						$filtered[] = $data;
+					}
+				}
+			}
+			else {
+				$filtered[] = $data;
+			}
+
 		}
 		$response['data'] = $filtered;
 
@@ -48,7 +64,7 @@ class Reports extends REST_Controller
 
 		$response['html'] = $this->table->generate($response['data']);
 
-		if (!$response['data_raw']->num_rows()) $response['html'] = '<p class="text-center alert alert-warning">No result found</p>';
+		if (!count($response['data'])) $response['html'] = '<p class="text-center alert alert-warning">No result found</p>';
 
 		$this->response($response);
 	}
