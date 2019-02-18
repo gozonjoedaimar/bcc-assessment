@@ -175,6 +175,7 @@
 								<?php echo form_label('Assessed By:'); ?>
 							</div>
 							<div class="col-sm-6 ">
+								<?php echo form_hidden('admin_user', $user->first_name . " " . $user->last_name) ?>
 								<span class="border-bottom full-width text-center"><?php echo $user->first_name . " " . $user->last_name ?></span>
 							</div>
 
@@ -202,6 +203,8 @@
 				<div class="box-body">
 
 						<?php echo $form->statement_of_account->bs3_submit('Save'); ?>
+						<?php echo $form->statement_of_account->bs3_submit('Save and Print', 'btn btn-primary', [ 'name'=>'save', 'value'=>'print' ]); ?>
+						<?php echo $form->statement_of_account->btn_reset('Reset', ['class'=>'btn btn-default']); ?>
 						
 				</div>
 			</div>

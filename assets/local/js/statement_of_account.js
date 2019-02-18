@@ -2,6 +2,8 @@
 
 var $parent = $('div#statement_of_account');
 
+$parent.find('form.statement_of_account').on('reset', function() { setTimeout(function() { calculateMiscellaneousFee(); calculateBalance(); }, 100) });
+
 var description = $parent.find('[data-checkbox]');
 
 description.on('keyup', function() {

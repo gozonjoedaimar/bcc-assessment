@@ -89,6 +89,7 @@ class Assessment extends Admin_Controller {
 
 					if ( ! $assessment_saved) {
 						$this->system_message->add_error("Assessment Form: Unable to save assessment. An error occured.");
+						$form->set_form_data('assessment_form', []);	
 					}
 					else {
 						if ($is_new_student) {
@@ -103,16 +104,16 @@ class Assessment extends Admin_Controller {
 							$this->db->set('sponsor',$post_data['sponsor']);
 							$this->db->insert('scholars');
 						}
+						/* Handle save and print */
+						if (isset($post_data['save']) && $post_data['save'] == 'print') {
+							$print_html = $this->load->view('admin/assessment/print/assessment_form', ['form_data'=>$post_data, 'user'=>$user], TRUE);
+							$this->session->set_flashdata('flash_print', $print_html);
+						}
+						else {
+							$form->set_form_data('assessment_form', []);	
+						}
 					}
 
-					if (isset($post_data['save']) && $post_data['save'] == 'print') {
-						$this->system_message->add_success('Print and save clicked');
-						$print_html = $this->load->view('admin/assessment/print/assessment_form', ['form_data'=>$post_data, 'user'=>$user], TRUE);
-						$this->session->set_flashdata('flash_print', $print_html);
-					}
-					else {
-						$form->set_form_data('assessment_form', []);	
-					}
 				}
 			}
 
@@ -176,8 +177,16 @@ class Assessment extends Admin_Controller {
 					$assessment_saved = $this->db->insert('assessment');
 
 					if ($assessment_saved)  {
-						$form->set_form_data('statement_of_account', []);
 						$this->system_message->add_success('Update has been added to the student ledger');
+
+						/* Handle save and print */
+						if (isset($post_data['save']) && $post_data['save'] == 'print') {
+							$print_html = $this->load->view('admin/assessment/print/statement_of_account', ['form_data'=>$post_data, 'user'=>$user], TRUE);
+							$this->session->set_flashdata('flash_print', $print_html);
+						}
+						else {
+							$form->set_form_data('statement_of_account', []);	
+						}
 					}
 					else {
 						$this->system_message->add_error('Unable to save assessment. An error occured.');

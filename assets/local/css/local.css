@@ -68,6 +68,12 @@ textarea.borderless {
   display: none;
 }
 
+@media screen {
+  #flashPrint {
+    display: none;
+  }
+}
+
 @media print {
   .print-visible, .print-visible-block {
     display: block;

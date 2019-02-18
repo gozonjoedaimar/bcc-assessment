@@ -144,6 +144,7 @@
     	}
     	container.innerHTML = html;
     	document.body.append(container);
+        $('body > div.wrapper').addClass('print-hidden');
     	$(container).printThis();
     }
 })(window.jQuery);
